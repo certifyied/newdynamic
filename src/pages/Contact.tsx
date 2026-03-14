@@ -19,7 +19,7 @@ const Contact = () => {
   useEffect(() => {
     // Update document title
     document.title = "SCADA Programming in Kochi Specialists";
-    
+
     // Update meta description
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
@@ -80,7 +80,7 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Basic validation
     if (!formData.name || !formData.email || !formData.message) {
       toast({
@@ -117,12 +117,15 @@ const Contact = () => {
       message: "",
     });
   };
-
+{/*Added 1 email */}
   const contactInfo = {
     company: "Dynamic Control Systems",
     address: "52/3106, Near SBI Bank, NH Bypass, Vyttila, Kochi, Ernakulam Dist., Kerala, 682019",
-    email: "admin@dynamiccontrolsystems.in",
-    phones: [ "+91 85473 27855","+91 94477 07855" ,"+91 48440 41177"],
+    emails: [
+      "admin@dynamiccontrolsystems.in",
+      "cristo@dynamiccontrolsystems.in"
+    ],
+    phones: ["+91 85473 27855", "+91 94477 07855"],
     website: "dynamiccontrolsystems.in",
   };
 
@@ -256,7 +259,7 @@ const Contact = () => {
                     <h3 className="font-display text-xl font-semibold mb-4">
                       {contactInfo.company}
                     </h3>
-                    
+
                     <div className="flex items-start gap-4 mb-6">
                       <div className="p-3 bg-primary/10 rounded-lg">
                         <MapPin className="text-primary" size={24} />
@@ -268,19 +271,25 @@ const Contact = () => {
                         </p>
                       </div>
                     </div>
-
+                    {/*changed for 2 email */}
                     <div className="flex items-start gap-4 mb-6">
                       <div className="p-3 bg-primary/10 rounded-lg">
                         <Mail className="text-primary" size={24} />
                       </div>
+
                       <div>
                         <h3 className="font-semibold mb-1">Email</h3>
-                        <a
-                          href={`mailto:${contactInfo.email}`}
-                          className="text-primary hover:underline text-sm"
-                        >
-                          {contactInfo.email}
-                        </a>
+
+                        {contactInfo.emails.map((email, index) => (
+                          <a
+                            key={index}
+                            href={`mailto:${email}`}
+                            className="block text-primary hover:underline text-sm"
+                          >
+                            {email}
+                          </a>
+                        ))}
+
                       </div>
                     </div>
 

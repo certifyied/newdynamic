@@ -35,11 +35,17 @@ const getCategoryFromPath = (path: string): { category: string; subcategory?: st
     return { category: "Other" };
   }
 
+  // const categoryFolder = pathParts[dynamicProductIndex + 1];
+  // const filename = pathParts[pathParts.length - 1];
+
+  // // Normalize category names (case-insensitive)
+  // const normalizedCategory = categoryFolder.toLowerCase().trim();
   const categoryFolder = pathParts[dynamicProductIndex + 1];
+  const subFolder = pathParts[dynamicProductIndex + 2] || "";
   const filename = pathParts[pathParts.length - 1];
 
-  // Normalize category names (case-insensitive)
   const normalizedCategory = categoryFolder.toLowerCase().trim();
+  const normalizedSubFolder = subFolder.toLowerCase().trim();
 
   // Map PLC subcategories (handle various case combinations)
   if (normalizedCategory.includes("iqf") && normalizedCategory.includes("plc")) {
@@ -59,6 +65,69 @@ const getCategoryFromPath = (path: string): { category: string; subcategory?: st
   }
   if (normalizedCategory.includes("mxr") && normalizedCategory.includes("plc")) {
     return { category: "PLC", subcategory: "PLC MXR Series" };
+  }
+
+  // LEUZE
+  if (normalizedCategory.includes("leuze")) {
+
+    if (normalizedSubFolder.includes("switching")) {
+      return { category: "LEUZE", subcategory: "SWITCHING SENSORS" };
+    }
+
+    if (normalizedSubFolder.includes("measuring")) {
+      return { category: "LEUZE", subcategory: "MEASURING SENSORS" };
+    }
+
+    if (normalizedSubFolder.includes("safety")) {
+      return { category: "LEUZE", subcategory: "SAFETY SENSORS" };
+    }
+
+    if (normalizedSubFolder.includes("identification")) {
+      return { category: "LEUZE", subcategory: "IDENTIFICATION SENSORS" };
+    }
+
+    if (normalizedSubFolder.includes("vision")) {
+      return { category: "LEUZE", subcategory: "VISION SENSORS" };
+    }
+
+    if (normalizedSubFolder.includes("towerlamp")) {
+      return { category: "LEUZE", subcategory: "TOWERLAMP" };
+    }
+    if (normalizedSubFolder.includes("network and connection technology")) {
+      return { category: "LEUZE", subcategory: "NETWORK AND CONNECTION TECHNOLOGY" };
+    }
+  }
+
+  //SMC
+  if (normalizedCategory.includes("smc")) {
+
+    if (
+      normalizedSubFolder.includes("electrical actuators") ||
+      normalizedSubFolder.includes("electrical-actuators") ||
+      normalizedSubFolder.includes("electrical_actuators") ||
+      normalizedSubFolder.includes("electricalactuators")
+    ) {
+      return { category: "SMC", subcategory: "ELECTRICAL ACTUATORS" };
+    }
+
+    if (
+      normalizedSubFolder.includes("digital flow") ||
+      normalizedSubFolder.includes("digital-flow") ||
+      normalizedSubFolder.includes("digital_flow") ||
+      normalizedSubFolder.includes("digitalflow")
+    ) {
+      return { category: "SMC", subcategory: "DIGITAL FLOW/SENSORS/CONTROLLERS" };
+    }
+
+    if (
+      normalizedSubFolder.includes("pressure control") ||
+      normalizedSubFolder.includes("pressure-control") ||
+      normalizedSubFolder.includes("pressure_control") ||
+      normalizedSubFolder.includes("pressurecontrolequipment")
+    ) {
+      return { category: "SMC", subcategory: "PRESSURE CONTROL EQUIPMENT" };
+    }
+
   }
 
   // Map other categories
@@ -81,7 +150,13 @@ const getCategoryFromPath = (path: string): { category: string; subcategory?: st
     return { category: "Integrated HMI" };
   }
   if (normalizedCategory.includes("low voltage") || normalizedCategory.includes("power")) {
-    return { category: "Low Voltage Power Distribution" };
+    return { category: "Low Voltage Switch gears" };
+  }
+  if (normalizedCategory.includes("leuze")) {
+    return { category: "LEUZE" };
+  }
+  if (normalizedCategory.includes("smc")) {
+    return { category: "SMC" };
   }
 
   // Default category based on folder name
@@ -94,7 +169,7 @@ const generateProductInfo = (filename: string, category: string, subcategory?: s
 
   // Remove common category and subcategory prefixes from filename
   const cleanName = nameWithoutExt
-    .replace(/^(plc|hmi|robot|servo|invertor|software|invertors)\s*/i, "")
+    .replace(/^(plc|hmi|robot|servo|invertor|software|invertors|lueze)\s*/i, "")
     .replace(/^(plc\s+)?(iqf|iqr|melsec\s+[qf]|mxf|mxr)\s+/i, "")
     .replace(/^(low\s+voltage\s+power\s+distribution|integrated\s+hmi|intergrated\s+hmi|engineering\s+software|visualization\s+software|ac\s+servo)\s*/i, "")
     .replace(/\s+/g, " ")
@@ -155,6 +230,240 @@ const generateProductInfo = (filename: string, category: string, subcategory?: s
       return "Mitsubishi Electric in Kochi offers the iQ-F series PLC, a compact and versatile solution with high-speed processing and wide I/O capabilities for mid-range automation needs.";
     }
 
+
+    // LEUZE
+    if (subcategory === "SWITCHING SENSORS") {
+      if (titleUpper.includes("PROXIMITY SENSORS") || filenameLower.includes("proximity")) {
+        return "Inductive sensors are the industrial standard for the contactless detection of metallic objects. The Leuze product range includes a wide variety of standard and special sensors available in many different designs and already proven millions of times in real industrial applications. Extremely robust all-stainless-steel sensors, sensors with extended switching distance, and miniature sensors for extremely constrained spaces are ideal for challenging automation environments.";
+      }
+
+      if (titleUpper.includes("PHOTO SENSORS") || filenameLower.includes("photo sensors")) {
+        return "Optical sensors use light in various forms to perform their detection tasks. An extensive product line is available with reliable and efficient sensor solutions for all applications that can be solved optically. Object detection for different surfaces, object sizes and colors requires various function principles, such as a throughbeam photoelectric sensor, a retro-reflective photoelectric sensor or a diffuse reflection sensor. All different operating principles are usually available in a given series (size). Universal series are also available with extended models and additional useful functions.";
+      }
+
+      if (titleUpper.includes("ULTRASONIC SENSORS") || filenameLower.includes("ultrasonic sensors")) {
+        return "Ultrasonic sensors are used whenever optical systems reach their limits. Hence, partially and fully transparent or extremely dark objects can be detected just as easily as objects with reflecting surfaces or objects in dusty, vaporous or humid environments.";
+      }
+
+      if (titleUpper.includes("FIBER OPTIC SENSORS") || filenameLower.includes("fiber optic sensors")) {
+        return "If space for sensors is particularly tight or extreme ambient conditions prevail, conventional cubic or cylindrical sensors quickly reach their limits. This is where fiber optic sensors provide an elegant solution. They consist of a two-part structure: flexible fiber optics made of plastic or glass and available in various lengths, and separate amplifiers with a wide range of evaluation options. This design makes it possible to place the amplifier outside the critical environment and install it in suitable locations while the fiber runs to the detection point. This means that even demanding conditions can be mastered reliably.";
+      }
+
+      if (titleUpper.includes("FORK SENSORS") || filenameLower.includes("fork sensors")) {
+        return "Fork sensors combine transmitter and receiver into a single device and therefore feature high operational reliability. They are characterized by simple mounting without the need for alignment as well as high sensitivity. The fork sensors are used for detecting small parts or for detecting labels and print marks, even on transparent films.";
+      }
+
+      if (titleUpper.includes("LABEL SENSORS") || filenameLower.includes("label sensors")) {
+        return "With fork sensors, labels of a wide range of material combinations and surfaces can be detected precisely and quickly – even at high web speeds. The product range includes various designs and operating principles – from light to ultrasonics. These fork sensors are available in slimline-design, i.e., with a reduced fork height with 3 mm fork width for installation directly at the dispensing edge. Furthermore, they offer an ALC function (auto level control) for maximum function reserve via automatic optimization of the switching threshold. They are easy to adjust optionally via potentiometer, a lockable teach button or a teach input.";
+      }
+
+      if (titleUpper.includes("COLOR SENSORS") || filenameLower.includes("color sensors")) {
+        return "Color sensors detect colors by comparing the detected color value with a previously stored reference value. They are the right solution whenever the color of an object or marking can serve as a sorting or inspection criteria. Depending on the configuration and specified tolerance values of the system, the result is output as a switching signal.";
+      }
+
+      if (titleUpper.includes("LUMINESCENCE SENSORS") || filenameLower.includes("luminescence sensors")) {
+        return "Luminescence sensors detect both visible as well as invisible luminescent markings. They send the result as switching output and are used primarily for sorting and inspection tasks in areas in which other detection methods fail to supply reliable results or where the markings should not or must not be visible. Luminescence sensors are available for various luminescence colors and feature operating ranges up to 200 mm and have a very compact metal construction. The sensitivity adjustment is performed via potentiometer. Rotatable M12 connector.";
+      }
+
+      return "Leuze industrial sensors provide accurate object detection and reliable automation performance across manufacturing, logistics, and packaging industries.";
+    }
+
+    if (subcategory === "MEASURING SENSORS") {
+      if (titleUpper.includes("OPTICAL DISTANCE SENSORS") || filenameLower.includes("optical distance sensors")) {
+        return "Optical distance sensors perform different measurement tasks in various applications with varying requirements with regard to accuracy, resolution and size. To meet these diverse needs, the operating principles of triangulation, propagation time measurement and phase measurement in different sensor sizes and specifications are covered by a wide range of optical distance sensors.";
+      }
+
+      if (titleUpper.includes("ULTRASONIC DISTANCE SENSORS") || filenameLower.includes("ultrasonic distance sensors")) {
+        return "Ultrasonic distance sensors can reliably detect partially or fully transparent objects and perform precise distance measurements. In addition, measurements can be performed in dusty, hazy or humid environments. Versions are available either with plastic or metal housing.";
+      }
+
+      if (titleUpper.includes("ROTARY ENCODER") || filenameLower.includes("rotary encoder")) {
+        return "Rotary Encoders provide precise speed and position feedback for industrial automation systems. Designed for reliability and high signal accuracy, they ensure efficient motion control in applications such as conveyors, robotics, and packaging machinery.";
+      }
+
+      if (titleUpper.includes("SENSORS FOR CONTOUR MEASUREMENT") || filenameLower.includes("sensors for contour measurement")) {
+        return "The CMS 700i 3D contour measurement system detects the length, width, height, deformations and position of any objects as they pass by, independent of their shape and surface. Even polybags are reliably detected. The complete system includes all components for operation and installation under one part number. In contrast, light section sensors record a height profile along a projected laser line. This allows objects to be detected with high resolution in multiple dimensions. The integrated functions range from presence control to edge measurement and 3D object measurement.";
+      }
+
+      if (titleUpper.includes("PROFILE MEASUREMENT") || filenameLower.includes("Profile measurement")) {
+        return "The LPS 36 profile camera determines height profiles of moving or static objects. An optional rotary encoder connection enables the output of calibrated 3D data. This solves numerous application problems, such as robot guidance or contour and volume determination. The short measurement time and large measurement range offer high flexibility. The compact device saves expensive installation space.";
+      }
+
+      if (titleUpper.includes("LASER SCANNERS") || filenameLower.includes("laser scanners")) {
+        return "The ROD 300 series laser scanners for measurement tasks in production and the ROD 500 series for AGV navigation ensure manufacturing and logistics processes can be designed for maximum efficiency. The devices are equipped with LiDAR technology (Light Detection and Ranging). The integrated window monitoring supports predictive maintenance and thus enables high system availability. Thanks to the compact design of 80 x 80 x 80 mm, the laser scanners can also be perfectly integrated into confined production environments and small automated guided vehicles (AGVs).";
+      }
+
+      if (titleUpper.includes("MEASURING LIGHT CURTAINS") || filenameLower.includes("measuring light curtains")) {
+        return "These devices are perfect for measuring moving objects as they pass by. The measurement results can be output via the fully integrated interface. At the same time, the programmable switching outputs allow downstream elements to be manipulated. Likewise, multiple light curtains can be cascaded. The nearly unlimited possibilities for configuring multiple measurement areas and evaluation functions make the devices problem solvers for a variety of measurement tasks. The range of available resolutions and measurement field lengths ensures optimum adaptation to your application.";
+      }
+
+      if (titleUpper.includes("SAFETY RELAYS") || filenameLower.includes("safety relays")) {
+        return "With the MSI safety relays, individual safety sensors can be integrated quickly and easily into the safety circuit of machines and systems. The MSI contact extensions are used both as an output extension for OSSDs and for contact multiplication for evaluation units and safety controls.";
+      }
+
+      return "MEASURING SENSORS provide advanced machine protection solutions including light curtains, scanners, and safety switches for modern industrial automation systems.";
+    }
+
+
+    if (subcategory === "ELECTRICAL ACTUATORS") {
+
+      if (
+        titleUpper.includes("ELECTRIC ACTUATORS/ROAD TYPE-LEY") ||
+        filenameLower.includes("electric actuators/road type-ley")
+      ) {
+        return "The Electric Actuator (Rod Type LEY) is designed for precise and reliable motion control in automation systems. It can restart from the last stop position, allowing quick recovery after power interruptions since the encoder retains position data even when the power is off, eliminating the need for a return-to-origin operation. The actuator does not require a battery, reducing maintenance and replacement needs. It supports a maximum stroke of up to 500 mm, offers flexible mounting options (direct mounting in three directions and three bracket types), and allows auto switch installation. Users can choose between positioning or pushing control, enabling the rod to hold or press workpieces when required. It also provides high positioning accuracy with repeatability of ±0.02 mm or less.";
+      }
+
+      if (
+        titleUpper.includes("ELECTRIC SLIDE ACTAUTORS-LEKFS") ||
+        filenameLower.includes("electric slide actuators-lekfs")
+      ) {
+        return `The Slider Type Electric Actuator with High Rigidity Guide (LEKFS) is designed for high-precision and high-load automation applications. Its advanced circular arc groove guide structure provides superior rigidity and stability, ensuring smooth and accurate linear motion even under demanding operating conditions.`;
+      }
+
+      if (
+        titleUpper.includes("ELECTRIC GRIPPER-LEHZ") ||
+        filenameLower.includes("electric gripper-lehz")
+      ) {
+        return `The actuator system is designed for simple configuration and reliable operation in industrial automation applications. Setup is quick and convenient, as only two parameters—position and force—need to be configured, while the controller is already preloaded with the actuator’s data. Since the actuator and controller are supplied as a complete set, installation and commissioning are significantly simplified.`;
+      }
+
+      if (
+        titleUpper.includes("ELECTRIC SLIDE ACTUATORS-LESH") ||
+        filenameLower.includes("electric slide actuators-lesh")
+      ) {
+        return `The Electric Slide Table High Rigidity Type (LESH) is designed to deliver precise and reliable linear motion for industrial automation applications. It features an integrated guide rail and table structure with a recirculating linear guide, providing excellent rigidity and high positioning accuracy during operation.
+
+The system allows easy setup with only two parameters—position and speed, as the actuator and controller are supplied as a matched set with preconfigured data.`;
+      }
+
+      if (
+        titleUpper.includes("E-ACTUATORS INTEGRATED CONTROLLER TYPE-EQ") ||
+        filenameLower.includes("e-actuators integrated controller type-eq")
+      ) {
+        return `The e-Actuator EQFS□H series is designed for easy operation and efficient automation, featuring an integrated controller that simplifies installation and system setup. With its compact design and built-in controller, the actuator reduces wiring requirements, minimizes labor during installation, and enables programless operation, significantly shortening adjustment and commissioning time.`;
+      }
+
+      return "SMC electrical actuators deliver precise, programmable motion control for industrial automation systems. They offer accurate positioning, flexible control, and energy-efficient performance for applications such as material handling, assembly, and robotic automation.";
+    }
+
+    // DIGITAL FLOW/SENSORS/CONTROLLERS
+    if (subcategory === "DIGITAL FLOW/SENSORS/CONTROLLERS") {
+      if (
+        titleUpper.includes("DIGITAL TEMPERATURE & HUMIDITY SWITCH-PSH") ||
+        filenameLower.includes("Digital Temperature & Humidity Switch-PSH")
+      ) {
+        return "The PSH 3-Screen Display Condensation Checker is an advanced digital temperature and humidity switch designed to monitor environmental conditions inside piping systems and help prevent condensation-related issues in industrial applications. It features a newly added relative humidity under pressure display function, allowing users to visualize humidity levels inside piping in real time.";
+      }
+
+      if (
+        titleUpper.includes("DIGITAL FLOW SWITCHES FOR AIR-PF2A") ||
+        filenameLower.includes("Digital Flow Switches for Air-PF2A")
+      ) {
+        return `The PF2A Digital Flow Switch for Air is designed for accurate monitoring and control of air flow in industrial automation systems. It is available in both integrated and separate monitor types, providing flexibility for different installation and monitoring requirements.
+
+        The device supports multiple output options including switch output, accumulated pulse output, and analog output, allowing seamless integration with various control systems. It can also switch between cumulative flow and instantaneous flow measurements, enabling users to monitor both total usage and real-time flow conditions.`;
+      }
+
+      if (
+        titleUpper.includes("DIGITAL FLOW SWITCHES FOR WATER-PF3W-Z") ||
+        filenameLower.includes("Digital Flow Switches for Water-pf3w-z")
+      ) {
+        return `The PF3W 3-Color Display Digital Flow Switch for Water is designed for precise monitoring and control of liquid flow in industrial systems. It is compatible with the PFG200 series 3-screen display 4-channel flow monitor, enabling efficient multi-point flow monitoring and centralized management.
+
+        The device features a 3-color, 2-screen display that provides clear and easy-to-read flow information during operation.`;
+      }
+
+      if (
+        titleUpper.includes("ELECTRONIC PRESSURE SWITCH-ISE") ||
+        filenameLower.includes("electronic pressure switch-ise")
+      ) {
+        return `The ZSE20□(F) / ISE20□ 3-Screen Display High-Precision Digital Pressure Switch is designed for accurate pressure monitoring and reliable control in industrial automation systems. The series now includes a low differential pressure range type for the 20A series, as well as an additional low pressure range type, providing greater flexibility for various applications.`;
+      }
+
+      if (
+        titleUpper.includes("FLOW CONTROLLER FOR WATER-FC3W") ||
+        filenameLower.includes("flow controller for water-fc3w")
+      ) {
+        return `The FC3W Flow Controller for Water is designed to provide precise and stable control of water flow in industrial and process automation applications. It enables stepless flow rate control proportional to electrical signals, allowing smooth and accurate adjustment of flow according to system requirements.
+
+        The controller delivers reliable performance with a flow rate control accuracy of ±5% F.S.`;
+      }
+
+      if (
+        titleUpper.includes("AIR MANAGEMENT SYSTEM-AMS") ||
+        filenameLower.includes("air management system-ams")
+      ) {
+        return `The AMS20/30/40/60 Air Management System is designed to optimize compressed air usage and improve energy efficiency in industrial automation environments. The system continuously monitors machine operating conditions, including standby periods when production stops, and automatically reduces air pressure to minimize unnecessary air consumption. This intelligent control can help achieve air consumption reductions of up to 62%, contributing to significant energy savings.`;
+      }
+
+      return "SAFETY SENSORS provide advanced machine protection solutions including light curtains, scanners, and safety switches for modern industrial automation systems.";
+    }
+
+    // SMC PRESSURE CONTROL EQUIPMENT
+    if (subcategory === "PRESSURE CONTROL EQUIPMENT") {
+
+      if (
+        titleUpper.includes("ELECTRO PNUMATIC REGULATOR") ||
+        filenameLower.includes("electro pnumatic regulator")
+      ) {
+        return `The ITV Electro-Pneumatic Regulator is designed to provide precise and stable control of air pressure in industrial automation systems. It enables stepless pressure control proportional to electrical signals, allowing accurate adjustment of output pressure according to system requirements.
+
+        The regulator delivers high performance with a pressure sensitivity of 0.2 kPa (100 kPa specification), ensuring fine control and stable operation. It also offers excellent linearity of ±1% F.S. or less and low hysteresis of 0.5% F.S. or less, providing reliable and repeatable pressure regulation for demanding applications..`;
+      }
+    }
+
+    //SAFETY SENSORS
+    if (subcategory === "SAFETY SENSORS") {
+      if (
+        titleUpper.includes("SAFETY LASER SCANNERS") ||
+        filenameLower.includes("safety laser scanners")
+      ) {
+        return "Safety laser scanners are suitable for safeguarding machines and systems as well as for the safeguarding and navigation of automated guided vehicles (AGVs) and autonomous mobile robots (AMRs). Thanks to their configurable protective and warning fields, they can be easily customized for the application. Our safety laser scanners stand out for their performance, robustness and easy handling. The compact RSL 200 impresses with its particularly small dimensions of just 80 x 80 x 86 mm – and the powerful RSL 400 with its long operating range of up to 8.25 m.";
+      }
+
+      if (titleUpper.includes("SAFETY LIGHT CURTAINS") || filenameLower.includes("safety light curtains")) {
+        return "Our safety light curtains are used wherever people and machines work \"hand-in-hand.\" They ensure reliable safety – for finger and hand protection to safeguard points of operation or for access guarding at danger zones. At the same time, the devices meet the highest requirements with regard to easy integration and the availability of safeguarded systems.";
+      }
+
+      if (titleUpper.includes("SAFETY SWITCHES") || filenameLower.includes("safety light curtains")) {
+        return "If doors, flaps and covers need to remain closed for safety reasons during the operation of machines, then safety switches for position monitoring and for the protection of personnel and systems are required. The safety switches of the S20 and S200 series with their robust housings and wide range of installation options can be used universally. The S300 position switches monitor the reaching of final positions. Variants with plunger and various actuators enable optimum adaptation to the installation situation. The S400 safety hinge switches unite the safety switch and door hinge functions in one component.";
+      }
+
+      if (titleUpper.includes("SAFETY RELAYS") || filenameLower.includes("safety relays")) {
+        return "With the MSI safety relays, individual safety sensors can be integrated quickly and easily into the safety circuit of machines and systems. The MSI contact extensions are used both as an output extension for OSSDs and for contact multiplication for evaluation units and safety controls.";
+      }
+
+      return "SAFETY SENSORS provide advanced machine protection solutions including light curtains, scanners, and safety switches for modern industrial automation systems.";
+    }
+
+    if (subcategory === "IDENTIFICATION SENSORS") {
+
+      if (titleUpper.includes("BARCODE 1D / 2D READERS") || filenameLower.includes("barcode")) {
+        return "Camera-based bar code readers for stationary use: These code readers reliably capture 1D- and 2D-codes; depending on the type, printed or directly marked, omnidirectional, static or in fast motion as well as inverse or mirrored codes. Various version are available with respect to size, protection classes IP 67 or 69K, speed or interfaces.";
+      }
+
+      if (titleUpper.includes("RFID") || filenameLower.includes("rfid sensor")) {
+        return "With RFID, no direct visual contact between the read-write unit and transponder is necessary. The information from the transponder is transmitted by means of electromagnetic waves. This means that these systems can also be used practically and reliably under harsh conditions.";
+      }
+      // default identification sensors description
+      return "IDENTIFICATION SENSORS enable reliable detection, identification, and tracking of objects in industrial automation systems. They include barcode scanners, RFID sensors, vision sensors, and camera systems for efficient and accurate process control.";
+    }
+
+    if (subcategory === "VISION SENSORS") {
+      return `Vision sensors are used e.g. in the packaging industry and intralogistics as a solution for various image-based inspection tasks. They are compact image processing systems in sensor format which provide everything needed to solve inspection applications in a housing suitable for industrial environments. Vision sensors are ideal for compartment fine positioning, code reading, presence detection as well as measuring and counting.
+
+The sensors of the IPS 200i/400i series for compartment fine positioning in intralogistics detect markers in single- or double-depth shelves.
+
+During code reading, the camera-based devices of the DCR 200i series reliably identify 1D or 2D codes on objects.
+
+Simple Vision sensors are just as easy to use as an optical sensor and offer high performance similar to a camera system. Typical applications here are presence detection, code reading as well as measuring and counting in the packaging industry.`;
+    }
+
+    if (subcategory === "TOWERLAMP") {
+      return "Preassembled tower lights are visual signaling devices used in industrial automation to indicate machine status and operating conditions. They are available with 1, 3, 4, or 5 light segments to provide clear and reliable status indication for operators. Models with an IO-Link interface are also available for easy integration into modern automation systems.";
+    }
+
     // PLC iQ-R Series specific products
     if (subcategory === "PLC iQR") {
       if (titleUpper.includes("ANALOG MODULES") || cleanNameLower.includes("analog") || filenameLower.includes("analog")) {
@@ -198,15 +507,18 @@ const generateProductInfo = (filename: string, category: string, subcategory?: s
       return "The high-performance MELSEC Q Series PLC from Mitsubishi Electric in Kochi is designed for large-scale automation systems, offering advanced networking and motion control capabilities including SCADA programming in Kochi, where reliability, scalability, and real-time control are critical.";
     }
 
-    // PLC MELSEC F Series specific products
-    if (subcategory === "PLC MELSEC F Series") {
-      if (titleUpper.includes("FX3S") || cleanNameLower.includes("fx3s") || filenameLower.includes("fx3s")) {
-        return "The cost-effective MELSEC F Series PLC from Mitsubishi Electric in Kochi delivers reliable control for small to medium-scale automation applications, featuring a compact and efficient design.";
+    // NETWORK AND CONNECTION TECHNOLOGY specific products
+    if (subcategory === "NETWORK AND CONNECTION TECHNOLOGY") {
+
+      if (
+        titleUpper.includes("IO-LINK CONNECTION UNITS") ||
+        cleanNameLower.includes("IO-Link connection units") ||
+        filenameLower.includes("IO-Link connection units")
+      ) {
+        return "Getting ready for tomorrow today. Industrial networks with integrated IO-Link are standard in the networked factory. IO-Link sensors can transfer more than just process data to the machine control. They can also communicate with a wide range of receivers and, in addition to process data, can also transmit device information. Ethernet-based IO modules with IO-Link technology enable a more flexible, more versatile, transparent, high-performance infrastructure. With the MD 7 IO-Link masters, comprehensive diagnostics and adaptation of the parameter settings is possible from the control level all the way to the field level, even to the cloud.";
       }
-      if (titleUpper.includes("FX3U") || cleanNameLower.includes("fx3u") || filenameLower.includes("fx3u")) {
-        return "The FX3U PLC provides dependable and compact automation control with fast processing and flexible configuration. Companies planning Mitsubishi PLC Purchase in India select FX3U for cost-effective and stable operations.";
-      }
-      return "The cost-effective MELSEC F Series PLC from Mitsubishi Electric in Kochi delivers reliable control for small to medium-scale automation applications, featuring a compact and efficient design.";
+
+      return "Getting ready for tomorrow today. Industrial networks with integrated IO-Link are standard in the networked factory. IO-Link sensors can transfer more than just process data to the machine control. They can also communicate with a wide range of receivers and, in addition to process data, can also transmit device information. Ethernet-based IO modules with IO-Link technology enable a more flexible, more versatile, transparent, high-performance infrastructure. With the MD 7 IO-Link masters, comprehensive diagnostics and adaptation of the parameter settings is possible from the control level all the way to the field level, even to the cloud.";
     }
 
     // PLC MXF Series
@@ -219,23 +531,35 @@ const generateProductInfo = (filename: string, category: string, subcategory?: s
       return "The scalable MXR Series PLC from Mitsubishi Electric in Kochi offers flexible configuration options and robust performance to meet diverse automation requirements.";
     }
 
-    // AC Servo specific products
+    // AC Servo specific products 
     if (category === "AC Servo") {
 
-      // 🔥 Check JET first (more specific)
+      // 🔥 Check J5
+      if (titleUpper.includes("J5") || cleanNameLower.includes("j5") || filenameLower.includes("j5")) {
+        return "MELSERVO-J5 by Mitsubishi Electric is an advanced servo drive delivering high precision, connectivity, and predictive maintenance for modern automation systems.";
+      }
+
+      // 🔥 Check JET
       if (titleUpper.includes("JET") || cleanNameLower.includes("jet") || filenameLower.includes("jet")) {
         return "The JET Series AC Servo ensures precise positioning, smooth motion, and energy-efficient performance. It is perfect for robotics and packaging systems. For enhanced automation with Mitsubishi PLC Purchase in India, JET Series offers seamless compatibility.";
       }
 
+      // 🔥 Check J4
       if (titleUpper.includes("J4") || cleanNameLower.includes("j4") || filenameLower.includes("j4")) {
         return "The high-performance AC servo motor system from Mitsubishi Electric in Kochi delivers exceptional torque control and precise positioning for advanced automation applications.";
       }
 
+      // 🔥 Check JE
       if (titleUpper.includes("JE") || cleanNameLower.includes("je") || filenameLower.includes("je")) {
         return "The high-performance AC servo motor system from Mitsubishi Electric in Kochi delivers exceptional torque control and precise positioning for advanced automation applications.";
       }
 
-      return "The JET Series AC Servo ensures precise positioning, smooth motion, and energy-efficient performance. It is perfect for robotics and packaging systems. For enhanced automation with Mitsubishi PLC Purchase in India, JET Series offers seamless compatibility.";
+      // 🔥 Check SB
+      if (titleUpper.includes("SB") || cleanNameLower.includes("sb") || filenameLower.includes("sb")) {
+        return "The SB Series AC Servo provides reliable motion control with efficient performance for industrial automation systems. It ensures stable operation, accurate positioning, and seamless integration with Mitsubishi PLC solutions.";
+      }
+
+      return "The AC Servo system from Mitsubishi Electric in Kochi delivers precise motion control, smooth operation, and high efficiency for modern industrial automation.";
     }
     // HMI specific products
     if (category === "HMI" || category === "Integrated HMI") {
@@ -263,7 +587,7 @@ const generateProductInfo = (filename: string, category: string, subcategory?: s
     // Inverters specific products
     if (category === "Invertors") {
       if (titleUpper.includes("FR-D700") || cleanNameLower.includes("fr-d700") || filenameLower.includes("fr-d700")) {
-        return "The S FR-D700 inverter offers accurate motor speed control and energy savings for industrial machines. It is compact and easy to install. Industries considering Mitsubishi PLC Purchase in India use FR-D700 for improved motor efficiency.";
+        return "The FR-D700 inverter offers accurate motor speed control and energy savings for industrial machines. It is compact and easy to install. Industries considering Mitsubishi PLC Purchase in India use FR-D700 for improved motor efficiency.";
       }
       if (titleUpper.includes("FR-D800") || cleanNameLower.includes("fr-d800") || filenameLower.includes("fr-d800")) {
         return "The variable frequency drive from Mitsubishi Electric in Kochi delivers precise motor control, improved energy efficiency, and smooth operation across a wide range of industrial applications.";
@@ -281,18 +605,24 @@ const generateProductInfo = (filename: string, category: string, subcategory?: s
     }
 
     // Low Voltage Power Distribution
-    if (category === "Low Voltage Power Distribution") {
+    if (category === "Low Voltage Switch gears") {
       if (titleUpper.includes("ACB") || cleanNameLower.includes("acb") || filenameLower.includes("acb")) {
         return "Mitsubishi ACB solutions ensure safe and efficient low-voltage power protection. They prevent overloads and short circuits in industrial systems. For secure operations with Mitsubishi PLC Purchase in India, ACB systems add reliability";
       }
-      if (titleUpper.includes("ELCB") || cleanNameLower.includes("elcb") || filenameLower.includes("elcb")) {
+      if (titleUpper.includes("RCCB") || cleanNameLower.includes("rccb") || filenameLower.includes("rccb")) {
         return "Low-voltage power distribution products from Mitsubishi Electric in Kochi, such as circuit breakers and protection devices, ensure safe, reliable, and efficient electrical systems, while also supporting Mitsubishi VFD purchase in Kochi.";
       }
-      if (titleUpper.includes("ME96") || cleanNameLower.includes("me96") || filenameLower.includes("me96")) {
+      if (titleUpper.includes("MULTIFUNCTION METER") || cleanNameLower.includes("multifuction meter") || filenameLower.includes("multifuction meter")) {
         return "Low-voltage power distribution products from Mitsubishi Electric in Kochi, including circuit breakers and protection devices, deliver safe, reliable, and efficient electrical systems, while also supporting Mitsubishi VFD purchase in Kochi.";
       }
       if (titleUpper.includes("MCB") || titleUpper.includes("MCCB") || titleUpper.includes("MPCB") || titleUpper.includes("OVERLOAD RELAY") || cleanNameLower.includes("mcb") || cleanNameLower.includes("mccb") || cleanNameLower.includes("mpcb") || cleanNameLower.includes("overload") || filenameLower.includes("mcb") || filenameLower.includes("mccb") || filenameLower.includes("mpcb") || filenameLower.includes("overload")) {
         return "Mitsubishi Overload Relays protect motors from overheating and electrical damage. They improve safety and equipment life. During Mitsubishi PLC Purchase in India, overload relays ensure better power management.";
+      }
+      if (titleUpper.includes("CONTACORS") || cleanNameLower.includes("Contactors") || filenameLower.includes("Contactors")) {
+        return "Low-voltage power distribution products from Mitsubishi Electric in Kochi, including circuit breakers and protection devices, deliver safe, reliable, and efficient electrical systems, while also supporting Mitsubishi VFD purchase in Kochi.";
+      }
+      if (titleUpper.includes("ACCESSORIES AND RELATED COMPONENTS") || filenameLower.includes("Accessories and Related Components")) {
+        return "Low-voltage power distribution products from Mitsubishi Electric in Kochi, including circuit breakers and protection devices, deliver safe, reliable, and efficient electrical systems, while also supporting Mitsubishi VFD purchase in Kochi.";
       }
       return "Low-voltage power distribution products from Mitsubishi Electric in Kochi, including circuit breakers and protection devices, ensure safe, reliable, and efficient electrical systems.";
     }
@@ -329,6 +659,9 @@ const generateProductInfo = (filename: string, category: string, subcategory?: s
     return "Industrial automation solution from Mitsubishi Electric in Kochi designed for reliability and performance.";
   };
 
+
+
+
   const description = getProductDescription(title, category, cleanName, nameWithoutExt, subcategory);
 
   return { title, description };
@@ -364,6 +697,23 @@ const plcSubcategories = [
   "PLC MXR Series",
 ];
 
+const leuzeSubcategories = [
+  "SWITCHING SENSORS",
+  "MEASURING SENSORS",
+  "SAFETY SENSORS",
+  "IDENTIFICATION SENSORS",
+  "VISION SENSORS",
+  "TOWERLAMP",
+  "NETWORK AND CONNECTION TECHNOLOGY",
+  "DATA TRANSMISSION",
+];
+
+const smcSubcategories = [
+  "ELECTRICAL ACTUATORS",
+  "DIGITAL FLOW/SENSORS/CONTROLLERS",
+  "PRESSURE CONTROL EQUIPMENT",
+];
+
 // Function to get product URL based on category, subcategory, and title
 const getProductUrl = (product: Product): string => {
   const { category, subcategory, title, filename } = product;
@@ -372,18 +722,239 @@ const getProductUrl = (product: Product): string => {
   const filenameLower = filename.toLowerCase();
 
   // AC SERVO
+
   if (category === "AC Servo") {
+
+    if (titleUpper.includes("J5") || filenameLower.includes("j5")) {
+      return "https://www.mitsubishielectric.com/fa/products/drv/servo/items/mr_j5/index.html";
+    }
+
     if (titleUpper.includes("J4") || filenameLower.includes("j4")) {
-      return "https://www.mitsubishielectric.com/fa/in_en/products/drv/servo/items/mr_j4/index.html";
+      return "https://www.mitsubishielectric.com/fa/products/drv/servo/items/mr_j4/index.html";
     }
+
     if (titleUpper.includes("JE") || filenameLower.includes("je")) {
-      return "https://www.mitsubishielectric.com/fa/in_en/products/drv/servo/items/mr_je/index.html";
+      return "https://www.mitsubishielectric.com/fa/products/drv/servo/items/mr_je/index.html";
     }
+
     if (titleUpper.includes("JET") || filenameLower.includes("jet")) {
-      return "https://www.mitsubishielectric.com/fa/in_en/products/drv/servo/items/mr_jet/index.html";
+      return "https://www.mitsubishielectric.com/fa/products/drv/servo/items/mr_jet/index.html";
     }
-    return "https://www.mitsubishielectric.com/fa/products/drv/servo/";
   }
+
+  //SMC ELECTRICAL ACTUATORS
+  if (subcategory === "ELECTRICAL ACTUATORS") {
+
+    if (titleUpper.includes("ELECTRIC ACTUATORS/ROAD TYPE-LEY") || filenameLower.includes("electric actuators/road type-ley")) {
+      return "https://www.smcworld.com/webcatalog/en-jp/electric-actuators-cylinders/rod-type-guide-rod-type/LEY_E-E";
+    }
+
+    if (titleUpper.includes("ELECTRIC SLIDE ACTAUTORS-LEKFS") || filenameLower.includes("electric slide actuators-lekfs")) {
+      return "https://www.smcworld.com/webcatalog/en-jp/electric-actuators-cylinders/slider-type/LEKFS-E";
+    }
+
+    if (titleUpper.includes("ELECTRIC SLIDE ACTUATORS-LESH") || filenameLower.includes("electric slide actuators-lesh")) {
+      return "https://www.smcworld.com/webcatalog/en-jp/electric-actuators-cylinders/electric-slide-tables/LESH-E";
+    }
+
+    if (titleUpper.includes("ELECTRIC GRIPPER-LEHZ") || filenameLower.includes("electric gripper-lehz")) {
+      return "https://www.smcworld.com/webcatalog/en-jp/electric-actuators-cylinders/electric-grippers/LEH-E";
+    }
+
+    if (titleUpper.includes("ELECTRIC GRIPPER-LEHZ") || filenameLower.includes("electric gripper-lehz")) {
+      return "https://www.smcworld.com/webcatalog/en-jp/electric-actuators-cylinders/e-actuator/EQFS-E";
+    }
+
+    if (titleUpper.includes("E-ACTUATORS INTEGRATED CONTROLLER TYPE-EQFS") || filenameLower.includes("e-actuators integrated controller type-eqfs")) {
+      return "https://www.smcworld.com/webcatalog/en-jp/electric-actuators-cylinders/e-actuator/EQFS-E";
+    }
+
+    return "https://www.smcworld.com/products/en/actuator/electric/";
+  }
+
+  // SMC PRESSURE CONTROL EQUIPMENT
+  if (subcategory === "PRESSURE CONTROL EQUIPMENT") {
+
+    if (
+      titleUpper.includes("ELECTRO-PNEUMATIC REGULATOR-ITV") ||
+      filenameLower.includes("electro-pneumatic regulator-itv")
+    ) {
+      return "https://www.smcworld.com/webcatalog/en-jp/pressure-control-equipment/electro-pneumatic-regulators/ITV-D-E";
+    }
+
+    return "https://www.smcworld.com/webcatalog/en-jp/pressure-control-equipment/electro-pneumatic-regulators/ITV-D-E";
+  }
+
+
+  // SMC DIGITAL FLOW / SENSORS / CONTROLLERS
+  if (subcategory === "DIGITAL FLOW/SENSORS/CONTROLLERS") {
+
+    if (
+      titleUpper.includes("DIGITAL TEMPERATURE & HUMIDITY SWITCH-PSH") ||
+      filenameLower.includes("digital temperature & humidity switch-psh")
+    ) {
+      return "https://www.smcworld.com/webcatalog/en-jp/switches-sensors-controllers/electronic-temperature-and-humidity-switches/PSH-E";
+    }
+
+    if (
+      titleUpper.includes("DIGITAL FLOW SWITCHES FOR AIR-PF2A") ||
+      filenameLower.includes("digital flow switches for air-pf2a")
+    ) {
+      return "https://www.smcworld.com/webcatalog/en-jp/switches-sensors-controllers/electronic-flow-switches-sensors/PF2A-E";
+    }
+
+    if (
+      titleUpper.includes("DIGITAL FLOW SWITCHES FOR WATER-PF3W-Z") ||
+      filenameLower.includes("digital flow switches for water-pf3w-z")
+    ) {
+      return "https://www.smcworld.com/webcatalog/en-jp/switches-sensors-controllers/electronic-flow-switches-sensors/PF3W1-E";
+    }
+
+    if (
+      titleUpper.includes("AIR MANAGEMENT SYSTEM-AMS") ||
+      filenameLower.includes("air management system-ams")
+    ) {
+      return "https://www.smcworld.com/webcatalog/en-jp/air-management-system/air-management-system/AMS_AB-E";
+    }
+
+    if (
+      titleUpper.includes("FLOW CONTROLLER FOR WATER-FC3W") ||
+      filenameLower.includes("flow controller for water-fc3w")
+    ) {
+      return "https://www.smcworld.com/webcatalog/en-jp/switches-sensors-controllers/flow-controllers/FC3W-E";
+    }
+
+    if (
+      titleUpper.includes("AIR MANAGEMENT SYSTEM-AMS") ||
+      filenameLower.includes("air management system-ams")
+    ) {
+      return "https://www.smcworld.com/webcatalog/en-jp/air-management-system/air-management-system/AMS_AB-E";
+    }
+  }
+
+
+  if (category === "LEUZE") {
+
+    // SWITCHING SENSORS
+    if (subcategory === "SWITCHING SENSORS") {
+
+      if (titleUpper.includes("PROXIMITY SENSORS") || filenameLower.includes("proximity sensors")) {
+        return "https://www.leuze.com/en-in/products/switching-sensors/inductive-switches";
+      }
+
+      if (titleUpper.includes("PHOTO SENSORS") || filenameLower.includes("photo sensors")) {
+        return "https://www.leuze.com/en-int/products/switching-sensors/optical-sensors";
+      }
+
+      if (titleUpper.includes("FIBER OPTIC SENSORS") || filenameLower.includes("fiber optic sensors")) {
+        return "https://www.leuze.com/en-int/products/switching-sensors/fiber-optic-sensors";
+      }
+
+      if (titleUpper.includes("FORK SENSORS") || filenameLower.includes("fork sensors")) {
+        return "https://www.leuze.com/en-int/products/switching-sensors/fork-sensors";
+      }
+
+      if (titleUpper.includes("LABEL SENSORS") || filenameLower.includes("label sensors")) {
+        return "https://www.leuze.com/en-int/products/switching-sensors/label-sensors";
+      }
+
+      if (titleUpper.includes("COLOR SENSORS") || filenameLower.includes("color sensors")) {
+        return "https://www.leuze.com/en-int/products/switching-sensors/color-sensors";
+      }
+
+      if (titleUpper.includes("LUMINESCENCE SENSORS") || filenameLower.includes("Luminescence sensors")) {
+        return "https://www.leuze.com/en-int/products/switching-sensors/luminescence-sensors";
+      }
+    }
+    // MEASURING SENSORS
+    if (subcategory === "MEASURING SENSORS") {
+
+      if (titleUpper.includes("OPTICAL DISTANCE SENSORS") || filenameLower.includes("optical distance sensors")) {
+        return "https://www.leuze.com/en-in/products/measuring-sensors/optical-distance-sensors";
+      }
+
+      if (titleUpper.includes("ULTRASONIC DISTANCE SENSORS") || filenameLower.includes("ultrasonic distance")) {
+        return "https://www.leuze.com/en-in/products/measuring-sensors/ultrasonic-distance-sensors";
+      }
+
+      if (titleUpper.includes("ROTARY ENCODER") || filenameLower.includes("rotary encoder")) {
+        return "https://www.leuze.com/en-int/products/measuring-sensors/encoders";
+      }
+
+      if (titleUpper.includes("SENSORS FOR CONTOUR MEASUREMENT") || filenameLower.includes("sensors for contour measurement")) {
+        return "https://www.leuze.com/en-in/products/measuring-sensors/sensors-for-contour-measurement";
+      }
+
+      if (titleUpper.includes("PROFILE MEASUREMENT") || filenameLower.includes("profile measurement")) {
+        return "https://www.leuze.com/en-in/products/measuring-sensors/sensors-for-contour-measurement/profile-measurement";
+      }
+
+      if (titleUpper.includes("LASER SCANNERS") || filenameLower.includes("laser scanners")) {
+        return "https://www.leuze.com/en-in/products/measuring-sensors/laser-scanners";
+      }
+
+      if (titleUpper.includes("MEASURING LIGHT CURTAINS") || filenameLower.includes("measuring light curtains")) {
+        return "https://www.leuze.com/en-in/products/measuring-sensors/measuring-light-curtains";
+      }
+
+      // default measuring sensors page
+      return "https://www.leuze.com/en-int/products/measuring-sensors";
+    }
+
+    if (subcategory === "SAFETY SENSORS") {
+
+      if (titleUpper.includes("SAFETY LASER SCANNERS") || filenameLower.includes("safety laser scanners")) {
+        return "https://www.leuze.com/en-in/products/safety/safety-laser-scanners";
+      }
+
+      if (titleUpper.includes("SAFETY LIGHT CURTAINS") || filenameLower.includes("safety light curtains")) {
+        return "https://www.leuze.com/en-in/products/safety/safety-light-curtains";
+      }
+
+      if (titleUpper.includes("SAFETY SWITCHES") || filenameLower.includes("safety switches")) {
+        return "https://www.leuze.com/en-in/products/safety/safety-switches";
+      }
+
+      if (titleUpper.includes("SAFETY RELAYS") || filenameLower.includes("safety relay")) {
+        return "https://www.leuze.com/en-in/products/safety/safety-relays";
+      }
+
+      // default safety sensors page
+      return "https://www.leuze.com/en-in/products/safety-sensors";
+    }
+
+    if (subcategory === "IDENTIFICATION SENSORS") {
+
+      if (titleUpper.includes("BARCODE 1D/2D READERS") || filenameLower.includes("barcode")) {
+        return "https://www.leuze.com/en-in/products/identification/stationary-1d-2d-code-readers";
+      }
+
+      if (titleUpper.includes("RFID") || filenameLower.includes("rfid sensor")) {
+        return "https://www.leuze.com/en-in/products/identification/rfid";
+      }
+      // default VISION SENSORS page
+      return "https://www.leuze.com/en-in/products/identification-sensors";
+    }
+
+    if (subcategory === "VISION SENSORS") {
+      return "https://www.leuze.com/en-in/products/industrial-image-processing/vision-sensors";
+    }
+
+    if (subcategory === "TOWERLAMP") {
+      return "https://www.leuze.com/en-in/products/accessories/optical-and-acoustic-signalers/preassembled-tower-lights";
+    }
+
+    if (subcategory === "NETWORK AND CONNECTION TECHNOLOGY") {
+
+      if (titleUpper.includes("IO-LINK CONNECTION UNITS") || filenameLower.includes("io-link")) {
+        return "https://www.leuze.com/en-in/products/network-and-connection-technology/connection-units/io-link-connection-units";
+      }
+
+      // default NETWORK AND CONNECTION TECHNOLOGY page
+      return "https://www.leuze.com/en-in/products/network-and-connection-technology/connection-units/io-link-connection-units";
+    }
+  }
+
 
   // SOFTWARE
   if (category === "Software") {
@@ -467,9 +1038,7 @@ const getProductUrl = (product: Product): string => {
 
   // PLC – iQ-F
   if (subcategory === "PLC iQF") {
-    if (titleUpper.includes("FX5S") || filenameLower.includes("fx5s")) {
-      return "https://www.mitsubishielectric.com/fa/products/cnt/plcf/pmerit/concept/built_in_function.html";
-    }
+
     if (titleUpper.includes("FX5U") && !titleUpper.includes("FX5UC") && !titleUpper.includes("FX5UJ") || (filenameLower.includes("fx5u") && !filenameLower.includes("fx5uc") && !filenameLower.includes("fx5uj"))) {
       return "https://www.mitsubishielectric.com/fa/products/cnt/plcf/pmerit/cpu/";
     }
@@ -559,7 +1128,7 @@ const getProductUrl = (product: Product): string => {
   }
 
   // LOW VOLTAGE POWER DISTRIBUTION
-  if (category === "Low Voltage Power Distribution") {
+  if (category === "Low Voltage Switch gears") {
     if (titleUpper.includes("MCB") || filenameLower.includes("mcb")) {
       return "https://emea.mitsubishielectric.com/fa/products/lv_distri/lvc-breakers/mcb";
     }
@@ -569,7 +1138,7 @@ const getProductUrl = (product: Product): string => {
     if (titleUpper.includes("ACB") || filenameLower.includes("acb")) {
       return "https://emea.mitsubishielectric.com/fa/products/lv_distri/lvc-breakers/acb";
     }
-    if (titleUpper.includes("ELCB") || filenameLower.includes("elcb")) {
+    if (titleUpper.includes("RCCB") || filenameLower.includes("rccb")) {
       return "https://emea.mitsubishielectric.com/fa/products/lv_distri/lvc-breakers/elcb";
     }
     if (titleUpper.includes("OVERLOAD RELAY") || filenameLower.includes("overload")) {
@@ -578,8 +1147,14 @@ const getProductUrl = (product: Product): string => {
     if (titleUpper.includes("MPCB") || filenameLower.includes("mpcb")) {
       return "https://www.mitsubishielectric.com/fa/products/lvd/lvsw/items/mms/index.html";
     }
-    if (titleUpper.includes("ME96") || filenameLower.includes("me96")) {
+    if (titleUpper.includes("CONTACTOR") || filenameLower.includes("Contactors")) {
+      return "https://www.mitsubishielectric.com/fa/products/lvd/lvsw/items/lvmc/index.html";
+    }
+    if (titleUpper.includes("MULTIFUNCTION METER") || filenameLower.includes("multifunction meter")) {
       return "https://dl.mitsubishielectric.com/dl/fa/document/manual/pmd/ib63c46/ib63c46b.pdf";
+    }
+    if (titleUpper.includes("ACCESSORIES AND RELATED COMPONENTS") || filenameLower.includes("Accessories and Related Components")) {
+      return "https://www.mitsubishielectric.com/fa/products/lvd/lvcb/items/acc/index.html";
     }
     return "https://www.mitsubishielectric.com/fa/in_en/products/lvd/index.html";
   }
@@ -666,7 +1241,7 @@ const Products = () => {
   const organizeProducts = () => {
     const organized: Array<{ name: string; isSubsection: boolean; products: Product[] }> = [];
 
-    // Handle PLC category separately
+    // PLC CATEGORY
     if (!selectedCategory || selectedCategory === "PLC") {
       const plcProducts = allProducts.filter(p => p.category === "PLC");
 
@@ -677,9 +1252,9 @@ const Products = () => {
           products: [],
         });
 
-        // Add PLC subsections
         plcSubcategories.forEach(subcat => {
           const subcatProducts = plcProducts.filter(p => p.subcategory === subcat);
+
           if (subcatProducts.length > 0) {
             organized.push({
               name: subcat,
@@ -691,10 +1266,66 @@ const Products = () => {
       }
     }
 
-    // Add other categories
+    // ✅ LEUZE CATEGORY (separate from PLC)
+    if (!selectedCategory || selectedCategory === "LEUZE") {
+      const leuzeProducts = allProducts.filter(p => p.category === "LEUZE");
+
+      if (leuzeProducts.length > 0) {
+        organized.push({
+          name: "LEUZE",
+          isSubsection: false,
+          products: [],
+        });
+
+        leuzeSubcategories.forEach(subcat => {
+          const subcatProducts = leuzeProducts.filter(p => p.subcategory === subcat);
+
+          if (subcatProducts.length > 0) {
+            organized.push({
+              name: subcat,
+              isSubsection: true,
+              products: subcatProducts,
+            });
+          }
+        });
+      }
+    }
+
+    // ✅ SMC CATEGORY (for subcategory sections)
+    if (!selectedCategory || selectedCategory === "SMC") {
+      const smcProducts = allProducts.filter(p => p.category === "SMC");
+
+      if (smcProducts.length > 0) {
+        organized.push({
+          name: "SMC",
+          isSubsection: false,
+          products: [],
+        });
+
+        smcSubcategories.forEach(subcat => {
+          const subcatProducts = smcProducts.filter(p => p.subcategory === subcat);
+
+          if (subcatProducts.length > 0) {
+            organized.push({
+              name: subcat,
+              isSubsection: true,
+              products: subcatProducts,
+            });
+          }
+        });
+      }
+    }
+
+    // OTHER CATEGORIES
     allCategories.forEach(category => {
-      if (category !== "PLC" && (!selectedCategory || selectedCategory === category)) {
+      if (
+        category !== "PLC" &&
+        category !== "LEUZE" &&
+        category !== "SMC" &&
+        (!selectedCategory || selectedCategory === category)
+      ) {
         const categoryProducts = filteredProducts.filter(p => p.category === category);
+
         if (categoryProducts.length > 0) {
           organized.push({
             name: category,
@@ -774,84 +1405,130 @@ const Products = () => {
                   <div className="w-20 h-1 bg-primary rounded-full" />
                 </div>
 
-                {section.products.length > 0 && (
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {section.products.map((product, index) => {
-                      // Check if this is a PLC iQR product
-                      const isPlcIqr = product.subcategory === "PLC iQR";
+                {section.products.length > 0 && (() => {
 
-                      return (
-                        <motion.div
-                          key={`${product.filename}-${index}`}
-                          initial={{ opacity: 0, y: 30 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 0.5, delay: index * 0.05 }}
-                        >
-                          <Card className="h-full hover-lift cursor-pointer group overflow-hidden flex flex-col">
-                            {isPlcIqr ? (
-                              // Fixed height container for PLC iQR products - responsive and consistent
-                              <div className="w-full h-48 sm:h-56 md:h-64 bg-white flex items-center justify-center p-4 overflow-hidden">
-                                <img
-                                  src={product.image}
-                                  alt={product.title}
-                                  loading="lazy"
-                                  className="max-w-full max-h-full w-auto h-auto object-contain group-hover:scale-105 transition-transform duration-500"
-                                  onError={(e) => {
-                                    const target = e.target as HTMLImageElement;
-                                    target.src = "/placeholder.svg";
-                                  }}
-                                />
-                              </div>
-                            ) : (
-                              // Standard aspect ratio container for other products
-                              <AspectRatio ratio={16 / 9} className="bg-white">
-                                <img
-                                  src={product.image}
-                                  alt={product.title}
-                                  loading="lazy"
-                                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                  onError={(e) => {
-                                    const target = e.target as HTMLImageElement;
-                                    target.src = "/placeholder.svg";
-                                  }}
-                                />
-                              </AspectRatio>
-                            )}
-                            <CardContent className="p-6 flex-1 flex flex-col">
-                              <Badge variant="secondary" className="mb-4">
-                                {product.subcategory || product.category}
-                              </Badge>
+                  const lvpdOrder = [
+                    "ACB",
+                    "MCCB",
+                    "MCB",
+                    "MPCB",
+                    "RCCB",
+                    "CONTACTORS",
+                    "ACCESSORIES AND RELATED COMPONENTS",
+                    "OVERLOAD RELAY",
+                    "MULTIFUNCTION METER",
+                  ];
 
-                              <h3 className="font-display text-xl font-semibold mb-3 group-hover:text-primary transition-colors">
-                                {product.title}
-                              </h3>
+                  const robotOrder = [
+                    "VERTICAL",
+                    "HORIZONTAL",
+                    "MELFA SMART",
+                    "COLLABORATIVE",
+                  ];
 
-                              <p className="text-muted-foreground mb-4 text-sm flex-1">
-                                {product.description}
-                              </p>
+                  const sortedProducts =
+                    section.name === "Low Voltage Switch gears"
+                      ? [...section.products].sort((a, b) => {
+                        const aIndex = lvpdOrder.findIndex(item =>
+                          a.title.toUpperCase().includes(item)
+                        );
+                        const bIndex = lvpdOrder.findIndex(item =>
+                          b.title.toUpperCase().includes(item)
+                        );
+                        return aIndex - bIndex;
+                      })
 
-                              <Button
-                                size="sm"
-                                className="w-full"
-                                asChild
-                              >
-                                <a
-                                  href={getProductUrl(product)}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                >
-                                  Details
-                                  <ArrowRight className="ml-2 h-4 w-4" />
-                                </a>
-                              </Button>
-                            </CardContent>
-                          </Card>
-                        </motion.div>
-                      );
-                    })}
-                  </div>
-                )}
+                      : section.name === "Robot"
+                        ? [...section.products].sort((a, b) => {
+                          const aIndex = robotOrder.findIndex(item =>
+                            a.title.toUpperCase().includes(item)
+                          );
+                          const bIndex = robotOrder.findIndex(item =>
+                            b.title.toUpperCase().includes(item)
+                          );
+                          return aIndex - bIndex;
+                        })
+
+                        : section.products;
+
+                  return (
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                      {sortedProducts.map((product, index) => {
+
+                        const isPlcIqr = product.subcategory === "PLC iQR";
+
+                        return (
+                          <motion.div
+                            key={`${product.filename}-${index}`}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: index * 0.05 }}
+                          >
+                            <Card className="h-full hover-lift cursor-pointer group overflow-hidden flex flex-col">
+
+                              {isPlcIqr ? (
+                                <div className="w-full h-48 sm:h-56 md:h-64 bg-white flex items-center justify-center p-4 overflow-hidden">
+                                  <img
+                                    src={product.image}
+                                    alt={product.title}
+                                    loading="lazy"
+                                    className="max-w-full max-h-full w-auto h-auto object-contain group-hover:scale-105 transition-transform duration-500"
+                                    onError={(e) => {
+                                      const target = e.target as HTMLImageElement;
+                                      target.src = "/placeholder.svg";
+                                    }}
+                                  />
+                                </div>
+                              ) : (
+                                <AspectRatio ratio={16 / 9} className="bg-white">
+                                  <img
+                                    src={product.image}
+                                    alt={product.title}
+                                    loading="lazy"
+                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                    onError={(e) => {
+                                      const target = e.target as HTMLImageElement;
+                                      target.src = "/placeholder.svg";
+                                    }}
+                                  />
+                                </AspectRatio>
+                              )}
+
+                              <CardContent className="p-6 flex-1 flex flex-col">
+                                <Badge variant="secondary" className="mb-4">
+                                  {product.subcategory || product.category}
+                                </Badge>
+
+                                <h3 className="font-display text-xl font-semibold mb-3 group-hover:text-primary transition-colors">
+                                  {product.title}
+                                </h3>
+
+                                <p className="text-muted-foreground mb-4 text-sm flex-1">
+                                  {product.description}
+                                </p>
+
+                                <Button size="sm" className="w-full" asChild>
+                                  <a
+                                    href={getProductUrl(product)}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                  >
+                                    Details
+                                    <ArrowRight className="ml-2 h-4 w-4" />
+                                  </a>
+                                </Button>
+                              </CardContent>
+
+                            </Card>
+                          </motion.div>
+                        );
+                      })}
+                    </div>
+
+                  );
+                })()}
               </motion.div>
             ))}
 

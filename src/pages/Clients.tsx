@@ -1,3 +1,159 @@
+// import { useEffect, useState } from "react";
+// import { motion } from "framer-motion";
+// import { useCanonical } from "@/hooks/useCanonical";
+// import Navigation from "@/components/Navigation";
+// import Footer from "@/components/Footer";
+// import { Card } from "@/components/ui/card";
+// import { AspectRatio } from "@/components/ui/aspect-ratio";
+
+// // Import all client images
+// const clientImages = import.meta.glob<{ default: string }>("/src/assets/Clients/*.{png,jpg,jpeg,webp,svg}", { eager: true });
+
+// // Convert to array and extract filenames
+// const allClients = Object.entries(clientImages).map(([path, module]) => {
+//   const filename = path.split("/").pop() || "";
+//   const nameWithoutExt = filename.replace(/\.[^/.]+$/, "");
+//   return {
+//     image: module.default,
+//     name: nameWithoutExt,
+//     filename: filename,
+//   };
+// });
+
+// // Fisher-Yates shuffle algorithm for efficient randomization
+// const shuffleArray = <T,>(array: T[]): T[] => {
+//   const shuffled = [...array];
+//   for (let i = shuffled.length - 1; i > 0; i--) {
+//     const j = Math.floor(Math.random() * (i + 1));
+//     [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+//   }
+//   return shuffled;
+// };
+
+// const Clients = () => {
+//   useCanonical();
+//   // Initialize with randomized order using lazy initializer to ensure shuffle happens once
+//   const [clients] = useState(() => shuffleArray(allClients));
+
+//   // Update SEO metadata for Clients page
+//   useEffect(() => {
+//     // Update document title
+//     document.title = "Our Clients & Partners | Mitsubishi Electric in Kochi";
+
+//     // Update meta description
+//     const metaDescription = document.querySelector('meta[name="description"]');
+//     if (metaDescription) {
+//       metaDescription.setAttribute(
+//         "content",
+//         "Discover our trusted clients and industry partners who rely on Mitsubishi Electric in Kochi for reliable industrial automation solutions and expert support."
+//       );
+//     }
+
+//     // Update Open Graph tags
+//     const ogTitle = document.querySelector('meta[property="og:title"]');
+//     if (ogTitle) {
+//       ogTitle.setAttribute(
+//         "content",
+//         "Our Clients & Partners | Mitsubishi Electric in Kochi"
+//       );
+//     }
+
+//     const ogDescription = document.querySelector('meta[property="og:description"]');
+//     if (ogDescription) {
+//       ogDescription.setAttribute(
+//         "content",
+//         "Discover our trusted clients and industry partners who rely on Mitsubishi Electric in Kochi for reliable industrial automation solutions and expert support."
+//       );
+//     }
+
+//     // Cleanup function to restore default meta tags when component unmounts
+//     return () => {
+//       document.title = "Dynamic Control Systems | Mitsubishi Electric in Kochi";
+//       if (metaDescription) {
+//         metaDescription.setAttribute(
+//           "content",
+//           "Dynamic Control Systems delivers advanced industrial automation, SCADA, and energy solutions powered by Mitsubishi Electric in Kochi."
+//         );
+//       }
+//       if (ogTitle) {
+//         ogTitle.setAttribute(
+//           "content",
+//           "Dynamic Control Systems | Mitsubishi Electric in Kochi"
+//         );
+//       }
+//       if (ogDescription) {
+//         ogDescription.setAttribute(
+//           "content",
+//           "Dynamic Control Systems delivers advanced industrial automation, SCADA, and energy solutions powered by Mitsubishi Electric in Kochi."
+//         );
+//       }
+//     };
+//   }, []);
+
+//   return (
+//     <div className="min-h-screen">
+//       <Navigation />
+
+//       <main>
+//         {/* Hero Section */}
+//         <section className="pt-32 pb-8 bg-gradient-to-b from-muted/30 to-background">
+//           <div className="container mx-auto px-4">
+//             <motion.div
+//               initial={{ opacity: 0, y: 20 }}
+//               animate={{ opacity: 1, y: 0 }}
+//               transition={{ duration: 0.6 }}
+//               className="max-w-3xl mx-auto text-center"
+//             >
+//               <h1 className="font-display text-5xl md:text-6xl font-bold mb-6">
+//                 Our Clients
+//               </h1>
+//               <p className="text-xl text-muted-foreground">
+//                 Trusted by leading industries, delivering innovation with Mitsubishi Electric in Kochi.
+//               </p>
+//             </motion.div>
+//           </div>
+//         </section>
+
+//         {/* Clients Grid */}
+//         <section className="pt-8 pb-20">
+//           <div className="container mx-auto px-4">
+//             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6">
+//               {clients.map((client, index) => (
+//                 <motion.div
+//                   key={client.filename}
+//                   initial={{ opacity: 0, y: 30 }}
+//                   whileInView={{ opacity: 1, y: 0 }}
+//                   viewport={{ once: true }}
+//                   transition={{ duration: 0.5, delay: index * 0.05 }}
+//                 >
+//                   <Card className="h-full hover-lift cursor-pointer group overflow-hidden">
+//                     <AspectRatio ratio={16 / 9}>
+//                       <div className="w-full h-full bg-white flex items-center justify-center p-6 overflow-hidden">
+//                         <img
+//                           src={client.image}
+//                           alt={client.name}
+//                           loading="lazy"
+//                           className="max-w-full max-h-full w-auto h-auto object-contain group-hover:scale-105 transition-transform duration-500"
+//                         />
+//                       </div>
+//                     </AspectRatio>
+//                   </Card>
+//                 </motion.div>
+//               ))}
+//             </div>
+//           </div>
+//         </section>
+//       </main>
+
+//       <Footer />
+//     </div>
+//   );
+// };
+
+// export default Clients;
+
+
+
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useCanonical } from "@/hooks/useCanonical";
@@ -7,12 +163,41 @@ import { Card } from "@/components/ui/card";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 // Import all client images
-const clientImages = import.meta.glob<{ default: string }>("/src/assets/Clients/*.{png,jpg,jpeg,webp,svg}", { eager: true });
+const clientImages = import.meta.glob<{ default: string }>(
+  "/src/assets/Clients/*.{png,jpg,jpeg,webp,svg}",
+  { eager: true }
+);
+
+const smallLogos = [
+  "20-Logo.webp",
+  "client17.svg",
+  "client42.png",
+  "01-CUMI-Logo.png",
+  "05-TTK Healthcare.jpg",
+  "client41.png",
+  "client47.svg",
+  "client46.jpg",
+  "Amphenol FCI.png"
+];
+
+const largeLogos = [
+  "13-Cochin Shipyard.jpg",
+  "MAKS Automation.jpg",
+  "04-HLL Lifecare.jpg",
+  "16-Terumo Penpol.jpg",
+  "15-AVT Naturral.jpg",
+  "client35.jpg",
+  "cdac-logo.png",
+  "MONARCK Eng.jpg",
+  "Malabar Extension.jpg",
+  "SANCE.jpg"
+];
 
 // Convert to array and extract filenames
 const allClients = Object.entries(clientImages).map(([path, module]) => {
   const filename = path.split("/").pop() || "";
   const nameWithoutExt = filename.replace(/\.[^/.]+$/, "");
+
   return {
     image: module.default,
     name: nameWithoutExt,
@@ -20,27 +205,18 @@ const allClients = Object.entries(clientImages).map(([path, module]) => {
   };
 });
 
-// Fisher-Yates shuffle algorithm for efficient randomization
-const shuffleArray = <T,>(array: T[]): T[] => {
-  const shuffled = [...array];
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-  return shuffled;
-};
+// Sort clients alphabetically by filename
+const sortedClients = [...allClients].sort((a, b) =>
+  a.filename.localeCompare(b.filename)
+);
 
 const Clients = () => {
   useCanonical();
-  // Initialize with randomized order using lazy initializer to ensure shuffle happens once
-  const [clients] = useState(() => shuffleArray(allClients));
+  const [clients] = useState(sortedClients);
 
-  // Update SEO metadata for Clients page
   useEffect(() => {
-    // Update document title
     document.title = "Our Clients & Partners | Mitsubishi Electric in Kochi";
-    
-    // Update meta description
+
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute(
@@ -49,7 +225,6 @@ const Clients = () => {
       );
     }
 
-    // Update Open Graph tags
     const ogTitle = document.querySelector('meta[property="og:title"]');
     if (ogTitle) {
       ogTitle.setAttribute(
@@ -58,7 +233,9 @@ const Clients = () => {
       );
     }
 
-    const ogDescription = document.querySelector('meta[property="og:description"]');
+    const ogDescription = document.querySelector(
+      'meta[property="og:description"]'
+    );
     if (ogDescription) {
       ogDescription.setAttribute(
         "content",
@@ -66,21 +243,23 @@ const Clients = () => {
       );
     }
 
-    // Cleanup function to restore default meta tags when component unmounts
     return () => {
       document.title = "Dynamic Control Systems | Mitsubishi Electric in Kochi";
+
       if (metaDescription) {
         metaDescription.setAttribute(
           "content",
           "Dynamic Control Systems delivers advanced industrial automation, SCADA, and energy solutions powered by Mitsubishi Electric in Kochi."
         );
       }
+
       if (ogTitle) {
         ogTitle.setAttribute(
           "content",
           "Dynamic Control Systems | Mitsubishi Electric in Kochi"
         );
       }
+
       if (ogDescription) {
         ogDescription.setAttribute(
           "content",
@@ -108,7 +287,8 @@ const Clients = () => {
                 Our Clients
               </h1>
               <p className="text-xl text-muted-foreground">
-                Trusted by leading industries, delivering innovation with Mitsubishi Electric in Kochi.
+                Trusted by leading industries, delivering innovation with
+                Mitsubishi Electric in Kochi.
               </p>
             </motion.div>
           </div>
@@ -128,13 +308,37 @@ const Clients = () => {
                 >
                   <Card className="h-full hover-lift cursor-pointer group overflow-hidden">
                     <AspectRatio ratio={16 / 9}>
-                      <div className="w-full h-full bg-white flex items-center justify-center p-6 overflow-hidden">
-                        <img
+                      <div className="w-full h-full bg-white flex items-center justify-center p-4 overflow-hidden">
+                        {/* <img
                           src={client.image}
                           alt={client.name}
                           loading="lazy"
-                          className="max-w-full max-h-full w-auto h-auto object-contain group-hover:scale-105 transition-transform duration-500"
-                        />
+                          className={`w-auto object-contain transition-transform duration-500 
+  ${client.filename === "20-Logo.webp" ||
+                              client.filename === "client17.svg" ||
+                              client.filename === "client42.png" ||
+                              client.filename === "01-CUMI-Logo.png" ||
+                              client.filename === "05-TTK Healthcare.jpg" ||
+                              client.filename === "client41.png" ||
+                              client.filename === "client47.svg" ||
+                              client.filename === "client46.jpg" ||
+                              client.filename === "Amphenol FCI.png"
+                              ? "max-h-10"
+                              : "max-h-20"
+                            }`}
+                        /> */}
+                        <img
+  src={client.image}
+  alt={client.name}
+  loading="lazy"
+  className={`w-auto object-contain transition-transform duration-500 ${
+    smallLogos.includes(client.filename)
+      ? "max-h-10"
+      : largeLogos.includes(client.filename)
+      ? "max-h-30"
+      : "max-h-20"
+  }`}
+/>
                       </div>
                     </AspectRatio>
                   </Card>
@@ -151,4 +355,3 @@ const Clients = () => {
 };
 
 export default Clients;
-
