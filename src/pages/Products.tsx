@@ -15,6 +15,12 @@ const productImages = import.meta.glob<{ default: string }>(
   { eager: true }
 );
 
+// Import SMC logo
+import smcLogo from "/src/assets/logos/smc-logo.png";
+
+// Import LEUZE logo
+import leuzeLogo from "/src/assets/logos/Leuze_logo_red_cmyk_PNG.png";
+
 // Category mapping based on folder structure
 interface Product {
   image: string;
@@ -152,11 +158,11 @@ const getCategoryFromPath = (path: string): { category: string; subcategory?: st
   if (normalizedCategory.includes("low voltage") || normalizedCategory.includes("power")) {
     return { category: "Low Voltage Switch gears" };
   }
-  if (normalizedCategory.includes("leuze")) {
-    return { category: "LEUZE" };
-  }
   if (normalizedCategory.includes("smc")) {
     return { category: "SMC" };
+  }
+  if (normalizedCategory.includes("leuze")) {
+    return { category: "LEUZE" };
   }
 
   // Default category based on folder name
@@ -685,7 +691,26 @@ const allProducts: Product[] = Object.entries(productImages).map(([path, module]
 });
 
 // Get all unique categories
-const allCategories = Array.from(new Set(allProducts.map(p => p.category))).sort();
+const allCategories = Array.from(new Set(allProducts.map(p => p.category))).sort((a, b) => {
+  const lastOrder = ["Software", "SMC", "LEUZE"];
+
+  const aIndex = lastOrder.indexOf(a);
+  const bIndex = lastOrder.indexOf(b);
+
+  // If both are in lastOrder, sort based on their defined order
+  if (aIndex !== -1 && bIndex !== -1) {
+    return aIndex - bIndex;
+  }
+
+  // If only a is in lastOrder, push it to the end
+  if (aIndex !== -1) return 1;
+
+  // If only b is in lastOrder, push it to the end
+  if (bIndex !== -1) return -1;
+
+  // Otherwise sort normally
+  return a.localeCompare(b);
+});
 
 // PLC subcategories
 const plcSubcategories = [
@@ -997,10 +1022,10 @@ const getProductUrl = (product: Product): string => {
       return "https://www.mitsubishielectric.com/fa/products/hmi/got/items/got3000/";
     }
     if (titleUpper.includes("GOT SIMPLE") || titleUpper.includes("SIMPLE") || filenameLower.includes("simple")) {
-      return "https://www.mitsubishielectric.com/fa/in_en/products/hmi/got/items/got_simple/index.html";
+      return "https://www.mitsubishielectric.com/fa/products/hmi/got/items/got_simple/index.html";
     }
     if (titleUpper.includes("SOFTGOT") || titleUpper.includes("SOFT GOT") || filenameLower.includes("softgot")) {
-      return "https://www.mitsubishielectric.com/fa/in_en/products/hmi/got/items/sgt/index.html";
+      return "https://www.mitsubishielectric.com/fa/products/hmi/got/items/sgt/index.html";
     }
     return "https://www.mitsubishielectric.com/fa/products/hmi/got/items/got2000/index.html";
   }
@@ -1022,7 +1047,7 @@ const getProductUrl = (product: Product): string => {
       return "https://www.mitsubishielectric.com/fa/products/drv/inv/items/fr_a/index.html";
     }
     if (titleUpper.includes("FR-CS") || filenameLower.includes("fr-cs")) {
-      return "https://www.mitsubishielectric.com/fa/in_en/products/drv/inv/items/fr_cs/index.html";
+      return "https://www.mitsubishielectric.com/fa/products/drv/inv/items/fr_cs/index.html";
     }
     if (titleUpper.includes("FR-D700") || filenameLower.includes("fr-d700")) {
       return "https://www.mitsubishielectric.com/fa/products/drv/inv/pmerit/fr_d/d707.html";
@@ -1031,7 +1056,7 @@ const getProductUrl = (product: Product): string => {
       return "https://www.mitsubishielectric.com/fa/products/drv/inv/pmerit/fr_d/d800/";
     }
     if (titleUpper.includes("FR-E800") || filenameLower.includes("fr-e800")) {
-      return "https://www.mitsubishielectric.com/fa/in_en/products/drv/inv/items/fr_e/index.html";
+      return "https://www.mitsubishielectric.com/fa/products/drv/inv/pmerit/fr_e/index.html";
     }
     return "https://www.mitsubishielectric.com/fa/products/drv/inv/pmerit/index.html";
   }
@@ -1063,7 +1088,7 @@ const getProductUrl = (product: Product): string => {
       return "https://mitsubishielectric.in/fa/fa-modular-io.html";
     }
     if (titleUpper.includes("MOTION CONTROL CPU") || titleUpper.includes("MOTION MODULES") || filenameLower.includes("motion control cpu") || filenameLower.includes("motion modules")) {
-      return "https://www.mitsubishielectric.com/fa/in_en/products/cnt/ssc/index.html";
+      return "https://www.mitsubishielectric.com/fa/products/cnt/plcf/pmerit/cpu/index.html";
     }
     if (titleUpper.includes("PROCESS CONTROL CPU") || filenameLower.includes("process control cpu")) {
       return "https://www.mitsubishielectric.com/fa/products/cnt/plcr/pmerit/cpu/process.html";
@@ -1369,7 +1394,7 @@ const Products = () => {
               <Button
                 variant={selectedCategory === null ? "default" : "outline"}
                 onClick={() => setSelectedCategory(null)}
-                className="rounded-full"
+                className={`rounded-full hover:bg-blue-500 hover:text-white ${selectedCategory === null ? 'bg-black text-white' : ''}`}
               >
                 All Products
               </Button>
@@ -1378,9 +1403,23 @@ const Products = () => {
                   key={category}
                   variant={selectedCategory === category ? "default" : "outline"}
                   onClick={() => setSelectedCategory(category)}
-                  className="rounded-full"
+                  className={`rounded-full hover:bg-blue-500 hover:text-white ${selectedCategory === category ? 'bg-black text-white' : ''}`}
                 >
-                  {category}
+                  {category === "SMC" ? (
+                    <img
+                      src={smcLogo}
+                      alt="SMC"
+                      className="h-6 w-auto"
+                    />
+                  ) : category === "LEUZE" ? (
+                    <img
+                      src={leuzeLogo}
+                      alt="LEUZE"
+                      className="h-6 w-auto"
+                    />
+                  ) : (
+                    category
+                  )}
                 </Button>
               ))}
             </div>
