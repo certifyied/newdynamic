@@ -60,6 +60,16 @@ import blog42Image from "@/assets/Technical-Jobs-in-Cleveland.webp";
 import blog43Image from "@/assets/43021-scaled-e1762178508783.jpg";
 import blog44Image from "@/assets/istock-1178344485.webp";
 import blog45Image from "@/assets/professional-jobs-.webp";
+import blog46Image from "@/assets/68c7b902a91f5e90c44504da_Workers inspecting factory machinery, showcasing industrial automation in modern manufacturing..png";
+import blog47Image from "@/assets/MP_Automation in Manufacturing_708x398.webp";
+import blog48Image from "@/assets/CS0_5306-scaled.jpg";
+import blog49Image from "@/assets/20190225_metro_Maxim-Muro-Automation_disruption.webp";
+import blog50Image from "@/assets/two-young-intercultural-male-workers-modern-plant-discussing-online-technical-data-while-standing-by-industrial-machine-workshop-scaled.jpg";
+import blog51Image from "@/assets/smart-industry-robot-arms-modernization-digital-factory-technology-1-scaled.jpg";
+import blog52Image from "@/assets/Jun24_21_1499648477.avif";
+import blog53Image from "@/assets/GettyImages-595918662.webp";
+import blog54Image from "@/assets/429207db2599e794e7c73db8a539b44d_743b755b-44b6-4244-a1e7-bc8976a49260.webp";
+import blog55Image from "@/assets/Automation.webp";
 
 
 // Map blog IDs to their specific images
@@ -109,6 +119,17 @@ const blogImageMap: Record<number, string> = {
   43: blog43Image,
   44: blog44Image,
   45: blog45Image,
+  46: blog46Image,
+  47: blog47Image,
+  48: blog48Image,
+  49: blog49Image,
+  50: blog50Image,
+  51: blog51Image,
+  52: blog52Image,
+  53: blog53Image,
+  54: blog54Image,
+  55: blog55Image,
+
 };
 
 const Blog = () => {
@@ -1543,6 +1564,99 @@ Similarly, manufacturers in industrial hubs are increasingly exploring mitsubhis
 As industries continue to adopt smart factory solutions, the demand for mitsubhishi plc purchase in kerala is steadily increasing. Businesses looking for reliable automation solutions are also exploring mitsubhishi plc purchase in kochi and plc purchase in kochi to enhance their production capabilities.
 By investing in modern PLC automation, industries can achieve higher productivity, better operational control, and long-term manufacturing success.
 ` },
+    {
+      id: 46,
+      title: "Mitsubishi PLC Purchase in India: A Complete Guide for Industrial Automation",
+      excerpt: "In 2025, India's manufacturing sector is changing faster than ever. With rising competition, strict deadlines, and a global move toward smart factories, one thing is clear — factory automation is no longer a choice, it's a necessity.",
+      category: "Automation",
+      date: "January 16, 2024",
+      readTime: "5 min read",
+      content: `Industrial automation in India is growing rapidly as manufacturing units adopt smarter and more efficient systems. One of the most important components of automation is the Programmable Logic Controller (PLC). Many industries rely on Mitsubishi PLCs because of their reliability, advanced technology, and long operational life. If you are planning a mitsubhishi plc purchase in India, understanding its features, applications, and benefits can help you make the right investment.`
+    },
+    {
+      id: 47,
+      title: "Understanding PLC and Its Role in Automation",
+      excerpt: "In 2025, India's manufacturing sector is changing faster than ever. With rising competition, strict deadlines, and a global move toward smart factories, one thing is clear — factory automation is no longer a choice, it's a necessity.",
+      category: "Technology",
+      date: "January 15, 2024",
+      readTime: "5 min read",
+      content: `A Programmable Logic Controller (PLC) is a specialized computer used to control machines and industrial processes. PLCs automate operations such as conveyor systems, assembly lines, robotic devices, and packaging systems. Instead of manual control, PLCs allow industries to run processes efficiently with minimal human intervention.
+Mitsubishi Electric is one of the leading brands in industrial automation, offering high-performance PLC systems designed for complex manufacturing environments. Businesses planning a mitsubhishi plc purchase in india often choose the brand due to its reliability, scalability, and powerful programming capabilities.
+` },
+    {
+      id: 48,
+      title: "Why Mitsubishi PLC is Popular in Indian Industries",
+      excerpt: "In 2025, India's manufacturing sector is changing faster than ever. With rising competition, strict deadlines, and a global move toward smart factories, one thing is clear — factory automation is no longer a choice, it's a necessity.",
+      category: "Technology",
+      date: "January 14, 2024",
+      readTime: "7 min read",
+      content: `Industries across India prefer Mitsubishi PLCs for several reasons. The brand has built a strong reputation in automation technology and offers solutions suitable for both small factories and large manufacturing plants.
+One of the key advantages of Mitsubishi PLC systems is their high processing speed. They can handle complex automation tasks without delays, making them ideal for industries such as automotive manufacturing, packaging, pharmaceuticals, and food processing.
+Another reason companies consider mitsubhishi plc purchase in india is the flexibility of Mitsubishi controllers. They support various communication protocols and integrate easily with sensors, drives, and human-machine interfaces (HMIs).` },
+    {
+      id: 49,
+      title: "Key Features of Mitsubishi PLC Systems",
+      excerpt: "In 2025, India's manufacturing sector is changing faster than ever. With rising competition, strict deadlines, and a global move toward smart factories, one thing is clear — factory automation is no longer a choice, it's a necessity.",
+      category: "Automation",
+      date: "January 13, 2024",
+      readTime: "9 min read",
+      content: `Mitsubishi PLCs come with several advanced features that improve operational efficiency. These controllers offer excellent reliability and are designed to operate in harsh industrial environments.
+High-speed processing allows manufacturers to automate complex processes quickly and accurately. This reduces production errors and improves overall productivity.
+Mitsubishi PLCs also support modular expansion. This means companies can add additional modules for inputs, outputs, communication, and special functions depending on their production requirements.
+Another benefit of choosing mitsubhishi plc purchase in india is the user-friendly programming environment. Mitsubishi provides software like GX Works that allows engineers to design, test, and troubleshoot automation programs efficiently.` },
+    {
+      id: 50,
+      title: "Industries Using Mitsubishi PLC in India",
+      excerpt: "In 2025, India's manufacturing sector is changing faster than ever. With rising competition, strict deadlines, and a global move toward smart factories, one thing is clear — factory automation is no longer a choice, it's a necessity.",
+      category: "Technology",
+      date: "January 12, 2024",
+      readTime: "10 min read",
+      content: `Many industries in India rely on PLC automation to increase productivity and reduce operational costs. Mitsubishi PLC systems are widely used in sectors such as:
+Manufacturing industries use PLCs to control machines, assembly lines, and robotic arms. Automation improves production speed and ensures consistent quality.
+Food and beverage companies rely on PLC automation for packaging, bottling, and temperature control processes.
+Pharmaceutical companies use PLC systems to maintain strict quality standards and ensure precise control over production environments.
+Textile factories also benefit from PLC automation to control weaving machines and dyeing processes. Businesses planning mitsubhishi plc purchase in india often belong to these sectors where precision and reliability are essential.
+` },
+    {
+      id: 51,
+      title: "Factors to Consider Before Purchasing a Mitsubishi PLC",
+      excerpt: "In 2025, India's manufacturing sector is changing faster than ever. With rising competition, strict deadlines, and a global move toward smart factories, one thing is clear — factory automation is no longer a choice, it's a necessity.",
+      category: "Automation",
+      date: "January 11, 2024",
+      readTime: "9 min read",
+      content: `Before making a mitsubhishi plc purchase in india, it is important to analyze your industrial requirements. Different PLC models are designed for different levels of automation complexity.
+You should consider the number of input and output points required for your system. Larger automation setups require PLCs with higher capacity and expansion capabilities.
+Communication compatibility is another key factor. Ensure the PLC supports protocols used by your existing equipment and machines.
+Budget planning is also important. While Mitsubishi PLCs are known for their durability, choosing the right model ensures you get the best performance without overspending.` },
+    {
+      id: 52,
+      title: "Benefits of Buying Mitsubishi PLC in India",
+      excerpt: "In 2025, India's manufacturing sector is changing faster than ever. With rising competition, strict deadlines, and a global move toward smart factories, one thing is clear — factory automation is no longer a choice, it's a necessity.",
+      category: "Automation",
+      date: "January 10, 2024",
+      readTime: "10 min read",
+      content: `Companies choosing mitsubhishi plc purchase in india gain several long-term benefits. One of the biggest advantages is increased production efficiency. Automation eliminates manual errors and improves operational consistency.
+Another benefit is reduced maintenance costs. Mitsubishi PLCs are designed for durability and require minimal servicing. This helps industries reduce downtime and maintain continuous production.
+Technical support and spare parts availability are also strong advantages in India. Many automation suppliers provide installation assistance, training, and maintenance services.` },
+    {
+      id: 53,
+      title: "The Future of PLC Automation in India",
+      excerpt: "In 2025, India's manufacturing sector is changing faster than ever. With rising competition, strict deadlines, and a global move toward smart factories, one thing is clear — factory automation is no longer a choice, it's a necessity.",
+      category: "Case study",
+      date: "January 9, 2024",
+      readTime: "10 min read",
+      content: `India’s manufacturing sector is rapidly adopting Industry 4.0 technologies such as smart factories, IoT integration, and advanced robotics. PLC systems are a key component of this transformation.
+Businesses investing in mitsubhishi plc purchase in india are preparing for the future of intelligent automation. These controllers can integrate with modern technologies, enabling real-time monitoring, predictive maintenance, and data-driven production management.
+As industries continue to modernize, the demand for reliable PLC systems will keep increasing. Mitsubishi PLCs are expected to remain a preferred choice for companies seeking advanced automation solutions.` },
+    {
+      id: 54,
+      title: "Conclusion",
+      excerpt: "In 2025, India's manufacturing sector is changing faster than ever. With rising competition, strict deadlines, and a global move toward smart factories, one thing is clear — factory automation is no longer a choice, it's a necessity.",
+      category: "Conclusion",
+      date: "January 9, 2024",
+      readTime: "10 min read",
+      content: `Industrial automation is becoming essential for businesses aiming to improve efficiency and competitiveness. Mitsubishi PLC systems provide powerful control, flexibility, and reliability for modern manufacturing environments.
+Whether you operate a small production unit or a large industrial plant, planning a mitsubhishi plc purchase in india can significantly enhance operational performance. With advanced features, strong industry reputation, and long-term reliability, Mitsubishi PLCs remain one of the best choices for automation solutions in India.` },
   ], []);
 
   const openDialog = (blogId: number) => {
