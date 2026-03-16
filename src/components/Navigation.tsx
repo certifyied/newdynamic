@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import dynamicLogo from "@/assets/new_dynamic_logo.png";
+import brochure from "@/assets/DCS brochure .pdf";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -39,28 +40,19 @@ const Navigation = () => {
       }`}
     >
       <div className="container mx-auto px-4">
-        {/* Increased navbar height */}
         <div className="flex items-center justify-between h-24 md:h-28">
+          
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <img
               src={dynamicLogo}
               alt="Dynamic Control Systems"
-              className="
-                h-27
-                sm:h-28
-                md:h-32
-                lg:h-40
-                xl:h-44
-                w-auto
-                flex-shrink-0
-                object-contain
-              "
+              className="h-27 sm:h-28 md:h-32 lg:h-40 xl:h-44 w-auto flex-shrink-0 object-contain"
             />
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-6">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
@@ -82,6 +74,7 @@ const Navigation = () => {
               </Link>
             ))}
 
+            {/* Training Institute */}
             <Button variant="default" size="sm" asChild>
               <a
                 href="https://dcsri.org/"
@@ -89,6 +82,17 @@ const Navigation = () => {
                 rel="noopener noreferrer"
               >
                 Training Institute
+              </a>
+            </Button>
+
+            {/* View Brochure */}
+            <Button
+              size="sm"
+              className="bg-red-600 hover:bg-red-700 text-white"
+              asChild
+            >
+              <a href={brochure} target="_blank" rel="noopener noreferrer">
+                View Brochure
               </a>
             </Button>
           </div>
@@ -129,6 +133,7 @@ const Navigation = () => {
                 </Link>
               ))}
 
+              {/* Training Institute */}
               <Button variant="default" className="w-full" asChild>
                 <a
                   href="https://dcsri.org/"
@@ -137,6 +142,21 @@ const Navigation = () => {
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Training Institute
+                </a>
+              </Button>
+
+              {/* View Brochure */}
+              <Button
+                className="w-full bg-red-600 hover:bg-red-700 text-white"
+                asChild
+              >
+                <a
+                  href={brochure}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  View Brochure
                 </a>
               </Button>
             </div>
