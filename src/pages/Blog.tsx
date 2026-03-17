@@ -70,6 +70,15 @@ import blog52Image from "@/assets/Jun24_21_1499648477.avif";
 import blog53Image from "@/assets/GettyImages-595918662.webp";
 import blog54Image from "@/assets/429207db2599e794e7c73db8a539b44d_743b755b-44b6-4244-a1e7-bc8976a49260.webp";
 import blog55Image from "@/assets/Automation.webp";
+import blog56Image from "@/assets/Man-working-with-machines.jpg";
+import blog57Image from "@/assets/controltech-automation-worker.jpg";
+import blog58Image from "@/assets/two-young-intercultural-male-workers-modern-plant-discussing-online-technical-data-while-standing-by-industrial-machine-workshop-scaled.jpg";
+import blog59Image from "@/assets/What-is-Automation.jpg";
+import blog60Image from "@/assets/desk-worker-industry-manufacturing-factory-machine-technology-engineer-automation-robotic.avif";
+import blog61Image from "@/assets/engineer-woman-team-automation-industry-mechanic-staff-employee-in-metal-factory-2PR4JB0.jpg";
+import blog62Image from "@/assets/two-managers-plant-floor-twinsburg-6286.5120.webp";
+import blog63Image from "@/assets/MP_Automation in Manufacturing_708x398.webp";
+import blog64Image from "@/assets/csm_news-stage-girls-day-kieback-peter_faa11304c2.jpg";
 
 
 // Map blog IDs to their specific images
@@ -129,6 +138,15 @@ const blogImageMap: Record<number, string> = {
   53: blog53Image,
   54: blog54Image,
   55: blog55Image,
+  56: blog56Image,
+  57: blog57Image,
+  58: blog58Image,
+  59: blog59Image,
+  60: blog60Image,
+  61: blog61Image,
+  62: blog62Image,
+  63: blog63Image,
+  64: blog64Image,
 
 };
 
@@ -1657,6 +1675,104 @@ As industries continue to modernize, the demand for reliable PLC systems will ke
       readTime: "10 min read",
       content: `Industrial automation is becoming essential for businesses aiming to improve efficiency and competitiveness. Mitsubishi PLC systems provide powerful control, flexibility, and reliability for modern manufacturing environments.
 Whether you operate a small production unit or a large industrial plant, planning a mitsubhishi plc purchase in india can significantly enhance operational performance. With advanced features, strong industry reputation, and long-term reliability, Mitsubishi PLCs remain one of the best choices for automation solutions in India.` },
+    {
+      id: 55,
+      title: "How PLC Automation is Transforming Smart Factories in India",
+      excerpt: "In 2025, India's manufacturing sector is changing faster than ever. With rising competition, strict deadlines, and a global move toward smart factories, one thing is clear — factory automation is no longer a choice, it's a necessity.",
+      category: "Automation",
+      date: "January 8, 2024",
+      readTime: "10 min read",
+      content: `Industrial automation has become a key factor in improving productivity, accuracy, and efficiency in modern manufacturing. One of the most important technologies driving this transformation is the Programmable Logic Controller (PLC). As industries across India shift toward smart manufacturing, PLC systems are playing a critical role in automating complex processes. Many companies planning a mitsubhishi plc purchase in india are doing so to support the transition toward advanced smart factory environments.`
+    },
+    {
+      id: 56,
+      title: "What is PLC Automation?",
+      excerpt: "In 2025, India's manufacturing sector is changing faster than ever. With rising competition, strict deadlines, and a global move toward smart factories, one thing is clear — factory automation is no longer a choice, it's a necessity.",
+      category: "Automation",
+      date: "January 7, 2024",
+      readTime: "10 min read",
+      content: `A Programmable Logic Controller (PLC) is an industrial digital computer designed to control manufacturing processes. It is widely used for automation in factories, machinery, assembly lines, and industrial equipment.
+PLCs replace traditional manual controls and relay-based systems. Instead of multiple electrical circuits controlling a machine, a PLC allows engineers to program the entire system using specialized software. This makes processes faster, more efficient, and easier to modify.
+For industries considering mitsubhishi plc purchase in india, PLC automation provides a reliable solution to manage complex manufacturing operations with precision.`
+    },
+    {
+      id: 57,
+      title: "The Rise of Smart Factories in India",
+      excerpt: "In 2025, India's manufacturing sector is changing faster than ever. With rising competition, strict deadlines, and a global move toward smart factories, one thing is clear — factory automation is no longer a choice, it's a necessity.",
+      category: "Technology",
+      date: "January 6, 2024",
+      readTime: "10 min read",
+      content: `Smart factories represent the future of manufacturing. These factories use digital technologies, sensors, robotics, and automated systems to monitor and control production processes in real time.
+India is rapidly adopting smart manufacturing technologies due to the increasing demand for higher productivity and global competitiveness. PLC systems act as the backbone of these smart factories by controlling machines, collecting operational data, and coordinating production workflows.
+Because of their reliability and performance, many manufacturers choose mitsubhishi plc purchase in india to support their smart factory automation systems.`
+    },
+    {
+      id: 58,
+      title: "Role of Mitsubishi PLC in Industrial Automation",
+      excerpt: "In 2025, India's manufacturing sector is changing faster than ever. With rising competition, strict deadlines, and a global move toward smart factories, one thing is clear — factory automation is no longer a choice, it's a necessity.",
+      category: "Technology",
+      date: "January 5, 2024",
+      readTime: "10 min read",
+      content: `Mitsubishi PLCs are widely recognized for their advanced automation capabilities and durability. They are designed to handle complex industrial processes while maintaining high performance.
+One of the major advantages of Mitsubishi PLCs is their high-speed processing. This allows factories to run automated systems without delays, ensuring smooth production cycles.
+Another reason companies consider mitsubhishi plc purchase in india is the brand’s strong compatibility with other automation technologies. Mitsubishi PLCs easily integrate with sensors, servo motors, industrial robots, and human-machine interfaces (HMI).`
+    },
+    {
+      id: 59,
+      title: "Key Advantages of PLC-Based Automation",
+      excerpt: "In 2025, India's manufacturing sector is changing faster than ever. With rising competition, strict deadlines, and a global move toward smart factories, one thing is clear — factory automation is no longer a choice, it's a necessity.",
+      category: "Automation",
+      date: "January 4, 2024",
+      readTime: "10 min read",
+      content: `PLC automation offers several benefits for industries aiming to improve efficiency and reduce operational costs.
+One of the most important benefits is improved production accuracy. PLCs control machines with precise programming instructions, reducing the chances of human error.
+Another advantage is increased productivity. Automated systems operate continuously and perform tasks much faster than manual processes.
+Many companies also choose mitsubhishi plc purchase in india because PLC systems are highly reliable and require minimal maintenance. This helps reduce machine downtime and improves production stability.`
+    },
+    {
+      id: 60,
+      title: "Applications of PLC Systems in Different Industries",
+      excerpt: "In 2025, India's manufacturing sector is changing faster than ever. With rising competition, strict deadlines, and a global move toward smart factories, one thing is clear — factory automation is no longer a choice, it's a necessity.",
+      category: "Automation",
+      date: "January 3, 2024",
+      readTime: "11 min read",
+      content: `PLC technology is used across a wide range of industries in India. Manufacturing companies use PLC systems to control assembly lines, conveyor belts, and robotic arms.
+In the food processing industry, PLCs manage packaging machines, temperature control systems, and production line automation.
+Pharmaceutical industries rely on PLC automation for precise chemical mixing, quality control, and sterile production environments.
+Textile factories also use PLC systems to control weaving machines and automated dyeing processes. Businesses investing in mitsubhishi plc purchase in india often belong to these industries where automation ensures consistent product quality.`
+    },
+    {
+      id: 61,
+      title: "How PLC Improves Production Efficiency",
+      excerpt: "In 2025, India's manufacturing sector is changing faster than ever. With rising competition, strict deadlines, and a global move toward smart factories, one thing is clear — factory automation is no longer a choice, it's a necessity.",
+      category: "Automation",
+      date: "January 2, 2024",
+      readTime: "11 min read",
+      content: `PLC systems help industries optimize production processes through automation and real-time monitoring. They collect data from sensors and machines, allowing operators to monitor system performance and detect issues quickly.
+This real-time monitoring improves decision-making and helps industries avoid costly equipment failures. Companies planning mitsubhishi plc purchase in india benefit from advanced diagnostic features that help engineers troubleshoot problems efficiently.`
+    },
+    {
+      id: 62,
+      title: "The Future of PLC Technology in India",
+      excerpt: "In 2025, India's manufacturing sector is changing faster than ever. With rising competition, strict deadlines, and a global move toward smart factories, one thing is clear — factory automation is no longer a choice, it's a necessity.",
+      category: "Case study",
+      date: "January 1, 2024",
+      readTime: "08 min read",
+      content: `The future of industrial automation in India is closely linked with technologies such as the Internet of Things (IoT), artificial intelligence, and smart manufacturing systems.
+PLC controllers are evolving to support these advanced technologies by enabling data connectivity and remote monitoring. As industries adopt Industry 4.0 practices, PLC systems will become even more essential.
+Companies investing in mitsubhishi plc purchase in india are positioning themselves for this technological transformation by adopting reliable and future-ready automation solutions.`
+    },
+    {
+      id: 63,
+      title: "Conclusion",
+      excerpt: "In 2025, India's manufacturing sector is changing faster than ever. With rising competition, strict deadlines, and a global move toward smart factories, one thing is clear — factory automation is no longer a choice, it's a necessity.",
+      category: "Case study",
+      date: "December 31, 2023",
+      readTime: "08 min read",
+      content: `PLC automation has become a cornerstone of modern industrial operations. It allows businesses to automate complex manufacturing processes, increase productivity, and maintain consistent quality.
+Mitsubishi PLC systems are widely trusted for their advanced technology, durability, and ease of integration with other automation tools. For industries aiming to modernize their production systems, planning a mitsubhishi plc purchase in india is a strategic step toward building efficient and intelligent manufacturing environments.
+As smart factories continue to grow in India, PLC technology will remain a key driver of industrial innovation and automation.`
+    },
   ], []);
 
   const openDialog = (blogId: number) => {
