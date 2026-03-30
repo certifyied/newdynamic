@@ -87,6 +87,14 @@ import blog69Image from "@/assets/industrial-factory-employee-working-on-high-te
 import blog70Image from "@/assets/Electrical-Control-Technology_D1.00_02_30_21.Still135.jpg";
 import blog71Image from "@/assets/download.png";
 import blog72Image from "@/assets/AUTOMATIZACI_N_Y_AI_1.avif";
+import blog73Image from "@/assets/Man-working-with-machines.jpg";
+import blog74Image from "@/assets/HBR.webp";
+import blog75Image from "@/assets/What-is-Automation.jpg";
+import blog76Image from "@/assets/20190225_metro_Maxim-Muro-Automation_disruption.webp";
+import blog77Image from "@/assets/Nov21_02_1054015754.avif";
+import blog78Image from "@/assets/2851cc9ee622f3b429c90752a767979c.avif";
+import blog79Image from "@/assets/MP_Automation in Manufacturing_708x398.webp";
+import blog80Image from "@/assets/IMG_7426-scaled.jpg";
 
 
 // Map blog IDs to their specific images
@@ -163,6 +171,14 @@ const blogImageMap: Record<number, string> = {
   70: blog70Image,
   71: blog71Image,
   72: blog72Image,
+  73: blog73Image,
+  74: blog74Image,
+  75: blog75Image,
+  76: blog76Image,
+  77: blog77Image,
+  78: blog78Image,
+  79: blog79Image,
+  80: blog80Image,
 
 };
 
@@ -1936,6 +1952,158 @@ Businesses that invest in advanced PLC solutions today will gain a competitive e
       readTime: "02 min read",
       content: `With the rise of Industry 4.0, PLCs are becoming smarter and more connected. Integration with IoT, AI, and cloud computing is transforming traditional automation into intelligent systems.
 Businesses that invest in advanced PLC solutions today will gain a competitive edge in the future.`
+    },
+    {
+      id: 73,
+      title: "Stability Analysis in Control Systems: Concepts and Applications",
+      excerpt: "In 2025, India's manufacturing sector is changing faster than ever. With rising competition, strict deadlines, and a global move toward smart factories, one thing is clear — factory automation is no longer a choice, it's a necessity.",
+      category: "Technology",
+      date: "December 22, 2023",
+      readTime: "04 min read",
+      content: `In modern industrial automation, ensuring system stability is one of the most critical aspects of
+designing reliable and efficient processes. Whether it's manufacturing plants, power systems, or
+robotics, stability analysis in control systems helps engineers predict system behavior and avoid
+unexpected failures. With the growing demand for automation solutions like mitsubhishi plc
+purchase in india, understanding stability concepts has become even more important for
+industries aiming to optimize performance.`
+    },
+    {
+      id: 74,
+      title: "What is Stability in Control Systems?",
+      excerpt: "In 2025, India's manufacturing sector is changing faster than ever. With rising competition, strict deadlines, and a global move toward smart factories, one thing is clear — factory automation is no longer a choice, it's a necessity.",
+      category: "Technology",
+      date: "December 21, 2023",
+      readTime: "04 min read",
+      content: `Stability refers to a system’s ability to return to its equilibrium state after being subjected to a
+disturbance. In simple terms, a stable system responds to inputs or changes without producing
+uncontrolled or oscillatory outputs.
+For example:
+● A stable system settles at a desired output.
+● An unstable system may oscillate indefinitely or diverge.
+In industrial setups where PLCs and SCADA systems are used—such as those involving
+Mitsubishi PLC purchase in Kerala—stability ensures that machines operate smoothly without
+interruptions or hazards.
+Types of Stability
+Control systems can be classified into different types based on their response:
+1. Absolute Stability
+The system remains stable for all input signals within a specified range.
+2. Relative Stability
+Indicates how quickly and effectively a system returns to equilibrium.
+3. Marginal Stability
+The system neither diverges nor settles completely—it maintains continuous oscillations.
+Understanding these types is crucial when implementing automation solutions like Mitsubhishi
+plc purchase in Kochi, where precision and safety are essential.`
+    },
+    {
+      id: 75,
+      title: "Methods of Stability Analysis",
+      excerpt: "In 2025, India's manufacturing sector is changing faster than ever. With rising competition, strict deadlines, and a global move toward smart factories, one thing is clear — factory automation is no longer a choice, it's a necessity.",
+      category: "Technology",
+      date: "December 22, 2023",
+      readTime: "04 min read",
+      content: `Several techniques are used to analyze system stability:
+1. Routh-Hurwitz Criterion
+This mathematical method determines stability without solving complex equations. It helps
+identify whether all system poles lie in the left half of the complex plane.
+2. Root Locus Method
+Root locus plots show how system poles move as system parameters change. This method is
+widely used in designing controllers for industrial automation.
+3. Bode Plot Analysis
+Bode plots provide frequency response information, helping engineers understand gain and
+phase margins. These are crucial for tuning systems in Scada programming in Kochi
+environments.
+4. Nyquist Criterion
+This graphical technique determines stability by analyzing frequency response and
+encirclements of critical points.
+Each of these methods plays a key role in ensuring that control systems integrated with PLCs
+operate efficiently and safely`
+    },
+    {
+      id: 76,
+      title: "Importance of Stability in Industrial Automation",
+      excerpt: "In 2025, India's manufacturing sector is changing faster than ever. With rising competition, strict deadlines, and a global move toward smart factories, one thing is clear — factory automation is no longer a choice, it's a necessity.",
+      category: "Technology",
+      date: "December 21, 2023",
+      readTime: "04 min read",
+      content: `In real-world applications, unstable systems can lead to:
+● Equipment damage
+● Production downtime
+● Safety risks
+For industries investing in mitsubhishi PLC purchase in India, stability analysis ensures that
+automated processes function reliably under varying conditions.
+For example:
+● In manufacturing, stable systems maintain consistent product quality.
+● In power plants, stability prevents voltage fluctuations.
+● In process industries, it ensures the smooth operation of pumps, valves, and conveyors`
+    },
+    {
+      id: 77,
+      title: "Role of PLC and SCADA in Stability",
+      excerpt: "In 2025, India's manufacturing sector is changing faster than ever. With rising competition, strict deadlines, and a global move toward smart factories, one thing is clear — factory automation is no longer a choice, it's a necessity.",
+      category: "Technology",
+      date: "December 20, 2023",
+      readTime: "04 min read",
+      content: `Programmable Logic Controllers (PLCs) and SCADA systems are the backbone of modern
+automation. When implementing solutions like Mitsubishi PLC purchase in Kerala, engineers
+must ensure proper tuning and configuration to maintain system stability.
+SCADA systems, especially those used in Scada programming in Kochi, allow real-time
+monitoring and control. They help:
+● Detect instability early
+● Adjust system parameters
+● Improve response time
+Proper integration of PLC and SCADA enhances system performance and minimizes risks.`
+    },
+    {
+      id: 78,
+      title: "Practical Applications of Stability Analysis",
+      excerpt: "In 2025, India's manufacturing sector is changing faster than ever. With rising competition, strict deadlines, and a global move toward smart factories, one thing is clear — factory automation is no longer a choice, it's a necessity.",
+      category: "Technology",
+      date: "December 19, 2023",
+      readTime: "04 min read",
+      content: `Stability analysis is widely used across industries:
+1. Manufacturing Automation
+Ensures consistent operation of assembly lines and robotic systems.
+2. Power Systems
+Maintains voltage and frequency stability in electrical grids.
+3. Chemical Processing
+Prevents unsafe reactions and maintains process control.
+4. Robotics and Motion Control
+Ensures precise movement and positioning.
+In all these applications, companies opting for Mitsubhishi plc purchase in Kochi benefit from
+improved system reliability and efficiency`
+    },
+    {
+      id: 79,
+      title: "Challenges in Stability Analysis",
+      excerpt: "In 2025, India's manufacturing sector is changing faster than ever. With rising competition, strict deadlines, and a global move toward smart factories, one thing is clear — factory automation is no longer a choice, it's a necessity.",
+      category: "Technology",
+      date: "December 18, 2023",
+      readTime: "04 min read",
+      content: `Despite its importance, stability analysis can be challenging due to:
+● Nonlinear system behavior
+● Time delays
+● External disturbances
+Advanced tools and simulation software are often used to overcome these challenges,
+especially in complex automation environments.`
+    },
+    {
+      id: 80,
+      title: "Conclusion",
+      excerpt: "In 2025, India's manufacturing sector is changing faster than ever. With rising competition, strict deadlines, and a global move toward smart factories, one thing is clear — factory automation is no longer a choice, it's a necessity.",
+      category: "Technology",
+      date: "December 18, 2023",
+      readTime: "04 min read",
+      content: `Stability analysis is a fundamental aspect of control systems that ensures safe, reliable, and
+efficient operation. From theoretical concepts like Routh-Hurwitz and Bode plots to real-world
+applications in PLC and SCADA systems, stability plays a crucial role in industrial automation.
+As industries continue to invest in technologies like mitsubhishi plc purchase in India, along
+with regional demands such as Mitsubishi plc purchase in Kerala and Mitsubhishi plc
+purchase in Kochi, the need for robust stability analysis becomes even more significant.
+Additionally, advancements in Scada programming in Kochi are enabling smarter and more
+adaptive control systems.
+By understanding and applying stability principles, engineers can design systems that not only
+perform efficiently but also stand the test of time in increasingly complex industrial
+environments.`
     },
   ], []);
 
