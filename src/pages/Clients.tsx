@@ -328,17 +328,16 @@ const Clients = () => {
                             }`}
                         /> */}
                         <img
-  src={client.image}
-  alt={client.name}
-  loading="lazy"
-  className={`w-auto object-contain transition-transform duration-500 ${
-    smallLogos.includes(client.filename)
-      ? "max-h-10"
-      : largeLogos.includes(client.filename)
-      ? "max-h-30"
-      : "max-h-20"
-  }`}
-/>
+                          src={client.image}
+                          alt={client.name}
+                          loading="lazy"
+                          className={`w-auto object-contain transition-transform duration-500 ${smallLogos.includes(client.filename)
+                              ? "max-h-10"
+                              : largeLogos.includes(client.filename)
+                                ? "max-h-30"
+                                : "max-h-20"
+                            }`}
+                        />
                       </div>
                     </AspectRatio>
                   </Card>
