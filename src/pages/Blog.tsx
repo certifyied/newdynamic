@@ -95,6 +95,11 @@ import blog77Image from "@/assets/Nov21_02_1054015754.avif";
 import blog78Image from "@/assets/2851cc9ee622f3b429c90752a767979c.avif";
 import blog79Image from "@/assets/MP_Automation in Manufacturing_708x398.webp";
 import blog80Image from "@/assets/IMG_7426-scaled.jpg";
+import blog81Image from "@/assets/oct18_11_967555828.avif";
+import blog82Image from "@/assets/20190225_metro_Maxim-Muro-Automation_disruption.webp";
+import blog83Image from "@/assets/2851cc9ee622f3b429c90752a767979c.avif";
+import blog84Image from "@/assets/Nov21_02_1054015754.avif";
+import blog85Image from "@/assets/68c7b902a91f5e90c44504da_Workers inspecting factory machinery, showcasing industrial automation in modern manufacturing..png";
 
 
 // Map blog IDs to their specific images
@@ -179,6 +184,11 @@ const blogImageMap: Record<number, string> = {
   78: blog78Image,
   79: blog79Image,
   80: blog80Image,
+  81: blog81Image,
+  82: blog82Image,
+  83: blog83Image,
+  84: blog84Image,
+  85: blog85Image,
 
 };
 
@@ -2105,6 +2115,89 @@ By understanding and applying stability principles, engineers can design systems
 perform efficiently but also stand the test of time in increasingly complex industrial
 environments.`
     },
+    {
+      id: 81,
+      title: "Understanding GX Works Software: Programming Efficiency in Mitsubishi PLC Systems",
+      excerpt: "Automation is transforming industries by improving efficiency, reducing errors, and optimizing productivity through advanced PLC systems.",
+      category: "Automation",
+      date: "December 17, 2023",
+      readTime: "05 min read",
+      content: `In today’s fast-evolving industrial landscape, automation plays a critical role in improving productivity, reducing errors, and optimizing operational efficiency. At the heart of many advanced automation systems lies the Mitsubishi PLC (Programmable Logic Controller), supported by powerful programming tools like GX Works software.
+
+For businesses exploring mitsubhishi plc purchase in india, understanding GX Works is essential to fully leverage the potential of these systems. GX Works enables engineers to design, configure, and manage automation systems efficiently, ensuring smoother industrial operations.
+
+With increasing adoption across industries, GX Works has become a vital component in modern automation strategies, helping businesses stay competitive and future-ready.`
+    },
+
+    {
+      id: 82,
+      title: "What is GX Works Software?",
+      excerpt: "GX Works is a powerful programming platform designed to simplify PLC development, debugging, and maintenance in industrial automation systems.",
+      category: "Technology",
+      date: "December 16, 2023",
+      readTime: "06 min read",
+      content: `GX Works is a comprehensive programming platform developed for Mitsubishi PLC systems. It includes versions like GX Works2 and GX Works3, each designed to simplify PLC programming, configuration, debugging, and maintenance.
+
+When considering mitsubhishi plc purchase in kerala, choosing the right software ecosystem is just as important as selecting the hardware. GX Works ensures seamless integration, making it a preferred choice for industries such as manufacturing, packaging, and food processing.
+
+Key Features include:
+- User-friendly interface with structured navigation
+- Multiple programming languages like Ladder Logic, Structured Text, and Function Block Diagram
+- Advanced debugging tools with real-time monitoring
+- Simplified parameter management
+- Reusable libraries for faster development
+
+These features make GX Works an essential tool for engineers working with PLC systems.`
+    },
+
+    {
+      id: 83,
+      title: "Benefits of Using GX Works for Mitsubishi PLC Systems",
+      excerpt: "GX Works enhances productivity, improves system performance, and simplifies maintenance for modern industrial automation setups.",
+      category: "Automation",
+      date: "December 15, 2023",
+      readTime: "05 min read",
+      content: `One of the biggest advantages of GX Works is its ability to streamline the PLC programming process. Engineers can complete projects faster with fewer errors using built-in templates and intelligent coding tools.
+
+Benefits include:
+- Improved programming efficiency
+- Enhanced system performance and reliability
+- Easy maintenance and quick updates
+- High scalability for small to large systems
+
+For industries considering mitsubhishi plc purchase in kochi, GX Works ensures minimal downtime and maximum productivity, making it a valuable investment for long-term automation needs.`
+    },
+
+    {
+      id: 84,
+      title: "Applications of GX Works in Industries",
+      excerpt: "GX Works software powers automation across multiple industries, enabling efficient and reliable control systems.",
+      category: "Case study",
+      date: "December 14, 2023",
+      readTime: "04 min read",
+      content: `GX Works software is widely used across various sectors including manufacturing automation, packaging systems, textile industries, food processing, and automotive production.
+
+In regions like Kerala, industrial automation is rapidly growing, increasing the demand for mitsubhishi plc purchase in kerala. GX Works ensures these systems operate efficiently with minimal errors.
+
+Its flexibility and scalability allow businesses to adapt to changing production requirements, making it a crucial tool in modern industrial environments.`
+    },
+    {
+      id: 85,
+      title: "Conclusion",
+      excerpt: "In 2025, India's manufacturing sector is changing faster than ever. With rising competition, strict deadlines, and a global move toward smart factories, one thing is clear — factory automation is no longer a choice, it's a necessity.",
+      category: "Conclusion",
+      date: "December 13, 2023",
+      readTime: "04 min read",
+      content: `Stability analysis is a fundamental aspect of control systems that ensures safe, reliable, and efficient operation. From theoretical concepts like Routh-Hurwitz and Bode plots to real-world applications in PLC and SCADA systems, stability plays a crucial role in industrial automation.
+
+As industries continue to invest in technologies like mitsubhishi plc purchase in India, along with regional demands such as Mitsubishi plc purchase in Kerala and Mitsubhishi plc purchase in Kochi, the need for robust stability analysis becomes even more significant.
+
+Additionally, advancements in Scada programming in Kochi are enabling smarter and more adaptive control systems. By understanding and applying stability principles, engineers can design systems that not only perform efficiently but also stand the test of time in increasingly complex industrial environments.
+
+GX Works software is a powerful tool that significantly enhances programming efficiency in Mitsubishi PLC systems. Its user-friendly interface, advanced features, and flexibility make it an essential component for modern industrial automation.
+
+As industries continue to adopt automation, the importance of reliable tools like GX Works cannot be overstated. Whether you are exploring mitsubhishi plc purchase in india, planning a system upgrade, or implementing a new automation project, GX Works ensures you achieve optimal performance and long-term success.`
+    }
   ], []);
 
   const openDialog = (blogId: number) => {
