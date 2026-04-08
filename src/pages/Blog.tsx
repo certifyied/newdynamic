@@ -100,6 +100,16 @@ import blog82Image from "@/assets/20190225_metro_Maxim-Muro-Automation_disruptio
 import blog83Image from "@/assets/2851cc9ee622f3b429c90752a767979c.avif";
 import blog84Image from "@/assets/Nov21_02_1054015754.avif";
 import blog85Image from "@/assets/68c7b902a91f5e90c44504da_Workers inspecting factory machinery, showcasing industrial automation in modern manufacturing..png";
+import blog86Image from "@/assets/Nov21_02_1054015754.avif";
+import blog87Image from "@/assets/The-Role-of-Automation-in-Indian-Wrench-Manufacturing (1).webp";
+import blog88Image from "@/assets/indian-robotics.webp";
+import blog89Image from "@/assets/cnc (1).jpg";
+import blog90Image from "@/assets/23.webp";
+import blog91Image from "@/assets/indian-robotics.webp";
+import blog92Image from "@/assets/697889b6fc1e655c94627b12_Key Components of Industrial Automation.webp";
+import blog93Image from "@/assets/Industrial-automation-main-2.jpg";
+import blog94Image from "@/assets/industrial-automation-new.png.webp";
+import blog95Image from "@/assets/HBR.webp";
 
 
 // Map blog IDs to their specific images
@@ -189,6 +199,16 @@ const blogImageMap: Record<number, string> = {
   83: blog83Image,
   84: blog84Image,
   85: blog85Image,
+  86: blog86Image,
+  87: blog87Image,
+  88: blog88Image,
+  89: blog89Image,
+  90: blog90Image,
+  91: blog91Image,
+  92: blog92Image,
+  93: blog93Image,
+  94: blog94Image,
+  95: blog95Image,
 
 };
 
@@ -2197,6 +2217,138 @@ Additionally, advancements in Scada programming in Kochi are enabling smarter an
 GX Works software is a powerful tool that significantly enhances programming efficiency in Mitsubishi PLC systems. Its user-friendly interface, advanced features, and flexibility make it an essential component for modern industrial automation.
 
 As industries continue to adopt automation, the importance of reliable tools like GX Works cannot be overstated. Whether you are exploring mitsubhishi plc purchase in india, planning a system upgrade, or implementing a new automation project, GX Works ensures you achieve optimal performance and long-term success.`
+    },
+    {
+      id: 86,
+      title: "Industrial Automation Excellence with Dynamic Control Systems: PLC & SCADA Solutions in India",
+      excerpt: "In 2025, India's manufacturing sector is changing faster than ever. With rising competition, strict deadlines, and a global move toward smart factories, one thing is clear — factory automation is no longer a choice, it's a necessity.",
+      category: "Automation",
+      date: "December 10, 2023",
+      readTime: "02 min read",
+      content: `In today’s rapidly evolving industrial landscape, automation is no longer optional—it’s essential. Companies across manufacturing, processing, and infrastructure sectors are adopting advanced technologies like PLC and SCADA to improve efficiency, reduce downtime, and enhance productivity. One company that stands out in delivering reliable automation solutions is Dynamic Control System.
+Based in Kochi, this company has established itself as a trusted provider of industrial automation systems, especially in Mitsubishi-based PLC and SCADA solutions.`
+    },
+
+    {
+      id: 87,
+      title: "About Dynamic Control Systems",
+      excerpt: "In 2025, India's manufacturing sector is changing faster than ever. With rising competition, strict deadlines, and a global move toward smart factories, one thing is clear — factory automation is no longer a choice, it's a necessity.",
+      category: "Case study",
+      date: "December 09, 2023",
+      readTime: "02 min read",
+      content: `Dynamic Control System is an authorized channel partner for Mitsubishi Electric India Private Limited, specializing in factory automation and control technologies. With decades of experience and a strong engineering team, the company provides end-to-end automation solutions—from product supply to system integration and after-sales support.
+Their expertise spans across industries such as:
+●	Manufacturing
+●	Packaging
+●	Pharmaceuticals
+●	Food processing
+●	Automotive systems`
+    },
+
+    {
+      id: 88,
+      title: "Understanding PLC in Industrial Automation",
+      excerpt: "In 2025, India's manufacturing sector is changing faster than ever. With rising competition, strict deadlines, and a global move toward smart factories, one thing is clear — factory automation is no longer a choice, it's a necessity.",
+      category: "Automation",
+      date: "December 08, 2023",
+      readTime: "03 min read",
+      content: `A Programmable Logic Controller (PLC) is the brain of any automated system. It controls machinery, processes data from sensors, and executes commands in real time.
+Key Features of PLC Systems:
+●	Real-time control and automation
+●	High reliability in harsh industrial environments
+●	Easy programming and scalability
+●	Integration with SCADA and HMI systems
+Dynamic Control Systems offers advanced PLC solutions, especially for industries looking for mitsubhishi plc purchase in india, ensuring clients receive genuine products with full technical support.`
+    },
+
+    {
+      id: 89,
+      title: "SCADA Systems: The Backbone of Monitoring & Control",
+      excerpt: "In 2025, India's manufacturing sector is changing faster than ever. With rising competition, strict deadlines, and a global move toward smart factories, one thing is clear — factory automation is no longer a choice, it's a necessity.",
+      category: "Automation",
+      date: "December 07, 2023",
+      readTime: "03 min read",
+      content: `SCADA (Supervisory Control and Data Acquisition) plays a critical role in modern automation by enabling centralized monitoring and control of industrial processes.
+SCADA systems:
+●	Collect real-time data from field devices
+●	Provide graphical interfaces for operators
+●	Enable remote monitoring and control
+●	Improve decision-making through data analytics
+These systems work closely with PLCs, forming a complete automation ecosystem where PLC handles control logic and SCADA manages supervision and visualization.`
+    },
+
+    {
+      id: 90,
+      title: "Mitsubishi PLC & SCADA Solutions",
+      excerpt: "In 2025, India's manufacturing sector is changing faster than ever. With rising competition, strict deadlines, and a global move toward smart factories, one thing is clear — factory automation is no longer a choice, it's a necessity.",
+      category: "Automation",
+      date: "December 06, 2023",
+      readTime: "03 min read",
+      content: `When it comes to industrial automation, Mitsubishi is a globally recognized brand known for reliability and innovation. Through Dynamic Control System, businesses can easily access mitsubhishi plc purchase in india with full assurance of authenticity and support.
+Advantages of Mitsubishi Automation:
+●	High-speed processing and precision
+●	Seamless integration with SCADA systems
+●	Energy-efficient performance
+●	Long operational life with minimal maintenance
+For businesses in Kerala, especially, mitsubhishi plc purchase in kochi becomes more accessible with local expertise and support provided by the company
+`
+    },
+
+    {
+      id: 91,
+      title: "Services Offered by Dynamic Control Systems",
+      excerpt: "In 2025, India's manufacturing sector is changing faster than ever. With rising competition, strict deadlines, and a global move toward smart factories, one thing is clear — factory automation is no longer a choice, it's a necessity.",
+      category: "Case study",
+      date: "December 05, 2023",
+      readTime: "04 min read",
+      content: `Dynamic Control Systems delivers complete automation solutions tailored to industry needs:
+1. PLC Programming & Integration
+Custom PLC programming for various industrial applications, ensuring smooth and efficient process control.
+2. SCADA Development
+Design and implementation of SCADA systems for real-time monitoring, reporting, and control.
+3. HMI (Human Machine Interface)
+User-friendly dashboards for operators to control machines and visualize data.
+4. VFD & Servo Systems
+Energy-efficient motor control solutions for optimized industrial performance.
+5. Industrial Panels & Control Systems
+Design and manufacturing of control panels with high-quality components.`
+    },
+
+    {
+      id: 92,
+      title: "Why Choose Dynamic Control Systems?",
+      excerpt: "In 2025, India's manufacturing sector is changing faster than ever. With rising competition, strict deadlines, and a global move toward smart factories, one thing is clear — factory automation is no longer a choice, it's a necessity.",
+      category: "Case study",
+      date: "December 04, 2023",
+      readTime: "03 min read",
+      content: `Choosing the right automation partner is crucial for long-term success. Here’s why Dynamic Control System stands out:
+●	Authorized Mitsubishi partner ensuring genuine products
+●	Experienced engineering team with proven project delivery
+●	Customized solutions tailored to industry requirements
+●	Strong after-sales service and technical support
+●	Competitive pricing for automation systems`
+    },
+
+    {
+      id: 93,
+      title: "The Future of Automation in India",
+      excerpt: "In 2025, India's manufacturing sector is changing faster than ever. With rising competition, strict deadlines, and a global move toward smart factories, one thing is clear — factory automation is no longer a choice, it's a necessity.",
+      category: "Automation",
+      date: "December 03, 2023",
+      readTime: "03 min read",
+      content: `India is rapidly moving toward Industry 4.0, where automation, IoT, and data-driven decision-making dominate. PLC and SCADA systems are at the core of this transformation.
+With increasing demand for mitsubhishi plc purchase in india, companies like Dynamic Control System are playing a vital role in bridging the gap between technology and industry needs.`
+    },
+
+    {
+      id: 94,
+      title: "Conclusion",
+      excerpt: "In 2025, India's manufacturing sector is changing faster than ever. With rising competition, strict deadlines, and a global move toward smart factories, one thing is clear — factory automation is no longer a choice, it's a necessity.",
+      category: "Conclusion",
+      date: "December 02, 2023",
+      readTime: "02 min read",
+      content: `Industrial automation is revolutionizing how businesses operate, and PLC-SCADA integration is the backbone of this transformation. Whether you are looking for system upgrades, new installations, or reliable suppliers, Dynamic Control System offers a complete solution.
+For businesses seeking mitsubhishi plc purchase in india or specifically mitsubhishi plc purchase in kochi, partnering with an authorized and experienced provider ensures long-term efficiency, reliability, and growth.`
     }
   ], []);
 
