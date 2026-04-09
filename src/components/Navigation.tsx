@@ -203,8 +203,7 @@ const Navigation = () => {
     { name: "Contact", path: "/contact", type: "link" },
 
     {
-      // name: "Training Institute",
-      name: "123",
+      name: "Training Institute",
       href: "https://dcsri.org/",
       type: "button",
       variant: "default",
