@@ -110,6 +110,8 @@ import blog92Image from "@/assets/697889b6fc1e655c94627b12_Key Components of Ind
 import blog93Image from "@/assets/Industrial-automation-main-2.jpg";
 import blog94Image from "@/assets/industrial-automation-new.png.webp";
 import blog95Image from "@/assets/HBR.webp";
+import blog96Image from "@/assets/26.jpg";
+import blog97Image from "@/assets/manager-engineer-touch-screen-control-automation-robot-scaled-1.jpg";
 
 
 // Map blog IDs to their specific images
@@ -209,6 +211,8 @@ const blogImageMap: Record<number, string> = {
   93: blog93Image,
   94: blog94Image,
   95: blog95Image,
+  96: blog96Image,
+  97: blog97Image,
 
 };
 
@@ -2349,7 +2353,58 @@ With increasing demand for mitsubhishi plc purchase in india, companies like Dyn
       readTime: "02 min read",
       content: `Industrial automation is revolutionizing how businesses operate, and PLC-SCADA integration is the backbone of this transformation. Whether you are looking for system upgrades, new installations, or reliable suppliers, Dynamic Control System offers a complete solution.
 For businesses seeking mitsubhishi plc purchase in india or specifically mitsubhishi plc purchase in kochi, partnering with an authorized and experienced provider ensures long-term efficiency, reliability, and growth.`
-    }
+    },
+    {
+      id: 95,
+      title: "Edge Computing in Automation: Why It Matters for Industrial Companies",
+      excerpt: "In 2025, India's manufacturing sector is changing faster than ever. With rising competition, strict deadlines, and a global move toward smart factories, one thing is clear — factory automation is no longer a choice, it's a necessity.",
+      category: "Automation",
+      date: "December 01, 2023",
+      readTime: "10 min read",
+      content: `Industrial automation is rapidly evolving with the integration of advanced technologies, and edge computing is emerging as a game-changer. Unlike traditional cloud computing, where data is processed in centralized servers, edge computing processes data closer to the source—right at the machine or device level. This shift is transforming how industries use plc, scada, and vfd systems to improve efficiency, reliability, and real-time decision-making.
+Edge computing plays a crucial role in reducing latency. In industrial environments, even a slight delay in data processing can impact production and safety. By enabling faster data processing at the edge, systems integrated with plc controllers can respond instantly to changes on the shop floor. This real-time responsiveness is essential for maintaining smooth and uninterrupted operations.
+One of the key advantages of edge computing is enhanced reliability. Industrial facilities often operate in environments where internet connectivity may be unstable. With edge computing, critical processes managed by scada systems can continue to function even when disconnected from the cloud. This ensures that monitoring, control, and data logging remain uninterrupted, improving overall system resilience.
+Another important benefit is improved data management. Industrial systems generate vast amounts of data every second. Sending all this data to the cloud can be inefficient and costly. Edge computing filters and processes data locally, transmitting only relevant information. This approach is highly beneficial for industries using plc and vfd systems, as it reduces bandwidth usage while maintaining high performance.
+Edge computing also enhances security in industrial automation. By processing sensitive data locally, it minimizes the risk of cyber threats associated with data transmission over networks. Systems that integrate scada platforms with edge devices can implement stronger security protocols, ensuring that critical operational data remains protected.
+Energy efficiency is another area where edge computing delivers value. Devices like vfd (Variable Frequency Drives) are widely used to control motor speeds and optimize energy consumption. When combined with edge computing, these systems can analyze performance in real time and make adjustments instantly. This leads to significant energy savings and improved operational efficiency.
+In addition, edge computing enables predictive maintenance. By analyzing equipment data locally, it can detect anomalies and predict potential failures before they occur. Industries relying on plc and scada systems can leverage this capability to reduce downtime and extend the lifespan of machinery. This proactive approach to maintenance helps companies save costs and maintain consistent productivity.
+Real-world applications of edge computing in automation are expanding across industries. Manufacturing plants use edge devices to optimize production lines and ensure quality control. In process industries, vfd systems combined with edge analytics help maintain precise control over operations. Similarly, scada systems enhanced with edge capabilities provide real-time insights and faster decision-making.
+In conclusion, edge computing is revolutionizing industrial automation by bringing intelligence closer to the source of data. It offers faster processing, improved reliability, enhanced security, and better resource management. For industrial companies looking to stay competitive, integrating edge computing with plc, scada, and vfd systems is essential. As industries continue to embrace digital transformation, edge computing will play a critical role in building smarter, more efficient, and future-ready operations.`
+    },
+    {
+      id: 96,
+      title: "Edge Computing in Automation: Why It Matters for Industrial Companies",
+      excerpt: "In 2025, India's manufacturing sector is changing faster than ever. With rising competition, strict deadlines, and a global move toward smart factories, one thing is clear — factory automation is no longer a choice, it's a necessity.",
+      category: "Automation",
+      date: "November 31, 2023",
+      readTime: "10 min read",
+      content: `The rise of smart manufacturing has introduced groundbreaking technologies, and one of the most transformative among them is the concept of digital twins. A digital twin is a virtual replica of a physical asset, process, or system that is continuously updated using real-time data. In industrial automation, digital twins are revolutionizing how companies design, monitor, and optimize operations—especially for businesses leveraging advanced plc scada program in kochi and modern plc kochi solutions.
+A digital twin works by integrating sensors, IoT devices, and automation systems like PLCs and SCADA into a unified digital model. This model mirrors the real-world system, allowing engineers to simulate, analyze, and improve performance without directly interfering with physical operations. For industries adopting plc scada program in kochi, this creates a powerful environment for testing and innovation.
+One of the biggest advantages of digital twins is predictive maintenance. By analyzing real-time and historical data, digital twins can identify patterns that indicate potential equipment failures. This allows companies using plc kochi systems to address issues before they lead to costly downtime. As a result, maintenance becomes proactive rather than reactive, saving both time and resources.
+Another key benefit is improved operational efficiency. Digital twins enable companies to simulate different production scenarios and optimize workflows. For example, manufacturers can test changes in production lines virtually before implementing them in the real world. Businesses investing in plc scada program in kochi can use digital twins to fine-tune their processes and achieve higher productivity with minimal risk.
+Digital twins also play a crucial role in design and development. Engineers can create and test prototypes in a virtual environment, reducing the need for physical models. This accelerates product development cycles and lowers costs. With plc kochi integration, these virtual models can be directly connected to real automation systems, ensuring seamless implementation.
+Energy efficiency is another area where digital twins make a significant impact. By monitoring energy consumption patterns, companies can identify inefficiencies and optimize usage. Industries utilizing plc scada program in kochi can leverage these insights to reduce operational costs and support sustainability initiatives.
+Real-world applications of digital twins are already transforming various industries. In manufacturing, companies use digital twins to optimize assembly lines and improve quality control. In the oil and gas sector, digital twins help monitor pipelines and predict failures. In power plants, they enhance system reliability and performance. Businesses implementing plc kochi solutions can adopt similar strategies to gain a competitive edge.
+Additionally, digital twins improve decision-making by providing a comprehensive view of operations. Managers can access real-time dashboards, run simulations, and make data-driven decisions quickly. This is particularly beneficial for organizations relying on plc scada program in kochi, as it enhances control and visibility across all processes.
+In conclusion, digital twins are reshaping the future of industrial automation by bridging the gap between physical and digital systems. They offer powerful benefits such as predictive maintenance, enhanced efficiency, cost savings, and improved decision-making. For companies looking to stay ahead in the digital era, integrating digital twins with plc kochi systems and advanced plc scada program in kochi solutions is a strategic move toward smarter, more efficient operations.`
+    },
+    {
+      id: 97,
+      title: "How Industrial Automation Companies Are Revolutionizing the Automotive Industry",
+      excerpt: "In 2025, India's manufacturing sector is changing faster than ever. With rising competition, strict deadlines, and a global move toward smart factories, one thing is clear — factory automation is no longer a choice, it's a necessity.",
+      category: "Case study",
+      date: "November 30, 2023",
+      readTime: "10 min read",
+      content: `The automotive industry is undergoing a massive transformation, driven by rapid advancements in industrial automation. From robotic assembly lines to intelligent quality control systems, automation technologies are reshaping how vehicles are designed, manufactured, and delivered. At the core of this transformation are systems powered by plc, scada, and vfd, which enable precision, efficiency, and scalability across automotive production.
+One of the most significant impacts of automation in the automotive sector is the enhancement of production efficiency. Modern manufacturing plants rely heavily on plc (Programmable Logic Controllers) to control machinery and automate repetitive tasks. These systems ensure that every component is assembled with high accuracy and consistency. By integrating plc into production lines, automotive companies can significantly reduce human error and increase output.
+Another key innovation is the use of scada (Supervisory Control and Data Acquisition) systems for real-time monitoring and control. Automotive manufacturers deal with complex processes involving multiple machines and systems. With scada, operators can monitor every stage of production from a centralized interface, enabling quick responses to issues and minimizing downtime. This level of visibility is crucial for maintaining quality standards and ensuring smooth operations.
+Energy efficiency is also a major focus in the automotive industry, and this is where vfd (Variable Frequency Drives) play a vital role. These devices control the speed and torque of electric motors, allowing manufacturers to optimize energy consumption. By using vfd systems, automotive plants can reduce energy costs while maintaining optimal performance levels. This not only improves profitability but also supports sustainability goals.
+Automation has also revolutionized quality control in the automotive sector. Advanced sensors and AI-powered inspection systems work alongside plc and scada technologies to detect defects in real time. This ensures that only high-quality components move forward in the production process. As a result, manufacturers can reduce waste, improve product reliability, and enhance customer satisfaction.
+In addition, automation enables greater flexibility in manufacturing. Automotive companies often need to adapt to changing market demands, such as producing electric vehicles or customizing models. With the help of plc systems and vfd controls, production lines can be quickly reconfigured to accommodate different designs and specifications. This flexibility is essential in a competitive and rapidly evolving industry.
+Safety is another area where industrial automation has made a significant impact. Automated systems reduce the need for human intervention in hazardous environments, minimizing the risk of workplace accidents. Scada systems provide real-time alerts and monitoring, ensuring that any potential issues are addressed promptly. This creates a safer and more reliable working environment for employees.
+Moreover, predictive maintenance has become a key advantage of automation in the automotive industry. By analyzing data from plc, scada, and vfd systems, manufacturers can identify potential equipment failures before they occur. This proactive approach helps prevent costly downtime and ensures continuous production.
+In conclusion, industrial automation companies are playing a crucial role in revolutionizing the automotive industry. Through the integration of plc, scada, and vfd technologies, manufacturers are achieving higher efficiency, better quality, and improved sustainability. As the demand for advanced vehicles continues to grow, automation will remain at the forefront of innovation, driving the automotive industry toward a smarter and more efficient future.`
+    },
   ], []);
 
   const openDialog = (blogId: number) => {
