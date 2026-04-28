@@ -11,6 +11,7 @@ import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
 import Clients from "./pages/Clients";
 import NotFound from "./pages/NotFound";
+import PillarPage from "./pages/PillarPage";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +25,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />
+          <Route path="/pillar-page" element={<PillarPage />} />
           <Route path="/products" element={<Products />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
