@@ -201,7 +201,6 @@ const Navigation = () => {
     { name: "Blog", path: "/blog", type: "link" },
     { name: "Clients", path: "/clients", type: "link" },
     { name: "Contact", path: "/contact", type: "link" },
-    { name: "Automation Guide", path: "/pillar-page", type: "link" },
 
     {
       name: "Training Institute",
