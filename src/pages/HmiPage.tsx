@@ -6,7 +6,7 @@ const HmiPage = () => {
   return (
     <div className="container py-5">
 
-      {/* ✅ META */}
+      {/* META */}
       <Helmet>
         <title>HMI: Complete Guide to Human Machine Interface (2026)</title>
 
@@ -17,192 +17,311 @@ const HmiPage = () => {
 
         <link rel="canonical" href="https://dynamiccontrolsystems.in/hmi-system" />
       </Helmet>
+      <div className="text-center mb-5">
+        <h1>
+          HMI: Complete Guide to Human Machine Interface in Industrial Automation (2026)
+        </h1>
+        <p className="fs-5 mt-4 text-center">
+          HMI is a critical industrial automation interface that enables operators
+          to monitor, control, and interact with machines and processes in real time.
+        </p>
+      </div>
 
-      <h1>HMI: Complete Guide to Human Machine Interface in Industrial Automation (2026)</h1>
+      <section className="fs-5">
 
-      <h2>Introduction to HMI</h2>
-      <p>
-        HMI (Human Machine Interface) is a critical component in modern industrial automation systems that enables interaction between humans and machines. It provides a graphical interface through which operators can monitor processes, control equipment, and analyze real-time data.
-      </p>
-      <p>
-        From factory floors to smart manufacturing systems, HMI plays a vital role in improving efficiency, reducing errors, and simplifying complex operations.
-      </p>
+        <p><strong>Introduction to HMI</strong><br />
+          HMI (Human Machine Interface) is a critical component in modern industrial automation systems that enables interaction between humans and machines. It provides a graphical interface through which operators can monitor processes, control equipment, and analyze real-time data.
+        </p>
+        <p>
+          From factory floors to smart manufacturing systems, HMI plays a vital role in improving efficiency, reducing errors, and simplifying complex operations.
+        </p>
 
-      <h2>What is HMI? (Definition)</h2>
-      <p>
-        HMI is a user interface or dashboard that connects operators to machines, systems, or devices, allowing real-time monitoring and control of industrial processes.
-      </p>
-      <p><strong>Simple Explanation:</strong> HMI is like a “control screen” where you can see what a machine is doing and control it easily.</p>
+        <p><strong>What is HMI? (Definition)</strong><br />
+          HMI is a user interface or dashboard that connects operators to machines, systems, or devices, allowing real-time monitoring and control of industrial processes.
+        </p>
 
-      <hr />
+        <p>
+          Simple Explanation:<br />
+          HMI is like a “control screen” where you can see what a machine is doing and control it easily.
+        </p>
 
-      <h2>Why HMI is Important in Automation</h2>
-      <p>
-        Without HMI, operators would have to rely on manual controls and complex wiring systems.
-      </p>
-      <p>HMI simplifies operations by:</p>
-      <ul>
-        <li>Providing visual dashboards</li>
-        <li>Enabling real-time monitoring</li>
-        <li>Reducing human error</li>
-        <li>Improving operational efficiency</li>
-      </ul>
-      <p>HMI is essential for Industry 4.0 and smart factory environments.</p>
+        <p>________________________________________</p>
 
-      <hr />
+        <p><strong>Why HMI is Important in Automation</strong><br />
+          Without HMI, operators would have to rely on manual controls and complex wiring systems.
+        </p>
 
-      <h2>How HMI Works</h2>
-      <ol>
-        <li>Data Collection – Sensors send data to PLC</li>
-        <li>Processing – PLC processes the data</li>
-        <li>Communication – Data is sent to HMI</li>
-        <li>Visualization – HMI displays information graphically</li>
-        <li>Control – Operator interacts with HMI to control machines</li>
-      </ol>
+        <p>
+          HMI simplifies operations by:<br />
+          ● Providing visual dashboards<br />
+          ● Enabling real-time monitoring<br />
+          ● Reducing human error<br />
+          ● Improving operational efficiency
+        </p>
 
-      <hr />
+        <p>
+          HMI is essential for Industry 4.0 and smart factory environments.
+        </p>
 
-      <h2>Types of HMI</h2>
-      <ol>
-        <li>Basic Operator Panels</li>
-        <li>Advanced Touchscreen HMI</li>
-        <li>PC-Based HMI</li>
-        <li>Mobile HMI</li>
-        <li>Web-Based HMI</li>
-      </ol>
+        <p>________________________________________</p>
 
-      <hr />
+        <p><strong>How HMI Works</strong><br />
+          HMI works by connecting with controllers like PLCs and displaying data in a user-friendly format.
+        </p>
 
-      <h2>HMI Components</h2>
-      <ol>
-        <li>Display Screen – Shows data visually</li>
-        <li>Input Interface – Touchscreen or buttons</li>
-        <li>Communication Ports – Connects with PLC, SCADA</li>
-        <li>Software System – Runs visualization and control programs</li>
-      </ol>
+        <p>Basic Workflow:</p>
 
-      <hr />
+        <p>
+          1. Data Collection<br />
+          ○ Sensors send data to PLC<br /><br />
 
-      <h2>HMI Design and Interface Elements</h2>
-      <p>Key Design Elements:</p>
-      <ul>
-        <li>Graphs and charts</li>
-        <li>Alarms and alerts</li>
-        <li>Buttons and controls</li>
-        <li>Data indicators</li>
-        <li>Dashboards</li>
-      </ul>
+          2. Processing<br />
+          ○ PLC processes the data<br /><br />
 
-      <p>Best Practices:</p>
-      <ul>
-        <li>Keep interface simple</li>
-        <li>Use clear visuals</li>
-        <li>Avoid clutter</li>
-        <li>Highlight critical alerts</li>
-      </ul>
+          3. Communication<br />
+          ○ Data is sent to HMI<br /><br />
 
-      <hr />
+          4. Visualization<br />
+          ○ HMI displays information graphically<br /><br />
 
-      <h2>HMI Programming</h2>
-      <p>Key Aspects of HMI Programming:</p>
-      <ul>
-        <li>Screen design (UI/UX)</li>
-        <li>Tag mapping with PLC</li>
-        <li>Alarm configuration</li>
-        <li>Data logging setup</li>
-        <li>Animation and visualization</li>
-      </ul>
+          5. Control<br />
+          ○ Operator interacts with HMI to control machines
+        </p>
 
-      <p>Skills Required:</p>
-      <ul>
-        <li>Basic automation knowledge</li>
-        <li>PLC integration</li>
-        <li>Understanding of industrial processes</li>
-      </ul>
+        <p>________________________________________</p>
 
-      <hr />
+        <p><strong>Types of HMI</strong></p>
 
-      <h2>HMI Applications in Industry</h2>
-      <ol>
-        <li>Manufacturing</li>
-        <li>Power Plants</li>
-        <li>Oil & Gas</li>
-        <li>Water Treatment</li>
-        <li>Building Automation</li>
-        <li>Food & Beverage</li>
-      </ol>
+        <p>
+          1. Basic Operator Panels<br />
+          ● Simple displays<br />
+          ● Limited functionality<br /><br />
 
-      <h2>Advantages of HMI</h2>
-      <ol>
-        <li>Real-Time Monitoring</li>
-        <li>Improved Efficiency</li>
-        <li>Reduced Errors</li>
-        <li>Easy Control</li>
-        <li>Data Visualization</li>
-      </ol>
+          2. Advanced Touchscreen HMI<br />
+          ● Graphical interface<br />
+          ● Touch control<br /><br />
 
-      <hr />
+          3. PC-Based HMI<br />
+          ● Software installed on computers<br /><br />
 
-      <h2>HMI Software</h2>
-      <ul>
-        <li>Drag-and-drop design</li>
-        <li>Real-time data display</li>
-        <li>Alarm management</li>
-        <li>Historical data tracking</li>
-      </ul>
+          4. Mobile HMI<br />
+          ● Access through smartphones or tablets<br /><br />
 
-      <hr />
+          5. Web-Based HMI<br />
+          ● Remote monitoring via browsers
+        </p>
 
-      <h2>HMI Purchase Guide</h2>
-      <ol>
-        <li>Screen Size & Resolution</li>
-        <li>Compatibility</li>
-        <li>Environment</li>
-        <li>Touch Capability</li>
-        <li>Communication Protocols</li>
-        <li>Budget</li>
-      </ol>
+        <p>________________________________________</p>
 
-      <hr />
+        <p><strong>HMI Components</strong></p>
 
-      <h2>Common Issues in HMI Systems</h2>
-      <ol>
-        <li>Communication Failure – Check network connections</li>
-        <li>Screen Lag – Optimize program</li>
-        <li>Data Mismatch – Verify tag mapping</li>
-      </ol>
+        <p>
+          1. Display Screen<br />
+          ● Shows data visually<br /><br />
 
-      <hr />
+          2. Input Interface<br />
+          ● Touchscreen or buttons<br /><br />
 
-      <h2>Real-World Examples of HMI</h2>
-      <p>Example 1: Factory Dashboard – Displays machine performance</p>
-      <p>Example 2: Water Plant – Shows tank levels and flow</p>
-      <p>Example 3: Packaging Unit – Controls speed and output</p>
+          3. Communication Ports<br />
+          ● Connects with PLC, SCADA<br /><br />
 
-      <hr />
+          4. Software System<br />
+          ● Runs visualization and control programs
+        </p>
 
-      <h2>Future of HMI Technology (2026 Trends)</h2>
-      <ol>
-        <li>Touchless Interfaces</li>
-        <li>AI Integration</li>
-        <li>Augmented Reality (AR)</li>
-        <li>Cloud Integration</li>
-      </ol>
+        <p>________________________________________</p>
 
-      <hr />
+        <p><strong>HMI Design and Interface Elements</strong><br />
+          A well-designed HMI improves usability and safety.
+        </p>
 
-      <h2>Role of HMI in Industrial Automation</h2>
-      <ul>
-        <li>Operational visibility</li>
-        <li>Process control</li>
-        <li>Decision-making</li>
-      </ul>
+        <p>
+          Key Design Elements:<br />
+          ● Graphs and charts<br />
+          ● Alarms and alerts<br />
+          ● Buttons and controls<br />
+          ● Data indicators<br />
+          ● Dashboards
+        </p>
 
-      <p>
-        It works closely with <Link to="/plc-system">PLC</Link>,{" "}
-        <Link to="/scada-system">SCADA</Link>, and{" "}
-        <Link to="/vfd-drive">VFD</Link> systems to create a complete automation ecosystem.
-      </p>
+        <p>
+          Best Practices:<br />
+          ● Keep interface simple<br />
+          ● Use clear visuals<br />
+          ● Avoid clutter<br />
+          ● Highlight critical alerts
+        </p>
+
+        <p>________________________________________</p>
+
+        <p><strong>HMI Programming</strong><br />
+          HMI programming involves designing screens and configuring communication with controllers.
+        </p>
+
+        <p>
+          Key Aspects of HMI Programming:<br />
+          ● Screen design (UI/UX)<br />
+          ● Tag mapping with PLC<br />
+          ● Alarm configuration<br />
+          ● Data logging setup<br />
+          ● Animation and visualization
+        </p>
+
+        <p>
+          Skills Required:<br />
+          ● Basic automation knowledge<br />
+          ● PLC integration<br />
+          ● Understanding of industrial processes
+        </p>
+
+        <p>________________________________________</p>
+
+        <p><strong>HMI Applications in Industry</strong></p>
+
+        <p>
+          1. Manufacturing<br />
+          ● Machine monitoring<br />
+          ● Production control<br /><br />
+
+          2. Power Plants<br />
+          ● System monitoring<br /><br />
+
+          3. Oil & Gas<br />
+          ● Pipeline control<br /><br />
+
+          4. Water Treatment<br />
+          ● Process visualization<br /><br />
+
+          5. Building Automation<br />
+          ● HVAC systems<br /><br />
+
+          6. Food & Beverage<br />
+          ● Process control
+        </p>
+
+        <p><strong>Advantages of HMI</strong></p>
+
+        <p>
+          1. Real-Time Monitoring<br />
+          Instant access to system data<br /><br />
+
+          2. Improved Efficiency<br />
+          Faster decision-making<br /><br />
+
+          3. Reduced Errors<br />
+          Less manual intervention<br /><br />
+
+          4. Easy Control<br />
+          User-friendly interface<br /><br />
+
+          5. Data Visualization<br />
+          Better understanding of operations
+        </p>
+
+        <p><strong>HMI Software</strong><br />
+          HMI software is used to design and configure interfaces.
+        </p>
+
+        <p>
+          Features:<br />
+          ● Drag-and-drop design<br />
+          ● Real-time data display<br />
+          ● Alarm management<br />
+          ● Historical data tracking
+        </p>
+
+        <p>________________________________________</p>
+
+        <p><strong>HMI Purchase Guide</strong><br />
+          If you're planning an HMI purchase, consider the following:
+        </p>
+
+        <p>
+          1. Screen Size & Resolution<br />
+          Choose based on application<br /><br />
+
+          2. Compatibility<br />
+          Ensure it supports your PLC<br /><br />
+
+          3. Environment<br />
+          Industrial-grade durability<br /><br />
+
+          4. Touch Capability<br />
+          Resistive or capacitive touch<br /><br />
+
+          5. Communication Protocols<br />
+          Support for Modbus, Ethernet<br /><br />
+
+          6. Budget<br />
+          Balance cost and features
+        </p>
+
+        <p>________________________________________</p>
+
+        <p><strong>Common Issues in HMI Systems</strong></p>
+
+        <p>
+          1. Communication Failure<br />
+          ● Check network connections<br /><br />
+
+          2. Screen Lag<br />
+          ● Optimize program<br /><br />
+
+          3. Data Mismatch<br />
+          ● Verify tag mapping
+        </p>
+
+        <p>________________________________________</p>
+
+        <p><strong>Real-World Examples of HMI</strong></p>
+
+        <p>
+          Example 1: Factory Dashboard<br />
+          Displays machine performance<br /><br />
+
+          Example 2: Water Plant<br />
+          Shows tank levels and flow<br /><br />
+
+          Example 3: Packaging Unit<br />
+          Controls speed and output
+        </p>
+
+        <p>________________________________________</p>
+
+        <p><strong>Future of HMI Technology (2026 Trends)</strong></p>
+
+        <p>
+          1. Touchless Interfaces<br />
+          Gesture-based control<br /><br />
+
+          2. AI Integration<br />
+          Smart alerts and analytics<br /><br />
+
+          3. Augmented Reality (AR)<br />
+          Interactive maintenance<br /><br />
+
+          4. Cloud Integration<br />
+          Remote access and monitoring
+        </p>
+
+        <p>________________________________________</p>
+
+        <p><strong>Role of HMI in Industrial Automation</strong></p>
+
+        <p>
+          HMI acts as the bridge between humans and machines. It improves:<br />
+          ● Operational visibility<br />
+          ● Process control<br />
+          ● Decision-making
+        </p>
+
+        <p>
+          It works closely with <Link to="/plc-system">PLC</Link>,{" "}
+          <Link to="/scada-system">SCADA</Link>, and{" "}
+          <Link to="/vfd-drive">VFD</Link> systems to create a complete automation ecosystem.
+        </p>
+
+      </section>
 
     </div>
   );
