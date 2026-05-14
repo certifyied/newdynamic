@@ -124,6 +124,7 @@ import blog106Image from "@/assets/66c30320592f3bfed3c846bb_Warehouse Systems.we
 import blog107Image from "@/assets/industrial-automation-new.png.webp";
 import blog108Image from "@/assets/blog8.jpg";
 import blog109Image from "@/assets/blog2.jpg";
+import blog110Image from "@/assets/HBR.webp";
 
 
 // Map blog IDs to their specific images
@@ -236,7 +237,8 @@ const blogImageMap: Record<number, string> = {
   106: blog106Image,
   107: blog107Image,
   108: blog108Image,
-  109: blog109Image
+  109: blog109Image,
+  110: blog110Image
 };
 
 const Blog = () => {
@@ -4554,7 +4556,7 @@ Real-time production monitoring using industrial data historians is transforming
 The combination of industrial historians, SCADA, MES, AI, and advanced PLC automation creates a powerful foundation for Industry 4.0 manufacturing. As industries continue modernizing operations, the demand for reliable PLC in Kerala and PLC in Kochi solutions will continue growing across multiple industrial sectors. `
     },
     {
-      id: 109,
+      id: 110,
       title: "SCADA Architecture Explained: RTUs, PLCs, HMIs, and Servers",
       excerpt: "In 2025, India's manufacturing sector is changing faster than ever. With rising competition, strict deadlines, and a global move toward smart factories, one thing is clear — factory automation is no longer a choice, it's a necessity.",
       category: "Case study",
