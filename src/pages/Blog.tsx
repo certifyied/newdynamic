@@ -1,4 +1,5 @@
-import { useState, useMemo, useEffect } from "react";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useCanonical } from "@/hooks/useCanonical";
 import Navigation from "@/components/Navigation";
@@ -7,13 +8,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
 import { Calendar, ArrowRight, Clock } from "lucide-react";
 import blog1Image from "@/assets/blog1.jpg";
 import blog2Image from "@/assets/blog2.jpg";
@@ -131,7 +125,7 @@ import blog113Image from "@/assets/23.webp";
 
 
 // Map blog IDs to their specific images
-const blogImageMap: Record<number, string> = {
+export const blogImageMap: Record<number, string> = {
   1: blog1Image,
   2: blog2Image,
   3: blog3Image,
@@ -244,69 +238,11 @@ const blogImageMap: Record<number, string> = {
   110: blog110Image,
   111: blog111Image,
   112: blog112Image,
-  113: blog113Image
+  113: blog113Image,
+  114: blog97Image
 };
 
-const Blog = () => {
-  useCanonical();
-  const [selectedBlog, setSelectedBlog] = useState<number | null>(null);
-
-  // Update SEO metadata for Blog page
-  useEffect(() => {
-    // Update document title
-    document.title = "HMI Programming in Kochi | Dynamic Control Systems Blog";
-
-    // Update meta description
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute(
-        "content",
-        "Explore expert tips and insights on HMI programming in Kochi. Stay updated with the latest automation trends at the Dynamic Control Systems blog."
-      );
-    }
-
-    // Update Open Graph tags
-    const ogTitle = document.querySelector('meta[property="og:title"]');
-    if (ogTitle) {
-      ogTitle.setAttribute(
-        "content",
-        "HMI Programming in Kochi | Dynamic Control Systems Blog"
-      );
-    }
-
-    const ogDescription = document.querySelector('meta[property="og:description"]');
-    if (ogDescription) {
-      ogDescription.setAttribute(
-        "content",
-        "Explore expert tips and insights on HMI programming in Kochi. Stay updated with the latest automation trends at the Dynamic Control Systems blog."
-      );
-    }
-
-    // Cleanup function to restore default meta tags when component unmounts
-    return () => {
-      document.title = "SCADA Programming in Kochi";
-      if (metaDescription) {
-        metaDescription.setAttribute(
-          "content",
-          "Dynamic Control Systems delivers reliable industrial automation and SCADA programming in Kochi with Mitsubishi Electric solutions for diverse industries."
-        );
-      }
-      if (ogTitle) {
-        ogTitle.setAttribute(
-          "content",
-          "SCADA Programming in Kochi"
-        );
-      }
-      if (ogDescription) {
-        ogDescription.setAttribute(
-          "content",
-          "Dynamic Control Systems delivers reliable industrial automation and SCADA programming in Kochi with Mitsubishi Electric solutions for diverse industries."
-        );
-      }
-    };
-  }, []);
-
-  const blogPosts = useMemo(() => [
+export const blogPosts = [
     {
       id: 1,
       title: "Top 5 Automation Trends in Kochi Factories & How Dynamic Control Systems Is Helping",
@@ -5435,19 +5371,428 @@ Industrial sensors are the foundation of modern automation systems, enabling fac
 
 The integration of advanced sensors with PLC systems, industrial IoT platforms, and AI technologies is driving the evolution of smarter and more efficient factories. As Industry 4.0 continues advancing, businesses investing in plc in kochi and plc in kerala technologies are preparing for a future of highly intelligent, data-driven industrial automation.`
     },
-  ], []);
+    {
+      id: 113,
+      title: "How Automation Companies Improve Industrial Cybersecurity Systems",
+      excerpt: "Industrial cybersecurity has become a major priority for manufacturing industries as factories become increasingly connected through PLC, SCADA, IoT, and cloud-based automation technologies.",
+      category: "Security",
+      date: "May 25, 2026",
+      readTime: "10 min read",
+      content: `Industrial cybersecurity has become a major priority for manufacturing industries as factories become increasingly connected through PLC systems, SCADA platforms, Industrial IoT devices, and cloud-based automation technologies. Modern industrial environments rely heavily on digital communication and real-time monitoring systems, making them vulnerable to cyber threats such as ransomware, unauthorized access, data theft, and operational disruptions.
 
-  const openDialog = (blogId: number) => {
-    setSelectedBlog(blogId);
-  };
+Automation companies play a critical role in protecting industrial facilities by implementing secure automation architectures, industrial network protection, access control systems, and cybersecurity-focused monitoring solutions. Businesses investing in plc purchase in kerala are now looking not only for advanced automation systems but also for strong industrial cybersecurity protection that ensures uninterrupted and secure manufacturing operations.
 
-  const closeDialog = () => {
-    setSelectedBlog(null);
-  };
+Why Industrial Cybersecurity Is Important
 
-  const currentBlog = blogPosts.find((blog) => blog.id === selectedBlog);
+Modern manufacturing plants use interconnected automation systems that communicate continuously across machines, sensors, servers, and industrial control platforms. While connectivity improves productivity and operational visibility, it also creates cybersecurity risks if systems are not properly protected.
 
-  return (
+Industries investing in industrial automation in kochi are increasingly adopting cybersecurity solutions to safeguard production systems from cyberattacks that could disrupt operations or damage equipment.
+
+Industrial cybersecurity is important because cyber threats can lead to:
+- Production downtime
+- Equipment failures
+- Loss of sensitive industrial data
+- Unauthorized system access
+- Financial losses
+- Safety risks
+- Supply chain disruptions
+
+Automation companies help industries reduce these risks through secure industrial automation system design and cybersecurity-focused infrastructure.
+
+The Role of Automation Companies in Industrial Cybersecurity
+
+Automation companies are responsible for designing and maintaining secure industrial control systems. They integrate cybersecurity technologies into PLC systems, SCADA networks, industrial communication systems, and IoT-enabled manufacturing platforms.
+
+Businesses investing in mitsubishi electric in kochi often require automation companies that understand both industrial operations and cybersecurity best practices.
+
+Automation companies improve industrial cybersecurity through:
+- Secure PLC programming
+- SCADA security implementation
+- Industrial firewall integration
+- Network segmentation
+- Access control systems
+- Secure remote monitoring
+- Threat detection systems
+- Cybersecurity audits
+- Backup and disaster recovery planning
+
+These measures help manufacturers protect critical industrial infrastructure from cyber threats.
+
+Securing PLC Systems Against Cyber Threats
+
+Programmable Logic Controllers (PLCs) control essential industrial processes and machinery. If cybercriminals gain access to PLC systems, they can disrupt production operations, manipulate machine behavior, or damage industrial equipment.
+
+Industries investing in plc purchase in kerala increasingly require secure PLC systems capable of resisting unauthorized access and cyberattacks.
+
+Automation companies secure PLC systems by implementing:
+- Password-protected access
+- Encrypted communication protocols
+- Secure firmware updates
+- User authentication systems
+- Role-based access control
+- PLC network isolation
+
+Secure PLC programming practices also help prevent unauthorized logic modifications that could affect industrial operations.
+
+Automation companies regularly update PLC firmware and monitor system performance to maintain cybersecurity standards.
+
+SCADA Security and Real-Time Protection
+
+SCADA (Supervisory Control and Data Acquisition) systems are central to industrial monitoring and process control. SCADA systems collect and display critical operational data, making them attractive targets for cybercriminals.
+
+Businesses investing in mitsubhishi scada purchase in kochi increasingly focus on SCADA cybersecurity to ensure safe and reliable industrial operations.
+
+Automation companies improve SCADA security through:
+- Secure communication channels
+- Encrypted data transmission
+- Multi-level authentication
+- Firewall protection
+- Real-time threat monitoring
+- Secure remote access systems
+
+SCADA cybersecurity systems also include alarm management and intrusion detection features that notify operators about suspicious activities or unauthorized access attempts.
+
+Industries investing in industrial automation in kochi benefit from centralized monitoring systems that improve both operational visibility and cybersecurity awareness.
+
+Industrial Network Segmentation
+
+One of the most effective cybersecurity strategies used by automation companies is network segmentation. Industrial networks are divided into separate zones to prevent cyber threats from spreading across entire production systems.
+
+Businesses investing in mitsubishi electric in kochi often require segmented industrial architectures for improved operational security.
+
+Network segmentation helps protect:
+- PLC systems
+- SCADA servers
+- Production machines
+- Industrial IoT devices
+- Data storage systems
+- Engineering workstations
+
+Automation companies configure industrial firewalls and secure gateways between network zones to control communication and reduce cybersecurity risks.
+
+Segmented industrial networks improve system stability while limiting the impact of potential cyberattacks.
+
+Industrial IoT Security
+
+Industrial Internet of Things (IIoT) technology is widely used in modern smart factories. IoT devices continuously collect and exchange production data, enabling real-time analytics and predictive maintenance.
+
+However, unsecured IoT devices can create cybersecurity vulnerabilities.
+
+Industries investing in plc purchase in kerala increasingly adopt secure IoT automation systems designed by experienced automation companies.
+
+Automation companies improve IoT security through:
+- Secure device authentication
+- Encrypted IoT communication
+- Continuous device monitoring
+- Secure cloud connectivity
+- Firmware security management
+
+Secure Industrial IoT systems help industries benefit from connected manufacturing while minimizing cybersecurity threats.
+
+Remote Access Security
+
+Remote monitoring and remote maintenance have become common in industrial automation systems. Automation companies often provide remote support services for PLC troubleshooting, SCADA monitoring, and system diagnostics.
+
+Businesses investing in mitsubhishi scada purchase in kochi require secure remote access systems that prevent unauthorized access to industrial networks.
+
+Automation companies secure remote access through:
+- VPN-based communication
+- Multi-factor authentication
+- Access logging
+- Session monitoring
+- Secure remote desktop systems
+
+These security measures ensure only authorized personnel can access industrial systems remotely.
+
+Backup and Disaster Recovery Systems
+
+Cyberattacks can damage industrial software, production data, and control systems. Automation companies implement backup and disaster recovery solutions that help industries restore operations quickly after cybersecurity incidents.
+
+Industries investing in industrial automation in kochi often require automated backup systems for:
+- PLC programs
+- SCADA databases
+- Production reports
+- Industrial configurations
+- Historical operational data
+
+Disaster recovery planning minimizes downtime and ensures business continuity during cyber emergencies.
+
+Automation companies also perform regular backup verification to ensure system recovery reliability.
+
+Employee Training and Cybersecurity Awareness
+
+Human error is one of the biggest causes of industrial cybersecurity incidents. Automation companies help industries improve cybersecurity awareness through operator training and cybersecurity education programs.
+
+Training programs focus on:
+- Password management
+- Safe system access practices
+- Identifying phishing attempts
+- Secure USB usage
+- Industrial network security
+
+Businesses investing in mitsubishi electric in kochi increasingly prioritize employee cybersecurity awareness as part of overall industrial security strategies.
+
+Well-trained employees reduce the risk of accidental cybersecurity breaches and operational disruptions.
+
+Benefits of Industrial Cybersecurity Solutions
+
+Industrial cybersecurity systems provide several long-term advantages for manufacturing facilities.
+
+Improved Operational Reliability
+- Secure automation systems reduce the risk of production disruptions.
+
+Reduced Downtime
+- Cybersecurity protection prevents operational shutdowns caused by cyberattacks.
+
+Better Data Protection
+- Secure systems protect sensitive production and operational information.
+
+Enhanced Industrial Safety
+- Cybersecurity reduces the risk of dangerous machine manipulation and process failures.
+
+Regulatory Compliance
+- Secure industrial systems help businesses meet cybersecurity and safety standards.
+
+The Future of Industrial Cybersecurity
+
+The future of industrial cybersecurity will focus on AI-driven threat detection, cloud security, zero-trust industrial networks, and automated cybersecurity monitoring systems. Businesses investing in plc purchase in kerala, mitsubhishi scada purchase in kochi, and industrial automation in kochi are preparing for increasingly connected and cybersecurity-focused manufacturing environments.
+
+As smart factories and Industry 4.0 technologies continue evolving, automation companies will remain essential in building secure, resilient, and future-ready industrial cybersecurity systems that protect manufacturing operations from modern digital threats.`
+    },
+    {
+      id: 114,
+      title: "How Automation Companies Enable Remote Monitoring and Control Systems",
+      excerpt: "Modern industries are rapidly adopting remote monitoring and control technologies to improve operational efficiency, reduce downtime, and enhance production visibility.",
+      category: "Automation",
+      date: "May 25, 2026",
+      readTime: "9 min read",
+      content: `Modern industries are rapidly adopting remote monitoring and control technologies to improve operational efficiency, reduce downtime, and enhance production visibility. Automation companies play a major role in helping industries implement intelligent systems that allow operators and engineers to monitor machinery, analyze production data, and control industrial operations remotely from centralized locations.
+
+With the growth of Industry 4.0 and smart manufacturing, businesses investing in mitsubhishi plc purchase in india are increasingly looking for advanced automation solutions that support remote access, real-time monitoring, and intelligent process control. Remote industrial management has become essential for manufacturing plants, utilities, infrastructure projects, and process industries aiming to improve productivity and operational flexibility.
+
+Understanding Remote Monitoring and Control Systems
+
+Remote monitoring and control systems allow industries to supervise industrial operations, machinery, and production processes from a centralized platform or remote location. These systems collect data from machines, sensors, PLCs, VFDs, and industrial devices and display it through SCADA software or HMI interfaces.
+
+Businesses investing in vfd purchase in kochi often integrate remote monitoring technologies to optimize machine performance and improve operational control.
+
+Remote automation systems typically include:
+- PLC-based machine control
+- SCADA monitoring platforms
+- HMI interfaces
+- Industrial IoT sensors
+- Cloud-based monitoring
+- Remote diagnostics systems
+- Industrial communication networks
+
+Automation companies integrate these technologies to create connected manufacturing environments that improve efficiency and decision-making.
+
+The Role of PLC Systems in Remote Automation
+
+Programmable Logic Controllers (PLCs) are the foundation of remote industrial automation systems. PLCs collect operational data, control machinery, and communicate with monitoring platforms through industrial networks.
+
+Industries investing in mitsubhishi plc purchase in india often choose Mitsubishi PLC systems because they provide reliable communication, flexible programming, and seamless integration with remote monitoring technologies.
+
+Automation companies use PLCs to:
+- Automate industrial processes
+- Monitor machine conditions
+- Control production sequences
+- Manage alarms and safety systems
+- Enable remote machine access
+
+Modern PLC systems support Ethernet communication and Industrial IoT connectivity, making remote monitoring easier and more efficient.
+
+Automation companies also configure secure communication protocols that allow remote access without compromising industrial cybersecurity.
+
+VFD Integration for Remote Motor Control
+
+Variable Frequency Drives (VFDs) play an important role in remote monitoring systems because they control motor speed, torque, and energy consumption.
+
+Businesses investing in Mitsubhishi vfd purchase in kochi increasingly use VFDs for remote motor management and energy optimization.
+
+Automation companies integrate VFD systems with PLCs and SCADA platforms to provide:
+- Remote motor speed adjustment
+- Real-time motor performance monitoring
+- Energy consumption analysis
+- Fault diagnostics
+- Predictive maintenance alerts
+
+Industries searching for vfd purchase in kochi often require centralized control systems capable of managing multiple motors across production facilities.
+
+Remote VFD monitoring helps manufacturers optimize machine performance while reducing unnecessary energy consumption.
+
+SCADA Systems for Centralized Monitoring
+
+SCADA (Supervisory Control and Data Acquisition) systems are essential for remote industrial monitoring. SCADA platforms collect data from industrial devices and display operational information through centralized dashboards.
+
+Automation companies design SCADA systems that allow operators to monitor:
+- Machine performance
+- Production output
+- Temperature and pressure
+- Energy consumption
+- Equipment alarms
+- Production efficiency
+
+Industries investing in hmi programming in kochi often combine HMI and SCADA systems to create user-friendly remote monitoring interfaces.
+
+SCADA systems also provide historical data analysis and reporting features that help industries improve operational decision-making.
+
+Remote SCADA access allows plant managers and engineers to supervise industrial operations from different locations in real time.
+
+HMI Programming and Operator Interfaces
+
+Human Machine Interfaces (HMIs) are graphical interfaces that allow operators to interact with industrial automation systems. Automation companies develop customized HMI screens that provide real-time production data, machine status information, and remote control options.
+
+Businesses investing in hmi programming in kochi often require advanced HMI systems that simplify industrial monitoring and operator efficiency.
+
+HMI programming services include:
+- Graphical machine visualization
+- Alarm displays
+- Production dashboards
+- Remote control interfaces
+- Machine parameter adjustment
+- Operational status monitoring
+
+Well-designed HMI systems improve user experience and help operators respond quickly to production issues.
+
+Automation companies also integrate HMIs with mobile devices and tablets for remote industrial access.
+
+Industrial IoT and Cloud Connectivity
+
+Industrial Internet of Things (IIoT) technology has significantly improved remote industrial monitoring capabilities. Automation companies integrate IoT-enabled sensors and cloud platforms that allow industries to monitor production systems from anywhere.
+
+Industries investing in mitsubhishi plc purchase in india increasingly adopt cloud-connected automation systems for smarter manufacturing operations.
+
+Industrial IoT solutions provide:
+- Real-time machine communication
+- Cloud-based analytics
+- Remote diagnostics
+- Equipment health monitoring
+- Predictive maintenance systems
+- Mobile production monitoring
+
+Cloud-based automation platforms improve operational flexibility while providing centralized access to industrial data across multiple facilities.
+
+Predictive Maintenance Through Remote Monitoring
+
+Remote monitoring systems also support predictive maintenance strategies. Automation companies use sensors and analytics platforms to continuously monitor machine conditions and identify potential equipment failures early.
+
+Businesses investing in Mitsubhishi vfd purchase in kochi often use predictive maintenance systems to monitor:
+- Motor vibration
+- Temperature levels
+- Energy consumption
+- Machine operating conditions
+- Servo system performance
+
+Predictive maintenance reduces downtime and improves equipment reliability by detecting problems before failures occur.
+
+Remote diagnostics also help maintenance teams troubleshoot industrial equipment quickly without requiring on-site inspections.
+
+Industrial Communication Networks
+
+Reliable communication networks are essential for remote monitoring systems. Automation companies implement industrial communication protocols that ensure secure and stable data transmission between machines and monitoring platforms.
+
+Industries investing in vfd purchase in kochi often require industrial networking solutions capable of supporting smart factory environments.
+
+Common industrial communication protocols include:
+- Ethernet/IP
+- Modbus TCP
+- Profinet
+- OPC UA
+- MQTT
+- Wireless industrial communication
+
+These communication systems enable real-time data exchange across industrial automation environments.
+
+Benefits of Remote Monitoring and Control Systems
+
+Automation companies help industries achieve several major advantages through remote industrial automation.
+
+Improved Operational Visibility
+- Real-time monitoring provides complete visibility into industrial operations and machine performance.
+
+Reduced Downtime
+- Remote diagnostics and predictive maintenance reduce unexpected equipment failures.
+
+Faster Decision-Making
+- Live production data helps operators respond quickly to operational issues.
+
+Lower Maintenance Costs
+- Remote troubleshooting minimizes on-site service requirements and maintenance expenses.
+
+Increased Productivity
+- Automated monitoring improves process efficiency and machine utilization.
+
+Better Energy Management
+- Remote VFD and motor monitoring optimize industrial energy consumption.
+
+The Future of Remote Industrial Automation
+
+The future of industrial automation will focus on AI-driven analytics, cloud-based smart factories, edge computing, and fully connected manufacturing ecosystems. Businesses investing in mitsubhishi plc purchase in india, Mitsubhishi vfd purchase in kochi, and hmi programming in kochi are preparing for next-generation remote industrial management technologies.
+
+As smart manufacturing continues to evolve, automation companies will remain essential in building secure, intelligent, and highly connected remote monitoring and control systems that improve industrial productivity, efficiency, and operational reliability.`
+    }
+  ];
+
+  const Blog = () => {
+    useCanonical();
+
+    // Update SEO metadata for Blog page
+    useEffect(() => {
+      // Update document title
+      document.title = "HMI Programming in Kochi | Dynamic Control Systems Blog";
+
+      // Update meta description
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        metaDescription.setAttribute(
+          "content",
+          "Explore expert tips and insights on HMI programming in Kochi. Stay updated with the latest automation trends at the Dynamic Control Systems blog."
+        );
+      }
+
+      // Update Open Graph tags
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      if (ogTitle) {
+        ogTitle.setAttribute(
+          "content",
+          "HMI Programming in Kochi | Dynamic Control Systems Blog"
+        );
+      }
+
+      const ogDescription = document.querySelector('meta[property="og:description"]');
+      if (ogDescription) {
+        ogDescription.setAttribute(
+          "content",
+          "Explore expert tips and insights on HMI programming in Kochi. Stay updated with the latest automation trends at the Dynamic Control Systems blog."
+        );
+      }
+
+      // Cleanup function to restore default meta tags when component unmounts
+      return () => {
+        document.title = "SCADA Programming in Kochi";
+        if (metaDescription) {
+          metaDescription.setAttribute(
+            "content",
+            "Dynamic Control Systems delivers reliable industrial automation and SCADA programming in Kochi with Mitsubishi Electric solutions for diverse industries."
+          );
+        }
+        if (ogTitle) {
+          ogTitle.setAttribute(
+            "content",
+            "SCADA Programming in Kochi"
+          );
+        }
+        if (ogDescription) {
+          ogDescription.setAttribute(
+            "content",
+            "Dynamic Control Systems delivers reliable industrial automation and SCADA programming in Kochi with Mitsubishi Electric solutions for diverse industries."
+          );
+        }
+      };
+    }, []);
+
+    return (
     <div className="min-h-screen">
       <Navigation />
 
@@ -5472,17 +5817,17 @@ The integration of advanced sensors with PLC systems, industrial IoT platforms, 
         <section className="pt-12 md:pt-16 pb-20">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {blogPosts.map((blog, index) => (
+              {[...blogPosts].reverse().map((blog, index) => (
                 <motion.article
                   key={blog.id}
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <Card
-                    className="h-full hover-lift cursor-pointer group overflow-hidden"
-                    onClick={() => openDialog(blog.id)}
-                  >
+                  <Link to={`/blog/${blog.id}`} className="block h-full">
+                    <Card
+                      className="h-full hover-lift cursor-pointer group overflow-hidden"
+                    >
                     {blogImageMap[blog.id] && (
                       <AspectRatio ratio={16 / 9}>
                         <img
@@ -5524,52 +5869,13 @@ The integration of advanced sensors with PLC systems, industrial IoT platforms, 
                         <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
                       </Button>
                     </CardContent>
-                  </Card>
+                    </Card>
+                  </Link>
                 </motion.article>
               ))}
             </div>
           </div>
         </section>
-
-        {/* Blog Dialog */}
-        <Dialog open={selectedBlog !== null} onOpenChange={closeDialog}>
-          <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
-            {currentBlog && (
-              <>
-                <DialogHeader>
-                  <div className="flex items-center gap-3 mb-4">
-                    <Badge variant="secondary">{currentBlog.category}</Badge>
-                    <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                      <div className="flex items-center gap-1">
-                        <Calendar size={14} />
-                        <span>{currentBlog.date}</span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Clock size={14} />
-                        <span>{currentBlog.readTime}</span>
-                      </div>
-                    </div>
-                  </div>
-                  <DialogTitle className="text-2xl md:text-3xl font-display">
-                    {currentBlog.title}
-                  </DialogTitle>
-                  <DialogDescription className="text-base pt-2">
-                    {currentBlog.excerpt}
-                  </DialogDescription>
-                </DialogHeader>
-                <div className="mt-6 space-y-4">
-                  <div
-                    className="prose prose-sm max-w-none text-muted-foreground leading-relaxed"
-                    dangerouslySetInnerHTML={{ __html: currentBlog.content }}
-                    style={{
-                      lineHeight: '1.75',
-                    }}
-                  />
-                </div>
-              </>
-            )}
-          </DialogContent>
-        </Dialog>
       </main>
 
       <Footer />
