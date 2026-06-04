@@ -24,51 +24,9 @@ const Blog = () => {
     script.async = true;
     document.body.appendChild(script);
 
-    // MutationObserver to prefix dynamic image paths with /src
-    const rootEl = document.getElementById("root");
-    let observer: MutationObserver | null = null;
-    if (rootEl) {
-      const fixImgSrc = (img: HTMLImageElement) => {
-        const src = img.getAttribute("src");
-        if (src) {
-          const cleanSrc = src.trim();
-          if ((cleanSrc.startsWith("/assets/") || cleanSrc.startsWith("assets/")) && !cleanSrc.startsWith("/src/")) {
-            const prefix = cleanSrc.startsWith("/") ? "/src" : "/src/";
-            img.setAttribute("src", prefix + cleanSrc);
-          }
-        }
-      };
-
-      observer = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-          if (mutation.type === "childList") {
-            mutation.addedNodes.forEach((node) => {
-              if (node.nodeType === Node.ELEMENT_NODE) {
-                const element = node as HTMLElement;
-                const imgs = element.tagName === "IMG" ? [element as HTMLImageElement] : element.querySelectorAll("img");
-                imgs.forEach(fixImgSrc);
-              }
-            });
-          } else if (mutation.type === "attributes" && mutation.attributeName === "src") {
-            fixImgSrc(mutation.target as HTMLImageElement);
-          }
-        });
-      });
-
-      observer.observe(rootEl, {
-        childList: true,
-        subtree: true,
-        attributes: true,
-        attributeFilter: ["src"]
-      });
-    }
-
     return () => {
-      // Cleanup the script and observer when the component unmounts
+      // Cleanup the script when the component unmounts
       document.body.removeChild(script);
-      if (observer) {
-        observer.disconnect();
-      }
     };
   }, []);
 
