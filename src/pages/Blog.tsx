@@ -1,7 +1,5 @@
 import { useEffect } from "react";
 import { useCanonical } from "@/hooks/useCanonical";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
 
 const Blog = () => {
   useCanonical();
@@ -35,11 +33,9 @@ const Blog = () => {
   const blogId = urlParams.get('id') || urlParams.get('slug');
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navigation />
-
-      <main className="flex-grow pt-32 pb-20">
-        <div className="container mx-auto px-1 ">
+    <div className="min-h-screen bg-background">
+      <main className="py-10">
+        <div className="container mx-auto px-4 max-w-5xl">
           {blogId ? (
             /* 1. If an ?id= is in the URL, render the Single Post Reader */
             <div
@@ -57,8 +53,6 @@ const Blog = () => {
           )}
         </div>
       </main>
-
-      <Footer />
     </div>
   );
 };
