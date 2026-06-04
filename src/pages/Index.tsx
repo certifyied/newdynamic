@@ -13,6 +13,60 @@ import { Link } from "react-router-dom";
 const Index = () => {
   useCanonical();
 
+  useEffect(() => {
+    // Load CDN Embed Script
+    const script = document.createElement("script");
+    script.src = "https://bloggfeature.certifyied.workers.dev/adminApiBlog/api/embed";
+    script.async = true;
+    document.body.appendChild(script);
+
+    // MutationObserver to prefix dynamic image paths with /src
+    const container = document.getElementById("certifyied-blog-container");
+    let observer: MutationObserver | null = null;
+    if (container) {
+      const fixImgSrc = (img: HTMLImageElement) => {
+        const src = img.getAttribute("src");
+        if (src) {
+          const cleanSrc = src.trim();
+          if ((cleanSrc.startsWith("/assets/") || cleanSrc.startsWith("assets/")) && !cleanSrc.startsWith("/src/")) {
+            const prefix = cleanSrc.startsWith("/") ? "/src" : "/src/";
+            img.setAttribute("src", prefix + cleanSrc);
+          }
+        }
+      };
+
+      observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.type === "childList") {
+            mutation.addedNodes.forEach((node) => {
+              if (node.nodeType === Node.ELEMENT_NODE) {
+                const element = node as HTMLElement;
+                const imgs = element.tagName === "IMG" ? [element as HTMLImageElement] : element.querySelectorAll("img");
+                imgs.forEach(fixImgSrc);
+              }
+            });
+          } else if (mutation.type === "attributes" && mutation.attributeName === "src") {
+            fixImgSrc(mutation.target as HTMLImageElement);
+          }
+        });
+      });
+
+      observer.observe(container, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ["src"]
+      });
+    }
+
+    return () => {
+      document.body.removeChild(script);
+      if (observer) {
+        observer.disconnect();
+      }
+    };
+  }, []);
+
   // Update SEO metadata for Home page Hello
   // useEffect(() => {
   //   // Update document title
@@ -274,6 +328,27 @@ const Index = () => {
         <ProductCarousel />
         <MissionSection />
         <ServicesSection />
+
+        {/* Blog Section */}
+        <section className="py-20 bg-background border-t border-border">
+          <div className="container mx-auto px-4">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
+                Latest Insights & Case Studies
+              </h2>
+              <p className="text-xl text-muted-foreground">
+                Stay updated with our latest announcements, technical guides, and automation trends.
+              </p>
+            </div>
+            {/* Container where the 3x3 blog grid will load */}
+            <div
+              id="certifyied-blog-container"
+              data-project-id="4024d9ee-af39-411b-a70f-c388fe32dd47"
+              data-limit="9"
+              data-redirect-url="/blog"
+            ></div>
+          </div>
+        </section>
 
         <div className="text-center my-5">
           <Link to="/automation" className="btn btn-outline-dark">
