@@ -35,7 +35,7 @@ const Footer = () => {
               <span className="font-display font-bold text-lg">Dynamic Control System</span>
             </Link>
             <p className="text-sm text-secondary-foreground/80 mb-4">
-              Leading provider of industrial automation solutions in Kochi. Authorized Channel Partner for Mitsubishi Electric India Private Limited.
+              Leading provider of industrial automation solutions in Kerala. Authorized Channel Partner for Mitsubishi Electric India Private Limited.
             </p>
             <div className="flex gap-4">
               <a 
@@ -134,7 +134,7 @@ const Footer = () => {
           <div>
             <h3 className="font-display font-semibold text-lg mb-4">Training</h3>
             <p className="text-sm text-secondary-foreground/80 mb-4">
-              Specialized training focused on Industrial Automation in Kochi, preparing students for real-world industrial automation roles.
+              Specialized training focused on Industrial Automation in Kerala, preparing students for real-world industrial automation roles.
             </p>
             <a
               href="https://dcsri.org/"

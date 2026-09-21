@@ -33,37 +33,37 @@ const ServicesSection = () => {
     {
       title: "Engineering & Design",
       description:
-        "At our company, we deliver result-oriented, cost-effective, and time-efficient engineering solutions, tailored to your needs, with intelligent and adaptable approaches, proudly utilizing Mitsubishi Electric in Kochi for optimal performance.",
+        "At our company, we deliver result-oriented, cost-effective, and time-efficient engineering solutions, tailored to your needs, with intelligent and adaptable approaches, proudly utilizing Mitsubishi Electric across Kerala for optimal performance.",
       image: getImageForService("Engineering & Design"),
     },
     {
       title: "Industrial, Factory & Process Automation",
       description:
-        "Companies in the process and manufacturing sectors need a technology partner who truly understands their operations. At Dynamic Control Systems, we leverage Mitsubishi Electric in Kochi to deliver advanced industrial automation solutions that optimise efficiency and productivity.",
+        "Companies in the process and manufacturing sectors need a technology partner who truly understands their operations. At Dynamic Control Systems, we leverage Mitsubishi Electric across Kerala to deliver advanced industrial automation solutions that optimise efficiency and productivity.",
       image: getImageForService("Industrial, Factory & Process Automation"),
     },
     {
       title: "SCADA System Integration",
       description:
-        "Dynamic Control Systems specializes in designing and building SCADA (Supervisory Control and Data Acquisition) systems, customized to meet diverse industrial process requirements, with strong expertise in Mitsubishi Electric in Kochi solutions.",
+        "Dynamic Control Systems specializes in designing and building SCADA (Supervisory Control and Data Acquisition) systems, customized to meet diverse industrial process requirements, with strong expertise in Mitsubishi Electric solutions across Kerala.",
       image: getImageForService("SCADA System Integration"),
     },
     {
       title: "Industrial IoT Solution Development",
       description:
-        "Enables seamless device connectivity, data processing and management, application integration, security, access control, monitoring, alarm management, digital twin capabilities, and enterprise integration — all powered by solutions featuring Mitsubishi Electric in Kochi.",
+        "Enables seamless device connectivity, data processing and management, application integration, security, access control, monitoring, alarm management, digital twin capabilities, and enterprise integration — all powered by solutions featuring Mitsubishi Electric across Kerala.",
       image: getImageForService("Industrial IoT Solution Development"),
     },
     {
       title: "Embedded System",
       description:
-        "We design and deliver high-quality embedded system solutions for both industrial and residential applications. Leveraging our expertise in Mitsubishi Electric in Kochi, we provide reliable, efficient, and innovative embedded solutions tailored to meet diverse automation requirements.",
+        "We design and deliver high-quality embedded system solutions for both industrial and residential applications. Leveraging our expertise in Mitsubishi Electric across Kerala, we provide reliable, efficient, and innovative embedded solutions tailored to meet diverse automation requirements.",
       image: embeddedSystemImage,
     },
     {
       title: "Project Training",
       description:
-        "Dynamic Control Systems is committed to helping fresh graduates acquire the skills and expertise needed to advance their careers. Through specialized training in Mitsubishi Electric in Kochi, we equip students to confidently step into real-world industrial automation roles and excel in the evolving technology landscape.",
+        "Dynamic Control Systems is committed to helping fresh graduates acquire the skills and expertise needed to advance their careers. Through specialized training in Mitsubishi Electric systems across Kerala, we equip students to confidently step into real-world industrial automation roles and excel in the evolving technology landscape.",
       image: getImageForService("Project Training"),
     },
   ];
@@ -83,7 +83,7 @@ const ServicesSection = () => {
               Our Services
             </h2>
             <p className="text-xl text-muted-foreground">
-              Comprehensive solutions for industrial automation and control systems powered by Mitsubishi Electric in Kochi.
+              Comprehensive solutions for industrial automation and control systems powered by Mitsubishi Electric across Kerala.
             </p>
           </div>
         </motion.div>

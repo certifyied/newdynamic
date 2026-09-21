@@ -28,14 +28,14 @@ const Index = () => {
   // Update SEO metadata for Home page Hello
   // useEffect(() => {
   //   // Update document title
-  //   document.title = "SCADA Programming in Kochi";
+  //   document.title = "SCADA Programming in Kerala";
 
   //   // Update meta description
   //   const metaDescription = document.querySelector('meta[name="description"]');
   //   if (metaDescription) {
   //     metaDescription.setAttribute(
   //       "content",
-  //       "Dynamic Control Systems delivers reliable industrial automation and SCADA programming in Kochi with Mitsubishi Electric solutions for diverse industries."
+  //       "Dynamic Control Systems delivers reliable industrial automation and SCADA programming in Kerala with Mitsubishi Electric solutions for diverse industries."
   //     );
   //   }
 
@@ -44,7 +44,7 @@ const Index = () => {
   //   if (ogTitle) {
   //     ogTitle.setAttribute(
   //       "content",
-  //       "SCADA Programming in Kochi"
+  //       "SCADA Programming in Kerala"
   //     );
   //   }
 
@@ -52,29 +52,29 @@ const Index = () => {
   //   if (ogDescription) {
   //     ogDescription.setAttribute(
   //       "content",
-  //       "Dynamic Control Systems delivers reliable industrial automation and SCADA programming in Kochi with Mitsubishi Electric solutions for diverse industries."
+  //       "Dynamic Control Systems delivers reliable industrial automation and SCADA programming in Kerala with Mitsubishi Electric solutions for diverse industries."
   //     );
   //   }
 
   //   // Cleanup function to restore default meta tags when component unmounts
   //   return () => {
-  //     document.title = "SCADA Programming in Kochi";
+  //     document.title = "SCADA Programming in Kerala";
   //     if (metaDescription) {
   //       metaDescription.setAttribute(
   //         "content",
-  //         "Dynamic Control Systems delivers reliable industrial automation and SCADA programming in Kochi with Mitsubishi Electric solutions for diverse industries."
+  //         "Dynamic Control Systems delivers reliable industrial automation and SCADA programming in Kerala with Mitsubishi Electric solutions for diverse industries."
   //       );
   //     }
   //     if (ogTitle) {
   //       ogTitle.setAttribute(
   //         "content",
-  //         "SCADA Programming in Kochi"
+  //         "SCADA Programming in Kerala"
   //       );
   //     }
   //     if (ogDescription) {
   //       ogDescription.setAttribute(
   //         "content",
-  //         "Dynamic Control Systems delivers reliable industrial automation and SCADA programming in Kochi with Mitsubishi Electric solutions for diverse industries."
+  //         "Dynamic Control Systems delivers reliable industrial automation and SCADA programming in Kerala with Mitsubishi Electric solutions for diverse industries."
   //       );
   //     }
   //   };
@@ -89,7 +89,7 @@ const Index = () => {
     "alternateName": "DCS",
     "url": "https://dynamiccontrolsystems.in",
     "logo": "https://dynamiccontrolsystems.in/dynamic_logo.png",
-    "description": "Dynamic Control Systems delivers advanced industrial automation, SCADA, and energy solutions powered by Mitsubishi Electric in Kochi. Authorized Channel Partner for Mitsubishi Electric India Private Limited.",
+    "description": "Dynamic Control Systems delivers advanced industrial automation, SCADA, and energy solutions powered by Mitsubishi Electric in Kerala. Authorized Channel Partner for Mitsubishi Electric India Private Limited.",
     "foundingDate": "1998",
     "address": {
       "@type": "PostalAddress",
@@ -203,7 +203,7 @@ const Index = () => {
     "@id": "https://dynamiccontrolsystems.in/#website",
     "url": "https://dynamiccontrolsystems.in",
     "name": "Dynamic Control Systems",
-    "description": "Dynamic Control Systems delivers advanced industrial automation, SCADA, and energy solutions powered by Mitsubishi Electric in Kochi.",
+    "description": "Dynamic Control Systems delivers advanced industrial automation, SCADA, and energy solutions powered by Mitsubishi Electric in Kerala.",
     "publisher": {
       "@id": "https://dynamiccontrolsystems.in/#organization"
     },
@@ -263,17 +263,17 @@ const Index = () => {
 
       {/* ✅ ADD HERE */}
       <Helmet>
-        <title>SCADA Programming in Kochi</title>
+        <title>SCADA Programming in Kerala</title>
 
         <meta
           name="description"
-          content="Dynamic Control Systems delivers reliable industrial automation and SCADA programming in Kochi with Mitsubishi Electric solutions for diverse industries."
+          content="Dynamic Control Systems delivers reliable industrial automation and SCADA programming in Kerala with Mitsubishi Electric solutions for diverse industries."
         />
 
-        <meta property="og:title" content="SCADA Programming in Kochi" />
+        <meta property="og:title" content="SCADA Programming in Kerala" />
         <meta
           property="og:description"
-          content="Dynamic Control Systems delivers reliable industrial automation and SCADA programming in Kochi with Mitsubishi Electric solutions for diverse industries."
+          content="Dynamic Control Systems delivers reliable industrial automation and SCADA programming in Kerala with Mitsubishi Electric solutions for diverse industries."
         />
 
         <link rel="canonical" href="https://dynamiccontrolsystems.in/" />

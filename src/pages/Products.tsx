@@ -222,18 +222,18 @@ const generateProductInfo = (filename: string, category: string, subcategory?: s
     // PLC iQ-F Series specific products
     if (subcategory === "PLC iQF") {
       if (titleUpper.includes("FX5S") || filenameLower.includes("fx5s")) {
-        return "Mitsubishi Electric in Kochi provides the iQ-F series PLC, a compact and versatile automation solution featuring high-speed processing and extensive I/O capabilities, while also supporting reliable Mitsubishi VFD purchase in Kochi for mid-range automation applications.";
+        return "Mitsubishi Electric in Kerala provides the iQ-F series PLC, a compact and versatile automation solution featuring high-speed processing and extensive I/O capabilities, while also supporting reliable Mitsubishi VFD purchase in Kerala for mid-range automation applications.";
       }
       if ((titleUpper.includes("FX5U") && !titleUpper.includes("FX5UC") && !titleUpper.includes("FX5UJ")) || (filenameLower.includes("fx5u") && !filenameLower.includes("fx5uc") && !filenameLower.includes("fx5uj"))) {
         return "The FX5U PLC iQ-F Series from Mitsubishi Electric delivers compact, high-speed, and cost-effective control for small and medium automation systems. It ensures reliable performance, easy expansion, and smooth integration. For Mitsubishi PLC Purchase in India, FX5U is a smart and scalable solution for modern industries.";
       }
       if (titleUpper.includes("FX5UC") || filenameLower.includes("fx5uc")) {
-        return "Mitsubishi Electric in Kochi presents the iQ-F series PLC, a compact and versatile solution with high-speed processing and broad I/O support for mid-range automation needs.";
+        return "Mitsubishi Electric in Kerala presents the iQ-F series PLC, a compact and versatile solution with high-speed processing and broad I/O support for mid-range automation needs.";
       }
       if (titleUpper.includes("FX5UJ") || filenameLower.includes("fx5uj")) {
-        return "The compact and versatile iQ-F series PLC from Mitsubishi Electric in Kochi delivers high-speed processing and extensive I/O capabilities, ideal for mid-range automation applications.";
+        return "The compact and versatile iQ-F series PLC from Mitsubishi Electric in Kerala delivers high-speed processing and extensive I/O capabilities, ideal for mid-range automation applications.";
       }
-      return "Mitsubishi Electric in Kochi offers the iQ-F series PLC, a compact and versatile solution with high-speed processing and wide I/O capabilities for mid-range automation needs.";
+      return "Mitsubishi Electric in Kerala offers the iQ-F series PLC, a compact and versatile solution with high-speed processing and wide I/O capabilities for mid-range automation needs.";
     }
 
 
@@ -476,41 +476,41 @@ Simple Vision sensors are just as easy to use as an optical sensor and offer hig
         return "The iQ-R Series offers modular design, powerful CPUs, and precision analog modules for complex automation projects. It supports high-speed processing and flexible expansion. Businesses choosing Mitsubishi PLC Purchase in India prefer iQ-R for large-scale and mission-critical applications.";
       }
       if (titleUpper.includes("GENERAL CONTROL CPU") || cleanNameLower.includes("general control cpu") || filenameLower.includes("general control cpu")) {
-        return "The advanced iQ-R series PLC from Mitsubishi Electric in Kochi features a modular architecture that supports complex control systems through high-performance CPUs and a wide range of module options, along with dependable support for Mitsubishi VFD purchase in Kochi.";
+        return "The advanced iQ-R series PLC from Mitsubishi Electric in Kerala features a modular architecture that supports complex control systems through high-performance CPUs and a wide range of module options, along with dependable support for Mitsubishi VFD purchase in Kerala.";
       }
       if (titleUpper.includes("IO MODULES") || titleUpper.includes("I/O MODULES") || cleanNameLower.includes("io modules") || filenameLower.includes("io modules")) {
-        return "The advanced iQ-R series PLC from Mitsubishi Electric in Kochi features a modular architecture, delivering high-performance CPUs and extensive module options to support complex control systems.";
+        return "The advanced iQ-R series PLC from Mitsubishi Electric in Kerala features a modular architecture, delivering high-performance CPUs and extensive module options to support complex control systems.";
       }
       if (titleUpper.includes("MOTION CONTROL CPU") || cleanNameLower.includes("motion control cpu") || filenameLower.includes("motion control cpu")) {
-        return "The advanced iQ-R series PLC from Mitsubishi Electric in Kochi provides modular architecture, high-performance CPUs, and extensive module options to efficiently manage complex control systems.";
+        return "The advanced iQ-R series PLC from Mitsubishi Electric in Kerala provides modular architecture, high-performance CPUs, and extensive module options to efficiently manage complex control systems.";
       }
       if (titleUpper.includes("MOTION MODULES") || cleanNameLower.includes("motion modules") || filenameLower.includes("motion modules")) {
-        return "The advanced iQ-R series PLC from Mitsubishi Electric in Kochi offers a modular architecture, high-performance CPUs, and extensive module options, ideal for managing complex control systems.";
+        return "The advanced iQ-R series PLC from Mitsubishi Electric in Kerala offers a modular architecture, high-performance CPUs, and extensive module options, ideal for managing complex control systems.";
       }
       if (titleUpper.includes("PROCESS CONTROL CPU") || titleUpper.includes("POSITION CONTROL CPU") || cleanNameLower.includes("process control cpu") || filenameLower.includes("process control cpu")) {
-        return "The advanced iQ-R series PLC from Mitsubishi Electric in Kochi offers a modular architecture, high-performance CPUs, and an extensive range of modules to support complex control systems, along with reliable options for Mitsubishi VFD purchase in Kochi.";
+        return "The advanced iQ-R series PLC from Mitsubishi Electric in Kerala offers a modular architecture, high-performance CPUs, and an extensive range of modules to support complex control systems, along with reliable options for Mitsubishi VFD purchase in Kerala.";
       }
       if (titleUpper.includes("SAFETY CONTROL CPU") || cleanNameLower.includes("safety control cpu") || filenameLower.includes("safety control cpu")) {
-        return "The advanced iQ-R series PLC from Mitsubishi Electric in Kochi offers modular architecture, high-performance CPUs, and extensive module options, designed to support complex control systems.";
+        return "The advanced iQ-R series PLC from Mitsubishi Electric in Kerala offers modular architecture, high-performance CPUs, and extensive module options, designed to support complex control systems.";
       }
-      return "The advanced iQ-R series PLC from Mitsubishi Electric in Kochi features a modular architecture, supporting complex control systems with high-performance CPUs and a wide range of module options.";
+      return "The advanced iQ-R series PLC from Mitsubishi Electric in Kerala features a modular architecture, supporting complex control systems with high-performance CPUs and a wide range of module options.";
     }
 
     // PLC MELSEC Q Series specific products
     if (subcategory === "PLC MELSEC Q Series") {
       if (titleUpper.includes("ANALOG MODULES") || cleanNameLower.includes("analog") || filenameLower.includes("analog")) {
-        return "The high-performance MELSEC Q Series PLC from Mitsubishi Electric in Kochi is designed for large-scale automation systems, offering advanced networking and motion control capabilities.";
+        return "The high-performance MELSEC Q Series PLC from Mitsubishi Electric in Kerala is designed for large-scale automation systems, offering advanced networking and motion control capabilities.";
       }
       if (titleUpper.includes("CPU MODULES") || cleanNameLower.includes("cpu") || filenameLower.includes("cpu")) {
-        return "The high-performance MELSEC Q Series PLC from Mitsubishi Electric in Kochi is designed for large-scale automation systems, offering advanced networking and motion control capabilities, along with dependable options for Mitsubishi VFD purchase in Kochi.";
+        return "The high-performance MELSEC Q Series PLC from Mitsubishi Electric in Kerala is designed for large-scale automation systems, offering advanced networking and motion control capabilities, along with dependable options for Mitsubishi VFD purchase in Kerala.";
       }
       if (titleUpper.includes("MOTION MODULES") || cleanNameLower.includes("motion") || filenameLower.includes("motion")) {
         return "The MELSEC Q Series is built for advanced motion control and high-speed networking. It delivers accurate synchronization and real-time control. For reliable Mitsubishi PLC Purchase in India, the Q Series is ideal for demanding manufacturing environments.";
       }
       if (titleUpper.includes("NETWORK MODULES") || cleanNameLower.includes("network") || filenameLower.includes("network")) {
-        return "The high-performance MELSEC Q Series PLC from Mitsubishi Electric in Kochi is designed for large-scale automation systems, offering advanced networking and motion control capabilities including SCADA programming in Kochi, where reliability, scalability, and real-time control are critical.";
+        return "The high-performance MELSEC Q Series PLC from Mitsubishi Electric in Kerala is designed for large-scale automation systems, offering advanced networking and motion control capabilities including SCADA programming in Kerala, where reliability, scalability, and real-time control are critical.";
       }
-      return "The high-performance MELSEC Q Series PLC from Mitsubishi Electric in Kochi is designed for large-scale automation systems, offering advanced networking and motion control capabilities including SCADA programming in Kochi, where reliability, scalability, and real-time control are critical.";
+      return "The high-performance MELSEC Q Series PLC from Mitsubishi Electric in Kerala is designed for large-scale automation systems, offering advanced networking and motion control capabilities including SCADA programming in Kerala, where reliability, scalability, and real-time control are critical.";
     }
 
     // NETWORK AND CONNECTION TECHNOLOGY specific products
@@ -529,12 +529,12 @@ Simple Vision sensors are just as easy to use as an optical sensor and offer hig
 
     // PLC MXF Series
     if (subcategory === "PLC MXF Series") {
-      return "The cost-effective MELSEC F Series PLC from Mitsubishi Electric in Kochi delivers reliable control for small to medium-scale automation applications, featuring a compact and efficient design.";
+      return "The cost-effective MELSEC F Series PLC from Mitsubishi Electric in Kerala delivers reliable control for small to medium-scale automation applications, featuring a compact and efficient design.";
     }
 
     // PLC MXR Series
     if (subcategory === "PLC MXR Series") {
-      return "The scalable MXR Series PLC from Mitsubishi Electric in Kochi offers flexible configuration options and robust performance to meet diverse automation requirements.";
+      return "The scalable MXR Series PLC from Mitsubishi Electric in Kerala offers flexible configuration options and robust performance to meet diverse automation requirements.";
     }
 
     // AC Servo specific products 
@@ -552,12 +552,12 @@ Simple Vision sensors are just as easy to use as an optical sensor and offer hig
 
       // 🔥 Check J4
       if (titleUpper.includes("J4") || cleanNameLower.includes("j4") || filenameLower.includes("j4")) {
-        return "The high-performance AC servo motor system from Mitsubishi Electric in Kochi delivers exceptional torque control and precise positioning for advanced automation applications.";
+        return "The high-performance AC servo motor system from Mitsubishi Electric in Kerala delivers exceptional torque control and precise positioning for advanced automation applications.";
       }
 
       // 🔥 Check JE
       if (titleUpper.includes("JE") || cleanNameLower.includes("je") || filenameLower.includes("je")) {
-        return "The high-performance AC servo motor system from Mitsubishi Electric in Kochi delivers exceptional torque control and precise positioning for advanced automation applications.";
+        return "The high-performance AC servo motor system from Mitsubishi Electric in Kerala delivers exceptional torque control and precise positioning for advanced automation applications.";
       }
 
       // 🔥 Check SB
@@ -565,7 +565,7 @@ Simple Vision sensors are just as easy to use as an optical sensor and offer hig
         return "The SB Series AC Servo provides reliable motion control with efficient performance for industrial automation systems. It ensures stable operation, accurate positioning, and seamless integration with Mitsubishi PLC solutions.";
       }
 
-      return "The AC Servo system from Mitsubishi Electric in Kochi delivers precise motion control, smooth operation, and high efficiency for modern industrial automation.";
+      return "The AC Servo system from Mitsubishi Electric in Kerala delivers precise motion control, smooth operation, and high efficiency for modern industrial automation.";
     }
     // HMI specific products
     if (category === "HMI" || category === "Integrated HMI") {
@@ -573,21 +573,21 @@ Simple Vision sensors are just as easy to use as an optical sensor and offer hig
         return "The GOT 2000 HMI features an advanced touchscreen for real-time monitoring and easy operator control. It improves productivity and visualization. Businesses opting for Mitsubishi PLC Purchase in India integrate GOT 2000 for efficient automation management.";
       }
       if (titleUpper.includes("GOT 3000") || titleUpper.includes("GOT3000") || cleanNameLower.includes("got 3000") || cleanNameLower.includes("got3000") || filenameLower.includes("got 3000") || filenameLower.includes("got3000")) {
-        return "The Human-Machine Interface from Mitsubishi Electric in Kochi features an intuitive touchscreen display that enables seamless operator interaction and real-time system monitoring, while also supporting Mitsubishi VFD purchase in Kochi.";
+        return "The Human-Machine Interface from Mitsubishi Electric in Kerala features an intuitive touchscreen display that enables seamless operator interaction and real-time system monitoring, while also supporting Mitsubishi VFD purchase in Kerala.";
       }
       if (titleUpper.includes("SIMPLE") || cleanNameLower.includes("simple") || filenameLower.includes("simple")) {
-        return "The Human-Machine Interface from Mitsubishi Electric in Kochi features an intuitive touchscreen display, enabling seamless operator interaction and real-time system monitoring.";
+        return "The Human-Machine Interface from Mitsubishi Electric in Kerala features an intuitive touchscreen display, enabling seamless operator interaction and real-time system monitoring.";
       }
       if (titleUpper.includes("SOFTGOT") || titleUpper.includes("SOFT GOT") || cleanNameLower.includes("softgot") || filenameLower.includes("softgot")) {
-        return "The Human-Machine Interface from Mitsubishi Electric in Kochi features an intuitive touchscreen display, enabling seamless operator interaction and real-time system monitoring.";
+        return "The Human-Machine Interface from Mitsubishi Electric in Kerala features an intuitive touchscreen display, enabling seamless operator interaction and real-time system monitoring.";
       }
       if (titleUpper.includes("GOC 35") || titleUpper.includes("GOC35") || cleanNameLower.includes("goc 35") || filenameLower.includes("goc 35")) {
         return "The GOC 35 HMI provides user-friendly control and clear system monitoring. It supports reliable communication with PLC systems. For smooth integration during Mitsubishi PLC Purchase in India, GOC 35 is a practical choice.";
       }
       if (titleUpper.includes("GOC 43") || titleUpper.includes("GOC43") || cleanNameLower.includes("goc 43") || filenameLower.includes("goc 43")) {
-        return "The Human-Machine Interface from Mitsubishi Electric in Kochi features an intuitive touchscreen display, enabling seamless operator interaction and real-time system monitoring.";
+        return "The Human-Machine Interface from Mitsubishi Electric in Kerala features an intuitive touchscreen display, enabling seamless operator interaction and real-time system monitoring.";
       }
-      return "The Human-Machine Interface from Mitsubishi Electric in Kochi features an intuitive touchscreen display, enabling seamless operator interaction and real-time system monitoring.";
+      return "The Human-Machine Interface from Mitsubishi Electric in Kerala features an intuitive touchscreen display, enabling seamless operator interaction and real-time system monitoring.";
     }
 
     // Inverters specific products
@@ -596,18 +596,18 @@ Simple Vision sensors are just as easy to use as an optical sensor and offer hig
         return "The FR-D700 inverter offers accurate motor speed control and energy savings for industrial machines. It is compact and easy to install. Industries considering Mitsubishi PLC Purchase in India use FR-D700 for improved motor efficiency.";
       }
       if (titleUpper.includes("FR-D800") || cleanNameLower.includes("fr-d800") || filenameLower.includes("fr-d800")) {
-        return "The variable frequency drive from Mitsubishi Electric in Kochi delivers precise motor control, improved energy efficiency, and smooth operation across a wide range of industrial applications.";
+        return "The variable frequency drive from Mitsubishi Electric in Kerala delivers precise motor control, improved energy efficiency, and smooth operation across a wide range of industrial applications.";
       }
       if (titleUpper.includes("FR-E800") || cleanNameLower.includes("fr-e800") || filenameLower.includes("fr-e800")) {
-        return "The variable frequency drive from Mitsubishi Electric in Kochi provides precise motor control, enhanced energy efficiency, and smooth operation across a wide range of industrial applications, supporting reliable Mitsubishi VFD purchase in Kochi.";
+        return "The variable frequency drive from Mitsubishi Electric in Kerala provides precise motor control, enhanced energy efficiency, and smooth operation across a wide range of industrial applications, supporting reliable Mitsubishi VFD purchase in Kerala.";
       }
       if (titleUpper.includes("FR-CS") || cleanNameLower.includes("fr-cs") || filenameLower.includes("fr-cs")) {
-        return "The variable frequency drive from Mitsubishi Electric in Kochi delivers precise motor control, improved energy efficiency, and smooth operation across a wide range of industrial applications.";
+        return "The variable frequency drive from Mitsubishi Electric in Kerala delivers precise motor control, improved energy efficiency, and smooth operation across a wide range of industrial applications.";
       }
       if (titleUpper.includes("FR-800") || cleanNameLower.includes("fr800") || cleanNameLower.includes("fr-800") || filenameLower.includes("fr800") || filenameLower.includes("fr-800")) {
-        return "The variable frequency drive from Mitsubishi Electric in Kochi delivers precise motor control, improved energy efficiency, and smooth operation across a wide range of industrial applications.";
+        return "The variable frequency drive from Mitsubishi Electric in Kerala delivers precise motor control, improved energy efficiency, and smooth operation across a wide range of industrial applications.";
       }
-      return "The variable frequency drive from Mitsubishi Electric in Kochi delivers precise motor control, improved energy efficiency, and smooth operation across a wide range of industrial applications.";
+      return "The variable frequency drive from Mitsubishi Electric in Kerala delivers precise motor control, improved energy efficiency, and smooth operation across a wide range of industrial applications.";
     }
 
     // Low Voltage Power Distribution
@@ -616,53 +616,53 @@ Simple Vision sensors are just as easy to use as an optical sensor and offer hig
         return "Mitsubishi ACB solutions ensure safe and efficient low-voltage power protection. They prevent overloads and short circuits in industrial systems. For secure operations with Mitsubishi PLC Purchase in India, ACB systems add reliability";
       }
       if (titleUpper.includes("RCCB") || cleanNameLower.includes("rccb") || filenameLower.includes("rccb")) {
-        return "Low-voltage power distribution products from Mitsubishi Electric in Kochi, such as circuit breakers and protection devices, ensure safe, reliable, and efficient electrical systems, while also supporting Mitsubishi VFD purchase in Kochi.";
+        return "Low-voltage power distribution products from Mitsubishi Electric in Kerala, such as circuit breakers and protection devices, ensure safe, reliable, and efficient electrical systems, while also supporting Mitsubishi VFD purchase in Kerala.";
       }
       if (titleUpper.includes("MULTIFUNCTION METER") || cleanNameLower.includes("multifuction meter") || filenameLower.includes("multifuction meter")) {
-        return "Low-voltage power distribution products from Mitsubishi Electric in Kochi, including circuit breakers and protection devices, deliver safe, reliable, and efficient electrical systems, while also supporting Mitsubishi VFD purchase in Kochi.";
+        return "Low-voltage power distribution products from Mitsubishi Electric in Kerala, including circuit breakers and protection devices, deliver safe, reliable, and efficient electrical systems, while also supporting Mitsubishi VFD purchase in Kerala.";
       }
       if (titleUpper.includes("MCB") || titleUpper.includes("MCCB") || titleUpper.includes("MPCB") || titleUpper.includes("OVERLOAD RELAY") || cleanNameLower.includes("mcb") || cleanNameLower.includes("mccb") || cleanNameLower.includes("mpcb") || cleanNameLower.includes("overload") || filenameLower.includes("mcb") || filenameLower.includes("mccb") || filenameLower.includes("mpcb") || filenameLower.includes("overload")) {
         return "Mitsubishi Overload Relays protect motors from overheating and electrical damage. They improve safety and equipment life. During Mitsubishi PLC Purchase in India, overload relays ensure better power management.";
       }
       if (titleUpper.includes("CONTACORS") || cleanNameLower.includes("Contactors") || filenameLower.includes("Contactors")) {
-        return "Low-voltage power distribution products from Mitsubishi Electric in Kochi, including circuit breakers and protection devices, deliver safe, reliable, and efficient electrical systems, while also supporting Mitsubishi VFD purchase in Kochi.";
+        return "Low-voltage power distribution products from Mitsubishi Electric in Kerala, including circuit breakers and protection devices, deliver safe, reliable, and efficient electrical systems, while also supporting Mitsubishi VFD purchase in Kerala.";
       }
       if (titleUpper.includes("ACCESSORIES AND RELATED COMPONENTS") || filenameLower.includes("Accessories and Related Components")) {
-        return "Low-voltage power distribution products from Mitsubishi Electric in Kochi, including circuit breakers and protection devices, deliver safe, reliable, and efficient electrical systems, while also supporting Mitsubishi VFD purchase in Kochi.";
+        return "Low-voltage power distribution products from Mitsubishi Electric in Kerala, including circuit breakers and protection devices, deliver safe, reliable, and efficient electrical systems, while also supporting Mitsubishi VFD purchase in Kerala.";
       }
-      return "Low-voltage power distribution products from Mitsubishi Electric in Kochi, including circuit breakers and protection devices, ensure safe, reliable, and efficient electrical systems.";
+      return "Low-voltage power distribution products from Mitsubishi Electric in Kerala, including circuit breakers and protection devices, ensure safe, reliable, and efficient electrical systems.";
     }
 
     // Robot specific products
     if (category === "Robot") {
       if (titleUpper.includes("VERTICAL") || cleanNameLower.includes("vertical") || filenameLower.includes("vertical")) {
-        return "The industrial robot system from Mitsubishi Electric in Kochi is designed for precision automation, assembly, and material handling applications, delivering high repeatability and consistent performance.";
+        return "The industrial robot system from Mitsubishi Electric in Kerala is designed for precision automation, assembly, and material handling applications, delivering high repeatability and consistent performance.";
       }
       if (titleUpper.includes("COLLABORATIVE") || cleanNameLower.includes("collaborative") || filenameLower.includes("collaborative")) {
-        return "The industrial robot system from Mitsubishi Electric in Kochi is engineered for precision automation, assembly, and material handling applications, delivering high repeatability and consistent performance, while also supporting Mitsubishi VFD purchase in Kochi.";
+        return "The industrial robot system from Mitsubishi Electric in Kerala is engineered for precision automation, assembly, and material handling applications, delivering high repeatability and consistent performance, while also supporting Mitsubishi VFD purchase in Kerala.";
       }
       if (titleUpper.includes("HORIZONTAL") || titleUpper.includes("MELFA SMART") || cleanNameLower.includes("horizontal") || cleanNameLower.includes("melfa") || filenameLower.includes("horizontal") || filenameLower.includes("melfa")) {
         return "Horizontal industrial robots deliver high-speed, precise automation for assembly and material handling. They enhance productivity and accuracy. Companies investing in Mitsubishi PLC Purchase in India integrate robots for smart manufacturing.";
       }
-      return "The industrial robot system from Mitsubishi Electric in Kochi is designed for precision automation, assembly, and material handling applications, delivering high repeatability and consistent performance.";
+      return "The industrial robot system from Mitsubishi Electric in Kerala is designed for precision automation, assembly, and material handling applications, delivering high repeatability and consistent performance.";
     }
 
     // Software specific the products
     if (category === "Software") {
       if (titleUpper.includes("GT WORKS 3") || cleanNameLower.includes("gt works 3") || filenameLower.includes("gt works 3")) {
-        return "The engineering and visualization software suite from Mitsubishi Electric in Kochi enables efficient system design, programming, monitoring, and configuration of automation systems.";
+        return "The engineering and visualization software suite from Mitsubishi Electric in Kerala enables efficient system design, programming, monitoring, and configuration of automation systems.";
       }
       if (titleUpper.includes("FR-CONFIGURATOR") || cleanNameLower.includes("fr-configurator") || filenameLower.includes("fr-configurator")) {
-        return "The engineering and visualization software suite from Mitsubishi Electric in Kochi supports efficient system design, programming, monitoring, and configuration of automation systems, while also enabling reliable Mitsubishi VFD purchase in Kochi.";
+        return "The engineering and visualization software suite from Mitsubishi Electric in Kerala supports efficient system design, programming, monitoring, and configuration of automation systems, while also enabling reliable Mitsubishi VFD purchase in Kerala.";
       }
       if (titleUpper.includes("GX WORKS 2") || titleUpper.includes("GX WORKS 3") || titleUpper.includes("MR CONFIGURATOR") || titleUpper.includes("GENESIS 64") || titleUpper.includes("VIRTUALIZATION") || cleanNameLower.includes("gx works") || cleanNameLower.includes("mr configurator") || cleanNameLower.includes("genesis") || cleanNameLower.includes("virtualization") || filenameLower.includes("gx works") || filenameLower.includes("mr configurator") || filenameLower.includes("genesis") || filenameLower.includes("virtualization")) {
         return "3D MELSOFT software supports system design, simulation, and PLC programming with advanced visualization tools. It reduces commissioning time and improves accuracy. For complete automation solutions with Mitsubishi PLC Purchase in India, 3D MELSOFT adds powerful engineering support.";
       }
-      return "The engineering and visualization software suite from Mitsubishi Electric in Kochi enables efficient system design, programming, monitoring, and configuration of automation systems.";
+      return "The engineering and visualization software suite from Mitsubishi Electric in Kerala enables efficient system design, programming, monitoring, and configuration of automation systems.";
     }
 
     // Default fallback
-    return "Industrial automation solution from Mitsubishi Electric in Kochi designed for reliability and performance.";
+    return "Industrial automation solution from Mitsubishi Electric in Kerala designed for reliability and performance.";
   };
 
 
@@ -1195,14 +1195,14 @@ const Products = () => {
   // Update SEO metadata for Products page
   useEffect(() => {
     // Update document title
-    document.title = "Industrial Automation Products | Mitsubishi VFD Purchase in Kochi – Dynamic Control Systems";
+    document.title = "Industrial Automation Products | Mitsubishi VFD Purchase in Kerala – Dynamic Control Systems";
 
     // Update meta description
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute(
         "content",
-        "Explore industrial automation products and Mitsubishi VFD purchase in Kochi with top Mitsubishi VFD drives, PLCs, HMI, and SCADA solutions. Contact us for a quote."
+        "Explore industrial automation products and Mitsubishi VFD purchase in Kerala with top Mitsubishi VFD drives, PLCs, HMI, and SCADA solutions. Contact us for a quote."
       );
     }
 
@@ -1211,7 +1211,7 @@ const Products = () => {
     if (ogTitle) {
       ogTitle.setAttribute(
         "content",
-        "Industrial Automation Products | Mitsubishi VFD Purchase in Kochi – Dynamic Control Systems"
+        "Industrial Automation Products | Mitsubishi VFD Purchase in Kerala – Dynamic Control Systems"
       );
     }
 
@@ -1219,29 +1219,29 @@ const Products = () => {
     if (ogDescription) {
       ogDescription.setAttribute(
         "content",
-        "Explore industrial automation products and Mitsubishi VFD purchase in Kochi with top Mitsubishi VFD drives, PLCs, HMI, and SCADA solutions. Contact us for a quote."
+        "Explore industrial automation products and Mitsubishi VFD purchase in Kerala with top Mitsubishi VFD drives, PLCs, HMI, and SCADA solutions. Contact us for a quote."
       );
     }
 
     // Cleanup function to restore default meta tags when component unmounts
     return () => {
-      document.title = "SCADA Programming in Kochi";
+      document.title = "SCADA Programming in Kerala";
       if (metaDescription) {
         metaDescription.setAttribute(
           "content",
-          "Dynamic Control Systems delivers reliable industrial automation and SCADA programming in Kochi with Mitsubishi Electric solutions for diverse industries."
+          "Dynamic Control Systems delivers reliable industrial automation and SCADA programming in Kerala with Mitsubishi Electric solutions for diverse industries."
         );
       }
       if (ogTitle) {
         ogTitle.setAttribute(
           "content",
-          "SCADA Programming in Kochi"
+          "SCADA Programming in Kerala"
         );
       }
       if (ogDescription) {
         ogDescription.setAttribute(
           "content",
-          "Dynamic Control Systems delivers reliable industrial automation and SCADA programming in Kochi with Mitsubishi Electric solutions for diverse industries."
+          "Dynamic Control Systems delivers reliable industrial automation and SCADA programming in Kerala with Mitsubishi Electric solutions for diverse industries."
         );
       }
     };

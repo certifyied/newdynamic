@@ -38,14 +38,14 @@
 //   // Update SEO metadata for Clients page
 //   useEffect(() => {
 //     // Update document title
-//     document.title = "Our Clients & Partners | Mitsubishi Electric in Kochi";
+//     document.title = "Our Clients & Partners | Mitsubishi Electric in Kerala";
 
 //     // Update meta description
 //     const metaDescription = document.querySelector('meta[name="description"]');
 //     if (metaDescription) {
 //       metaDescription.setAttribute(
 //         "content",
-//         "Discover our trusted clients and industry partners who rely on Mitsubishi Electric in Kochi for reliable industrial automation solutions and expert support."
+//         "Discover our trusted clients and industry partners who rely on Mitsubishi Electric in Kerala for reliable industrial automation solutions and expert support."
 //       );
 //     }
 
@@ -54,7 +54,7 @@
 //     if (ogTitle) {
 //       ogTitle.setAttribute(
 //         "content",
-//         "Our Clients & Partners | Mitsubishi Electric in Kochi"
+//         "Our Clients & Partners | Mitsubishi Electric in Kerala"
 //       );
 //     }
 
@@ -62,29 +62,29 @@
 //     if (ogDescription) {
 //       ogDescription.setAttribute(
 //         "content",
-//         "Discover our trusted clients and industry partners who rely on Mitsubishi Electric in Kochi for reliable industrial automation solutions and expert support."
+//         "Discover our trusted clients and industry partners who rely on Mitsubishi Electric in Kerala for reliable industrial automation solutions and expert support."
 //       );
 //     }
 
 //     // Cleanup function to restore default meta tags when component unmounts
 //     return () => {
-//       document.title = "Dynamic Control Systems | Mitsubishi Electric in Kochi";
+//       document.title = "Dynamic Control Systems | Mitsubishi Electric in Kerala";
 //       if (metaDescription) {
 //         metaDescription.setAttribute(
 //           "content",
-//           "Dynamic Control Systems delivers advanced industrial automation, SCADA, and energy solutions powered by Mitsubishi Electric in Kochi."
+//           "Dynamic Control Systems delivers advanced industrial automation, SCADA, and energy solutions powered by Mitsubishi Electric in Kerala."
 //         );
 //       }
 //       if (ogTitle) {
 //         ogTitle.setAttribute(
 //           "content",
-//           "Dynamic Control Systems | Mitsubishi Electric in Kochi"
+//           "Dynamic Control Systems | Mitsubishi Electric in Kerala"
 //         );
 //       }
 //       if (ogDescription) {
 //         ogDescription.setAttribute(
 //           "content",
-//           "Dynamic Control Systems delivers advanced industrial automation, SCADA, and energy solutions powered by Mitsubishi Electric in Kochi."
+//           "Dynamic Control Systems delivers advanced industrial automation, SCADA, and energy solutions powered by Mitsubishi Electric in Kerala."
 //         );
 //       }
 //     };
@@ -108,7 +108,7 @@
 //                 Our Clients
 //               </h1>
 //               <p className="text-xl text-muted-foreground">
-//                 Trusted by leading industries, delivering innovation with Mitsubishi Electric in Kochi.
+//                 Trusted by leading industries, delivering innovation with Mitsubishi Electric in Kerala.
 //               </p>
 //             </motion.div>
 //           </div>
@@ -215,13 +215,13 @@ const Clients = () => {
   const [clients] = useState(sortedClients);
 
   useEffect(() => {
-    document.title = "Our Clients & Partners | Mitsubishi Electric in Kochi";
+    document.title = "Our Clients & Partners | Mitsubishi Electric in Kerala";
 
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute(
         "content",
-        "Discover our trusted clients and industry partners who rely on Mitsubishi Electric in Kochi for reliable industrial automation solutions and expert support."
+        "Discover our trusted clients and industry partners who rely on Mitsubishi Electric in Kerala for reliable industrial automation solutions and expert support."
       );
     }
 
@@ -229,7 +229,7 @@ const Clients = () => {
     if (ogTitle) {
       ogTitle.setAttribute(
         "content",
-        "Our Clients & Partners | Mitsubishi Electric in Kochi"
+        "Our Clients & Partners | Mitsubishi Electric in Kerala"
       );
     }
 
@@ -239,31 +239,31 @@ const Clients = () => {
     if (ogDescription) {
       ogDescription.setAttribute(
         "content",
-        "Discover our trusted clients and industry partners who rely on Mitsubishi Electric in Kochi for reliable industrial automation solutions and expert support."
+        "Discover our trusted clients and industry partners who rely on Mitsubishi Electric in Kerala for reliable industrial automation solutions and expert support."
       );
     }
 
     return () => {
-      document.title = "Dynamic Control Systems | Mitsubishi Electric in Kochi";
+      document.title = "Dynamic Control Systems | Mitsubishi Electric in Kerala";
 
       if (metaDescription) {
         metaDescription.setAttribute(
           "content",
-          "Dynamic Control Systems delivers advanced industrial automation, SCADA, and energy solutions powered by Mitsubishi Electric in Kochi."
+          "Dynamic Control Systems delivers advanced industrial automation, SCADA, and energy solutions powered by Mitsubishi Electric in Kerala."
         );
       }
 
       if (ogTitle) {
         ogTitle.setAttribute(
           "content",
-          "Dynamic Control Systems | Mitsubishi Electric in Kochi"
+          "Dynamic Control Systems | Mitsubishi Electric in Kerala"
         );
       }
 
       if (ogDescription) {
         ogDescription.setAttribute(
           "content",
-          "Dynamic Control Systems delivers advanced industrial automation, SCADA, and energy solutions powered by Mitsubishi Electric in Kochi."
+          "Dynamic Control Systems delivers advanced industrial automation, SCADA, and energy solutions powered by Mitsubishi Electric in Kerala."
         );
       }
     };
@@ -288,7 +288,7 @@ const Clients = () => {
               </h1>
               <p className="text-xl text-muted-foreground">
                 Trusted by leading industries, delivering innovation with
-                Mitsubishi Electric in Kochi.
+                Mitsubishi Electric in Kerala.
               </p>
             </motion.div>
           </div>
@@ -297,7 +297,7 @@ const Clients = () => {
         {/* Clients Grid */}
         <section className="pt-8 pb-20">
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6">
               {clients.map((client, index) => (
                 <motion.div
                   key={client.filename}
