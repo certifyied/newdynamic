@@ -29,6 +29,14 @@ const About = () => {
     { year: "2013", event: "Established a parallel manufacturing unit, MAC Machines and Controls, to deliver customized automation solutions powered by Mitsubishi Electric in Kerala." },
     { year: "2019", event: "Established the Dynamic Control System Research Institute (DCSRI) to train professionals in advanced automation technologies, aligned with Mitsubishi Electric in Kerala." },
     { year: "2022", event: "Expanded into IoT, robotics, and AI-powered automation solutions to meet evolving industry and smart factory demands with Mitsubishi Electric in Kerala." },
+    {
+      year: "2025",
+      event: "Expanded our industrial automation portfolio by becoming an Official Channel Partner of Leuze, strengthening our offerings in industrial sensing, machine safety, and sensor solutions."
+    },
+    {
+      year: "2026",
+      event: "Became a Systems Integration Partner of SMC, delivering advanced solutions for modern industrial environments."
+    }
   ];
 
   const directors = [
@@ -76,7 +84,7 @@ With extensive expertise across the electrical and automotive sectors, Mr. Phili
   useEffect(() => {
     // Update document title
     document.title = "About Control Systems | Mitsubishi PLC Purchase in Kerala";
-    
+
     // Update meta description
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
@@ -130,7 +138,7 @@ With extensive expertise across the electrical and automotive sectors, Mr. Phili
   return (
     <div className="min-h-screen">
       <Navigation />
-      
+
       <main>
         {/* Hero Section */}
         <section className="pt-32 pb-4 bg-gradient-to-b from-muted/30 to-background">
@@ -164,22 +172,22 @@ With extensive expertise across the electrical and automotive sectors, Mr. Phili
                 <div className="text-sm font-semibold text-primary uppercase tracking-wider mb-4">
                   About Dynamic Control Systems
                 </div>
-                
+
                 {/* Main Heading */}
                 <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-foreground">
                   Leading Industrial Automation Solutions
                 </h2>
-                
+
                 {/* Description */}
                 <div className="space-y-4 mb-8 max-w-[600px]">
                   <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                  We are a team of young, dynamic, and experienced engineers with strong expertise in Electrical, Automation, and Instrumentation Engineering. Over the years, we have successfully executed a wide range of industrial projects across India, catering to key sectors such as Power Generation, Automobiles, Marine & Defence, Pharmaceuticals, and Packaging.
+                    We are a team of young, dynamic, and experienced engineers with strong expertise in Electrical, Automation, and Instrumentation Engineering. Over the years, we have successfully executed a wide range of industrial projects across India, catering to key sectors such as Power Generation, Automobiles, Marine & Defence, Pharmaceuticals, and Packaging.
                   </p>
                   <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                  Dynamic Control Systems, an Authorized Channel Partner of Mitsubishi Electric India Private Limited, is a trusted automation solutions provider based in Kerala, with a strong operational presence in Vytilla. Led by Mr. Saji K. Philip, we offer complete sales, service, and technical support for Mitsubishi Electric automation products, including PLCs, HMIs, and drives. We are a reliable choice for Mitsubishi PLC purchase in Kerala, delivering genuine products backed by expert guidance. Our solutions also include advanced SCADA programming in Kerala, enabling efficient monitoring, control, and optimization of industrial processes. With proven expertise, we deliver reliable, efficient, and customized industrial automation systems tailored to meet diverse industry requirements.
+                    Dynamic Control Systems, an Authorized Channel Partner of Mitsubishi Electric India Private Limited, is a trusted automation solutions provider based in Kerala, with a strong operational presence in Vytilla. Led by Mr. Saji K. Philip, we offer complete sales, service, and technical support for Mitsubishi Electric automation products, including PLCs, HMIs, and drives. We are a reliable choice for Mitsubishi PLC purchase in Kerala, delivering genuine products backed by expert guidance. Our solutions also include advanced SCADA programming in Kerala, enabling efficient monitoring, control, and optimization of industrial processes. With proven expertise, we deliver reliable, efficient, and customized industrial automation systems tailored to meet diverse industry requirements.
                   </p>
                 </div>
-                
+
                 {/* CTA Button */}
                 <Button size="lg" className="group">
                   Learn More About Us
@@ -202,7 +210,7 @@ With extensive expertise across the electrical and automotive sectors, Mr. Phili
                     alt="Industrial Automation Solutions"
                     className="w-full h-full object-cover"
                   />
-                  
+
                   {/* Highlight/Stat Card Overlay */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -266,9 +274,8 @@ With extensive expertise across the electrical and automotive sectors, Mr. Phili
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className={`flex items-center mb-8 ${
-                      index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                    }`}
+                    className={`flex items-center mb-8 ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                      }`}
                   >
                     <div className={`flex-1 ${index % 2 === 0 ? "md:text-right md:pr-12" : "md:pl-12"}`}>
                       <Card className="inline-block">
@@ -315,7 +322,7 @@ With extensive expertise across the electrical and automotive sectors, Mr. Phili
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <Card 
+                  <Card
                     className="h-full hover-lift cursor-pointer group overflow-hidden"
                     onClick={() => openDialog(director.id)}
                   >
@@ -404,7 +411,7 @@ With extensive expertise across the electrical and automotive sectors, Mr. Phili
                 Our Presence
               </h2>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Driving innovation to connect industries and communities across regions through Mitsubishi Electric in Kerala, while enabling seamless Mitsubishi PLC purchase in Kerala.
+                Driving innovation to connect industries and communities across regions through Mitsubishi Electric in Kerala, while enabling seamless Mitsubishi PLC purchase in Kerala.
               </p>
             </motion.div>
 
