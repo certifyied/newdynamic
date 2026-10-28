@@ -18,6 +18,8 @@ const staticRoutes = [
   { path: 'scada-system', changefreq: 'weekly', priority: '0.9' },
   { path: 'vfd-drive', changefreq: 'weekly', priority: '0.9' },
   { path: 'hmi-system', changefreq: 'weekly', priority: '0.9' },
+  { path: 'brands', changefreq: 'weekly', priority: '0.9' },
+  { path: 'associated-clients', changefreq: 'weekly', priority: '0.8' },
 ];
 
 const totalBlogs = 114;

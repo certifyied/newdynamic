@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useCanonical } from "@/hooks/useCanonical";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -7,7 +7,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, ExternalLink, Layers } from "lucide-react";
+import { useSearchParams } from "react-router-dom";
+import { brandCatalog, getBrandProductCategory, getBrandProductDescription } from "@/data/brandProducts";
 
 // Import all product images from dynamic-products folder structure
 const productImages = import.meta.glob<{ default: string }>(
@@ -1190,7 +1192,40 @@ const getProductUrl = (product: Product): string => {
 
 const Products = () => {
   useCanonical();
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(() => {
+    return searchParams.get("category");
+  });
+
+  useEffect(() => {
+    const cat = searchParams.get("category");
+    setSelectedCategory(cat);
+  }, [searchParams]);
+
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  const scrollTabs = (direction: "left" | "right") => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = direction === "left" ? -280 : 280;
+      scrollContainerRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    }
+  };
+
+  // Auto-scroll the active category button into view
+  useEffect(() => {
+    if (scrollContainerRef.current) {
+      const activeButton = scrollContainerRef.current.querySelector<HTMLElement>(
+        '[data-active="true"]'
+      );
+      if (activeButton) {
+        activeButton.scrollIntoView({
+          behavior: "smooth",
+          block: "nearest",
+          inline: "center",
+        });
+      }
+    }
+  }, [selectedCategory]);
 
   // Update SEO metadata for Products page
   useEffect(() => {
@@ -1387,41 +1422,106 @@ const Products = () => {
           </div>
         </section>
 
-        {/* Category Filter Tabs */}
-        <section className="pt-3 pb-4 border-b bg-background sticky top-0 z-10 shadow-sm">
+        {/* Category Filter Tabs - Horizontally Scrollable */}
+        <section className="pt-2 pb-3 border-b bg-background/95 backdrop-blur-md sticky top-24 md:top-28 z-20 shadow-sm transition-all">
           <div className="container mx-auto px-4">
-            <div className="flex flex-wrap gap-2 justify-center">
-              <Button
-                variant={selectedCategory === null ? "default" : "outline"}
-                onClick={() => setSelectedCategory(null)}
-                className={`rounded-full hover:bg-blue-500 hover:text-white ${selectedCategory === null ? 'bg-black text-white' : ''}`}
+            <div className="relative flex items-center">
+              {/* Left Scroll Button (Desktop/Tablet) */}
+              <button
+                type="button"
+                onClick={() => scrollTabs("left")}
+                aria-label="Scroll categories left"
+                className="hidden sm:flex items-center justify-center h-8 w-8 rounded-full border border-border bg-background/90 text-foreground shadow-sm hover:bg-muted hover:text-primary transition-all flex-shrink-0 mr-2 z-10"
               >
-                All Products
-              </Button>
-              {allCategories.map((category) => (
+                <ChevronLeft className="h-4 w-4" />
+              </button>
+
+              {/* Horizontal Scrollable Categories Container */}
+              <div
+                ref={scrollContainerRef}
+                className="flex items-center gap-2 overflow-x-auto no-scrollbar scroll-smooth flex-nowrap py-1 px-1 w-full"
+              >
                 <Button
-                  key={category}
-                  variant={selectedCategory === category ? "default" : "outline"}
-                  onClick={() => setSelectedCategory(category)}
-                  className={`rounded-full hover:bg-blue-500 hover:text-white ${selectedCategory === category ? 'bg-black text-white' : ''}`}
+                  data-active={selectedCategory === null ? "true" : "false"}
+                  variant={selectedCategory === null ? "default" : "outline"}
+                  onClick={() => {
+                    setSelectedCategory(null);
+                    setSearchParams({});
+                  }}
+                  className={`rounded-full flex-shrink-0 whitespace-nowrap text-xs md:text-sm px-4 py-2 hover:bg-blue-500 hover:text-white transition-all shadow-sm ${
+                    selectedCategory === null ? "bg-black text-white" : ""
+                  }`}
                 >
-                  {category === "SMC" ? (
-                    <img
-                      src={smcLogo}
-                      alt="SMC"
-                      className="h-6 w-auto"
-                    />
-                  ) : category === "LEUZE" ? (
-                    <img
-                      src={leuzeLogo}
-                      alt="LEUZE"
-                      className="h-6 w-auto"
-                    />
-                  ) : (
-                    category
-                  )}
+                  All Products
                 </Button>
-              ))}
+                {allCategories.map((category) => (
+                  <Button
+                    key={category}
+                    data-active={selectedCategory === category ? "true" : "false"}
+                    variant={selectedCategory === category ? "default" : "outline"}
+                    onClick={() => {
+                      setSelectedCategory(category);
+                      setSearchParams({ category });
+                    }}
+                    className={`rounded-full flex-shrink-0 whitespace-nowrap text-xs md:text-sm px-4 py-2 hover:bg-blue-500 hover:text-white transition-all shadow-sm ${
+                      selectedCategory === category ? "bg-black text-white" : ""
+                    }`}
+                  >
+                    {category === "SMC" ? (
+                      <img
+                        src={smcLogo}
+                        alt="SMC"
+                        className="h-6 w-auto"
+                      />
+                    ) : category === "LEUZE" ? (
+                      <img
+                        src={leuzeLogo}
+                        alt="LEUZE"
+                        className="h-6 w-auto"
+                      />
+                    ) : (
+                      category
+                    )}
+                  </Button>
+                ))}
+                {/* Partner Brands directly at the first level */}
+                {brandCatalog.map((brand) => {
+                  const isBrandActive =
+                    selectedCategory?.toLowerCase() === brand.name.toLowerCase() ||
+                    selectedCategory?.toLowerCase() === brand.id;
+                  return (
+                    <Button
+                      key={brand.id}
+                      data-active={isBrandActive ? "true" : "false"}
+                      variant={isBrandActive ? "default" : "outline"}
+                      onClick={() => {
+                        setSelectedCategory(brand.name);
+                        setSearchParams({ category: brand.name });
+                      }}
+                      className={`rounded-full flex-shrink-0 whitespace-nowrap text-xs md:text-sm px-4 py-2 hover:bg-blue-500 hover:text-white transition-all shadow-sm flex items-center gap-2 ${
+                        isBrandActive ? "bg-black text-white" : ""
+                      }`}
+                    >
+                      <img
+                        src={brand.logo}
+                        alt={brand.name}
+                        className="h-4 w-auto max-w-[55px] object-contain bg-white rounded px-1 py-0.5"
+                      />
+                      <span>{brand.name}</span>
+                    </Button>
+                  );
+                })}
+              </div>
+
+              {/* Right Scroll Button (Desktop/Tablet) */}
+              <button
+                type="button"
+                onClick={() => scrollTabs("right")}
+                aria-label="Scroll categories right"
+                className="hidden sm:flex items-center justify-center h-8 w-8 rounded-full border border-border bg-background/90 text-foreground shadow-sm hover:bg-muted hover:text-primary transition-all flex-shrink-0 ml-2 z-10"
+              >
+                <ChevronRight className="h-4 w-4" />
+              </button>
             </div>
           </div>
         </section>
@@ -1505,10 +1605,10 @@ const Products = () => {
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: index * 0.05 }}
                           >
-                            <Card className="h-full hover-lift cursor-pointer group overflow-hidden flex flex-col">
+                            <Card className="h-full hover-lift cursor-pointer group overflow-hidden flex flex-col bg-card border border-border/80 rounded-2xl shadow-sm hover:shadow-md transition-all">
 
                               {isPlcIqr ? (
-                                <div className="w-full h-48 sm:h-56 md:h-64 bg-white flex items-center justify-center p-4 overflow-hidden">
+                                <div className="w-full h-48 sm:h-56 md:h-64 bg-white flex items-center justify-center p-4 overflow-hidden border-b border-border/40">
                                   <img
                                     src={product.image}
                                     alt={product.title}
@@ -1522,33 +1622,37 @@ const Products = () => {
                                 </div>
                               ) : (
                                 <AspectRatio ratio={16 / 9} className="bg-white">
-                                  <img
-                                    src={product.image}
-                                    alt={product.title}
-                                    loading="lazy"
-                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                    onError={(e) => {
-                                      const target = e.target as HTMLImageElement;
-                                      target.src = "/placeholder.svg";
-                                    }}
-                                  />
+                                  <div className="w-full h-full bg-white flex items-center justify-center p-6 border-b border-border/40 overflow-hidden">
+                                    <img
+                                      src={product.image}
+                                      alt={product.title}
+                                      loading="lazy"
+                                      className="max-w-full max-h-full w-auto h-auto object-contain group-hover:scale-105 transition-transform duration-500"
+                                      onError={(e) => {
+                                        const target = e.target as HTMLImageElement;
+                                        target.src = "/placeholder.svg";
+                                      }}
+                                    />
+                                  </div>
                                 </AspectRatio>
                               )}
 
-                              <CardContent className="p-6 flex-1 flex flex-col">
-                                <Badge variant="secondary" className="mb-4">
-                                  {product.subcategory || product.category}
-                                </Badge>
+                              <CardContent className="p-6 flex-1 flex flex-col justify-between">
+                                <div>
+                                  <Badge className="bg-[#1e293b] text-white hover:bg-[#1e293b] text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 w-fit">
+                                    {product.subcategory || product.category}
+                                  </Badge>
 
-                                <h3 className="font-display text-xl font-semibold mb-3 group-hover:text-primary transition-colors">
-                                  {product.title}
-                                </h3>
+                                  <h3 className="font-display text-xl font-bold mb-3 text-red-600 group-hover:text-red-700 transition-colors">
+                                    {product.title}
+                                  </h3>
 
-                                <p className="text-muted-foreground mb-4 text-sm flex-1">
-                                  {product.description}
-                                </p>
+                                  <p className="text-muted-foreground mb-4 text-sm flex-1 leading-relaxed">
+                                    {product.description}
+                                  </p>
+                                </div>
 
-                                <Button size="sm" className="w-full" asChild>
+                                <Button size="sm" className="w-full bg-red-600 hover:bg-red-700 text-white font-medium py-2.5 rounded-xl flex items-center justify-center gap-2 mt-auto text-sm shadow-sm" asChild>
                                   <a
                                     href={getProductUrl(product)}
                                     target="_blank"
@@ -1571,13 +1675,155 @@ const Products = () => {
               </motion.div>
             ))}
 
-            {organizedSections.length === 0 && (
-              <div className="text-center py-16">
-                <p className="text-muted-foreground text-lg">
-                  No products found in this category.
-                </p>
-              </div>
-            )}
+            {(() => {
+              const isPartnerBrandSelected = brandCatalog.some(
+                (b) =>
+                  selectedCategory &&
+                  (b.id === selectedCategory.toLowerCase() ||
+                    b.name.toLowerCase() === selectedCategory.toLowerCase())
+              );
+
+              return (
+                <>
+                  {organizedSections.length === 0 && !isPartnerBrandSelected && (
+                    <div className="text-center py-16">
+                      <p className="text-muted-foreground text-lg">
+                        No products found in this category.
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Partner Brand Sections at First Level */}
+                  {brandCatalog
+                    .filter(
+                      (brand) =>
+                        !selectedCategory ||
+                        selectedCategory.toLowerCase() === brand.id ||
+                        selectedCategory.toLowerCase() === brand.name.toLowerCase()
+                    )
+                    .map((brand, brandIdx) => (
+                      <motion.div
+                        key={brand.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: brandIdx * 0.05 }}
+                        className="space-y-6 pt-4"
+                      >
+                        {/* Brand Section Header */}
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-border/60">
+                          <div className="flex items-center gap-3.5">
+                            <div className="h-12 w-24 bg-white border border-border/70 rounded-xl p-2 flex items-center justify-center shadow-sm flex-shrink-0">
+                              <img
+                                src={brand.logo}
+                                alt={brand.name}
+                                className="max-h-full max-w-full object-contain"
+                              />
+                            </div>
+                            <div>
+                              <div className="flex items-center gap-2">
+                                <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground">
+                                  {brand.fullName}
+                                </h2>
+                                <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-primary/10 text-primary">
+                                  {brand.products.length} Products
+                                </span>
+                              </div>
+                              <p className="text-xs md:text-sm text-muted-foreground mt-0.5">
+                                {brand.tagline}
+                              </p>
+                            </div>
+                          </div>
+
+                          <a
+                            href={brand.websiteUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold border border-primary/30 text-primary hover:bg-primary hover:text-white transition-all shadow-sm flex-shrink-0 w-fit"
+                          >
+                            <span>Visit Brand Hub</span>
+                            <ExternalLink className="h-3.5 w-3.5" />
+                          </a>
+                        </div>
+
+                        {/* Product Cards Grid matching user screenshot */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                          {brand.products.map((product, pIdx) => {
+                            const categoryBadge = getBrandProductCategory(product, brand.name);
+                            const description = getBrandProductDescription(product, brand.name);
+
+                            return (
+                              <motion.div
+                                key={`${brand.id}-${product.id}-${pIdx}`}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: pIdx * 0.04 }}
+                              >
+                                <Card className="h-full hover-lift cursor-pointer group overflow-hidden flex flex-col bg-card border border-border/80 rounded-2xl shadow-sm hover:shadow-md transition-all">
+                                  {/* Top Image Frame */}
+                                  <AspectRatio ratio={16 / 9} className="bg-white">
+                                    <div className="w-full h-full bg-white flex items-center justify-center p-6 border-b border-border/40 overflow-hidden">
+                                      <img
+                                        src={product.image}
+                                        alt={product.title}
+                                        loading="lazy"
+                                        className="max-w-full max-h-full w-auto h-auto object-contain group-hover:scale-105 transition-transform duration-500"
+                                        onError={(e) => {
+                                          const target = e.target as HTMLImageElement;
+                                          target.src = brand.logo;
+                                          target.className =
+                                            "max-h-16 max-w-[60%] object-contain opacity-70";
+                                        }}
+                                      />
+                                    </div>
+                                  </AspectRatio>
+
+                                  {/* Card Content Body */}
+                                  <CardContent className="p-6 flex-1 flex flex-col justify-between">
+                                    <div>
+                                      {/* Dark Pill Badge */}
+                                      <Badge className="bg-[#1e293b] text-white hover:bg-[#1e293b] text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 w-fit">
+                                        {categoryBadge}
+                                      </Badge>
+
+                                      {/* Red Title */}
+                                      <h3 className="font-display text-xl font-bold mb-3 text-red-600 group-hover:text-red-700 transition-colors">
+                                        {product.title}
+                                      </h3>
+
+                                      {/* Description Text */}
+                                      <p className="text-muted-foreground mb-4 text-sm flex-1 leading-relaxed">
+                                        {description}
+                                      </p>
+                                    </div>
+
+                                    {/* Solid Red Details Button */}
+                                    <Button
+                                      size="sm"
+                                      className="w-full bg-red-600 hover:bg-red-700 text-white font-medium py-2.5 rounded-xl flex items-center justify-center gap-2 mt-auto text-sm shadow-sm"
+                                      asChild
+                                    >
+                                      <a
+                                        href={product.redirectUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                      >
+                                        Details
+                                        <ArrowRight className="ml-2 h-4 w-4" />
+                                      </a>
+                                    </Button>
+                                  </CardContent>
+                                </Card>
+                              </motion.div>
+                            );
+                          })}
+                        </div>
+                      </motion.div>
+                    ))}
+                </>
+              );
+            })()}
           </div>
         </section>
       </main>

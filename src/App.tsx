@@ -18,6 +18,7 @@ import ScadaPage from "./pages/ScadaPage";
 import VfdPage from "./pages/VfdPage";
 import HmiPage from "./pages/HmiPage";
 import AutomationHub from "./pages/AutomationHub";
+import Brands from "./pages/Brands";
 
 const queryClient = new QueryClient();
 
@@ -37,6 +38,8 @@ const App = () => (
             <Route path="/blog/:id" element={<BlogDetail />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/clients" element={<Clients />} />
+            <Route path="/brands" element={<Brands />} />
+            <Route path="/associated-clients" element={<Brands />} />
             <Route path="*" element={<NotFound />} />
 
             <Route path="/plc-system" element={<PlcPage />} />
