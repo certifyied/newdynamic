@@ -51,7 +51,7 @@ const Brands = () => {
         <title>Associated Clients &amp; Partner Brands | Dynamic Control Systems</title>
         <meta
           name="description"
-          content="Explore authorized automation products and components from premier global manufacturers including Delta, Omron, Innovance, Schneider, Lubi, Advantech, Siemens, Nidec, Hiwin, and Baumer."
+          content="Explore authorized automation products and components from premier global manufacturers including Delta, Omron, Inovance, Schneider, Lubi, Advantech, Moxa, Nidec, Hiwin, Baumer, and Cognex."
         />
         <meta property="og:title" content="Associated Clients &amp; Partner Brands | Dynamic Control Systems" />
         <meta
