@@ -1488,7 +1488,8 @@ const Products = () => {
                 {brandCatalog.map((brand) => {
                   const isBrandActive =
                     selectedCategory?.toLowerCase() === brand.name.toLowerCase() ||
-                    selectedCategory?.toLowerCase() === brand.id;
+                    selectedCategory?.toLowerCase() === brand.id ||
+                    (brand.id === "inovance" && (selectedCategory?.toLowerCase() === "inovance" || selectedCategory?.toLowerCase() === "innovance"));
                   return (
                     <Button
                       key={brand.id}
@@ -1680,7 +1681,10 @@ const Products = () => {
                 (b) =>
                   selectedCategory &&
                   (b.id === selectedCategory.toLowerCase() ||
-                    b.name.toLowerCase() === selectedCategory.toLowerCase())
+                    b.name.toLowerCase() === selectedCategory.toLowerCase() ||
+                    (b.id === "inovance" &&
+                      (selectedCategory.toLowerCase() === "inovance" ||
+                        selectedCategory.toLowerCase() === "innovance")))
               );
 
               return (
@@ -1699,7 +1703,10 @@ const Products = () => {
                       (brand) =>
                         !selectedCategory ||
                         selectedCategory.toLowerCase() === brand.id ||
-                        selectedCategory.toLowerCase() === brand.name.toLowerCase()
+                        selectedCategory.toLowerCase() === brand.name.toLowerCase() ||
+                        (brand.id === "inovance" &&
+                          (selectedCategory.toLowerCase() === "inovance" ||
+                            selectedCategory.toLowerCase() === "innovance"))
                     )
                     .map((brand, brandIdx) => (
                       <motion.div

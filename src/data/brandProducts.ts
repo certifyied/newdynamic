@@ -1,15 +1,14 @@
 // Brand logos
 import deltaLogo from "@/assets/brands/delta.png";
 import omronLogo from "@/assets/brands/omron.png";
-import inovanceLogo from "@/assets/brands/inovance.png";
+import inovanceLogo from "@/assets/brands/innovance.png";
 import schneiderLogo from "@/assets/brands/schneider.png";
 import lubiLogo from "@/assets/brands/lubi.png";
 import advantechLogo from "@/assets/brands/advantech.png";
-import moxaLogo from "@/assets/brands/moxa.png";
+import siemensLogo from "@/assets/brands/siemens.png";
 import nidecLogo from "@/assets/brands/nidec.png";
 import hiwinLogo from "@/assets/brands/hiwin.png";
 import baumerLogo from "@/assets/brands/baumer.png";
-import cognexLogo from "@/assets/brands/cognex.png";
 
 // Delta product images
 import delta_plc from "@/assets/brand-products/delta/plc.jpg";
@@ -83,19 +82,11 @@ import advantech_class_i_division_2_solution from "@/assets/brand-products/advan
 import advantech_scada_software_and_srp_solution from "@/assets/brand-products/advantech/scada_software_and_srp_solution.jpg";
 import advantech_industrial_networking_solution from "@/assets/brand-products/advantech/industrial_networking_solution.jpg";
 
-// Moxa product images
-import moxa_ethernet_switch from "@/assets/brand-products/moxa/ethernet-switch.jpg";
-import moxa_media_converter from "@/assets/brand-products/moxa/media-converter.jpg";
-import moxa_serial_to_serial_converters from "@/assets/brand-products/moxa/serial-to-serial-converters.jpg";
-import moxa_protocol_gateways from "@/assets/brand-products/moxa/protocol-gateways.jpg";
-import moxa_usb_to_serial_converters_usb_hubs from "@/assets/brand-products/moxa/usb-to-serial-converters-usb-hubs.jpg";
-import moxa_serial_device_servers from "@/assets/brand-products/moxa/serial-device-servers.jpg";
-import moxa_secure_remote_access from "@/assets/brand-products/moxa/secure-remote-access.jpg";
-import moxa_controllers_ios from "@/assets/brand-products/moxa/controllers-ios.png";
-import moxa_secure_routers from "@/assets/brand-products/moxa/secure-routers.png";
-import moxa_wlan_ap_bridge_client from "@/assets/brand-products/moxa/wlan-ap-bridge-client.jpg";
-import moxa_cellular_gateways_routers from "@/assets/brand-products/moxa/cellular-gateways-routers.jpg";
-import moxa_multiport_serial_boards from "@/assets/brand-products/moxa/multiport-serial-boards.png";
+// Siemens product images
+import siemens_simatic_s7_1200_s7_1500_plc from "@/assets/brand-products/siemens/simatic_s7_plc.png";
+import siemens_simatic_hmi_touch_panels from "@/assets/brand-products/siemens/simatic_hmi.png";
+import siemens_sinamics_variable_frequency_drives from "@/assets/brand-products/siemens/sinamics_vfd.png";
+import siemens_sirius_low_voltage_switchgear_controls from "@/assets/brand-products/siemens/sirius_switchgear.png";
 
 // Nidec product images
 import nidec_precision_worm_gearboxes from "@/assets/brand-products/nidec/precision_worm_gearboxes.png";
@@ -130,12 +121,6 @@ import baumer_ultrasonic_sensor from "@/assets/brand-products/baumer/ultrasonic_
 import baumer_digital_industrial_camera from "@/assets/brand-products/baumer/digital_industrial_camera.jpg";
 import baumer_my_com_switch from "@/assets/brand-products/baumer/my_com_switch.png";
 
-// Cognex product images
-import cognex_machine_vision_system from "@/assets/brand-products/cognex/machine-vision-system.jpg";
-import cognex_barcode_reader from "@/assets/brand-products/cognex/barcode-reader.jpg";
-import cognex_deep_learning from "@/assets/brand-products/cognex/deep-learning.jpg";
-import cognex_vision_software from "@/assets/brand-products/cognex/vision-software.jpg";
-
 export interface BrandProduct {
   id: string;
   title: string;
@@ -162,7 +147,6 @@ export const getBrandProductCategory = (product: BrandProduct, brandName: string
   if (t.includes("VISION") || t.includes("CAMERA") || t.includes("CODE READER") || t.includes("BARCODE")) return "MACHINE VISION & IDENTIFICATION";
   if (t.includes("SAFETY") || t.includes("LIGHT CURTAIN") || t.includes("SCANNER")) return "MACHINE SAFETY SOLUTIONS";
   if (t.includes("ROBOT") || t.includes("AGV") || t.includes("COBOT")) return "ROBOTICS & AGV";
-  if (t.includes("ETHERNET") || (t.includes("SWITCH") && !t.includes("SAFETY") && !t.includes("LIMIT") && !t.includes("GEAR")) || t.includes("GATEWAY") || t.includes("SERIAL DEVICE") || t.includes("CELLULAR") || t.includes("WLAN") || t.includes("MEDIA CONVERTER") || t.includes("ROUTER")) return "INDUSTRIAL NETWORKING & IOT";
   if (t.includes("PANEL") && (t.includes("CONTROL") || t.includes("STARTER") || t.includes("APFC") || t.includes("MCC"))) return "CONTROL & STARTER PANELS";
   if (t.includes("HMI") || (t.includes("PANEL") && !t.includes("PC")) || t.includes("TOUCH")) return "HMI & OPERATOR PANELS";
   if (t.includes("PLC") || (t.includes("CONTROLLER") && !t.includes("TEMP") && !t.includes("PUMP"))) return "PLC & DEDICATED CONTROLLERS";
@@ -170,10 +154,10 @@ export const getBrandProductCategory = (product: BrandProduct, brandName: string
   if (t.includes("SERVO") || t.includes("MOTOR") || t.includes("GEARBOX") || t.includes("GEAR") || t.includes("ACTUATOR") || t.includes("ROTARY TABLE")) return "AC SERVO, MOTORS & GEARS";
   if (t.includes("TEMPERATURE")) return "TEMPERATURE CONTROLLERS";
   if (t.includes("TIMER") || t.includes("COUNTER") || t.includes("TACHOMETER")) return "TIMERS & COUNTERS";
-  if (t.includes("RELAY") || t.includes("CONTACTOR") || t.includes("MCB") || t.includes("SWITCHGEAR") || t.includes("BREAKER") || t.includes("INTERFACING")) return "LOW VOLTAGE SWITCHGEAR";
+  if (t.includes("RELAY") || t.includes("CONTACTOR") || t.includes("MCB") || t.includes("SWITCHGEAR") || t.includes("BREAKER") || t.includes("INTERFACING") || t.includes("SIRIUS")) return "LOW VOLTAGE SWITCHGEAR";
   if (t.includes("SENSOR") || t.includes("ENCODER") || t.includes("TRANSDUCER") || t.includes("TRANSMITTER")) return "INDUSTRIAL SENSORS";
   if (t.includes("SCADA") || t.includes("SOFTWARE")) return "SOFTWARE & SCADA";
-  if (t.includes("PC") || t.includes("CHASSIS") || t.includes("COMPUTER")) return "INDUSTRIAL COMPUTING";
+  if (t.includes("PC") || t.includes("CHASSIS") || t.includes("COMPUTER") || t.includes("GATEWAY") || t.includes("NETWORKING")) return "INDUSTRIAL COMPUTING & IOT";
   if (t.includes("BALL SCREW") || t.includes("LINEAR MOTION") || t.includes("LM GUIDE")) return "LINEAR MOTION & GUIDES";
   if (t.includes("METER") || t.includes("POWER SUPPLY") || t.includes("SMPS") || t.includes("PUMP")) return "POWER & METERS";
   return brandName.toUpperCase();
@@ -257,17 +241,8 @@ export const getBrandProductDescription = (product: BrandProduct, brandName: str
   if (t.includes("VISION SYSTEM")) {
     return "High-speed AI-powered machine vision system supporting multiple high-resolution cameras, deep-learning defect detection, and seamless PLC/robot communication.";
   }
-  if (t.includes("ETHERNET SWITCH")) {
-    return "Industrial-grade managed, unmanaged, and PoE Ethernet switches featuring rugged DIN-rail construction, wide operating temperature, and millisecond network redundancy.";
-  }
-  if (t.includes("SERIAL DEVICE SERVER") || t.includes("PROTOCOL GATEWAY")) {
-    return "Industrial multiport serial device servers and protocol gateways (Modbus, PROFINET, EtherNet/IP, MQTT) bridging legacy field devices into modern SCADA/IIoT networks.";
-  }
-  if (t.includes("CELLULAR") || t.includes("ROUTER")) {
-    return "Industrial 4G/LTE cellular gateways and secure VPN routers engineered with deep packet inspection firewalls, dual SIM redundancy, and cloud remote access.";
-  }
   if (t.includes("SWITCHGEAR") || t.includes("CONTACTOR") || t.includes("MCB") || t.includes("OVERLOAD")) {
-    return "Heavy-duty industrial switchgear products including air circuit breakers (ACB), MCCBs, contactors, and overload relays for reliable power distribution protection.";
+    return `Heavy-duty industrial switchgear products including air circuit breakers (ACB), MCCBs, contactors, and overload relays for reliable power distribution protection.`;
   }
   if (t.includes("HMI")) {
     return `The ${brandName} ${product.title} features an advanced touchscreen interface designed for high-resolution visualization, real-time machine monitoring, and intuitive operator workflow.`;
@@ -466,7 +441,7 @@ export const brandCatalog: BrandInfo[] = [
   },
   {
     id: "inovance",
-    name: "Inovance",
+    name: "Innovance",
     fullName: "Inovance Technology",
     logo: inovanceLogo,
     tagline: "Industrial Automation & Motion Solutions",
@@ -727,84 +702,36 @@ export const brandCatalog: BrandInfo[] = [
     ],
   },
   {
-    id: "moxa",
-    name: "Moxa",
-    fullName: "Moxa Industrial Networking",
-    logo: moxaLogo,
-    tagline: "Reliable Networks & Industrial Edge Connectivity",
-    websiteUrl: "https://www.lubielectronics.com/brands/moxa/",
+    id: "siemens",
+    name: "Siemens",
+    fullName: "Siemens Automation",
+    logo: siemensLogo,
+    tagline: "Industry Automation & Digitalization",
+    websiteUrl: "https://www.siemens.com/global/en/products/automation.html",
     products: [
       {
-        id: "moxa-ethernet-switch",
-        title: "Ethernet Switch (Managed & Unmanaged)",
-        image: moxa_ethernet_switch,
-        redirectUrl: "https://www.lubielectronics.com/brands/moxa/ethernet-switch",
+        id: "siemens-simatic-s7-1200-s7-1500-plc",
+        title: "SIMATIC S7-1200 / S7-1500 PLC",
+        image: siemens_simatic_s7_1200_s7_1500_plc,
+        redirectUrl: "https://www.siemens.com/global/en/products/automation/systems/industrial/plc/simatic-s7.html",
       },
       {
-        id: "moxa-media-converter",
-        title: "Ethernet Media Converters",
-        image: moxa_media_converter,
-        redirectUrl: "https://www.lubielectronics.com/brands/moxa/media-converter",
+        id: "siemens-simatic-hmi-touch-panels",
+        title: "SIMATIC HMI Touch Panels",
+        image: siemens_simatic_hmi_touch_panels,
+        redirectUrl: "https://www.siemens.com/global/en/products/automation/systems/industrial/hmi.html",
       },
       {
-        id: "moxa-serial-to-serial-converters",
-        title: "Serial to Serial Converters",
-        image: moxa_serial_to_serial_converters,
-        redirectUrl: "https://www.lubielectronics.com/brands/moxa/serial-to-serial-converters",
+        id: "siemens-sinamics-variable-frequency-drives",
+        title: "SINAMICS Variable Frequency Drives",
+        image: siemens_sinamics_variable_frequency_drives,
+        redirectUrl: "https://www.siemens.com/global/en/products/automation/drives.html",
       },
       {
-        id: "moxa-protocol-gateways",
-        title: "Protocol Gateways (MGate Series)",
-        image: moxa_protocol_gateways,
-        redirectUrl: "https://www.lubielectronics.com/brands/moxa/protocol-gateways",
-      },
-      {
-        id: "moxa-usb-to-serial-converters-usb-hubs",
-        title: "USB-to-Serial Converters & Hubs (UPort)",
-        image: moxa_usb_to_serial_converters_usb_hubs,
-        redirectUrl: "https://www.lubielectronics.com/brands/moxa/usb-to-serial-converters-usb-hubs",
-      },
-      {
-        id: "moxa-serial-device-servers",
-        title: "Serial Device Servers (NPort Series)",
-        image: moxa_serial_device_servers,
-        redirectUrl: "https://www.lubielectronics.com/brands/moxa/serial-device-servers",
-      },
-      {
-        id: "moxa-secure-remote-access",
-        title: "Secure Remote Access (MRC)",
-        image: moxa_secure_remote_access,
-        redirectUrl: "https://www.lubielectronics.com/brands/moxa/secure-remote-access",
-      },
-      {
-        id: "moxa-controllers-ios",
-        title: "Controllers & Remote I/Os (ioLogik)",
-        image: moxa_controllers_ios,
-        redirectUrl: "https://www.lubielectronics.com/brands/moxa/controllers-ios",
-      },
-      {
-        id: "moxa-secure-routers",
-        title: "Industrial Secure Routers & Firewalls",
-        image: moxa_secure_routers,
-        redirectUrl: "https://www.lubielectronics.com/brands/moxa/secure-routers",
-      },
-      {
-        id: "moxa-wlan-ap-bridge-client",
-        title: "Industrial Wireless AP / Bridge / Client",
-        image: moxa_wlan_ap_bridge_client,
-        redirectUrl: "https://www.lubielectronics.com/brands/moxa/wlan-ap-bridge-client",
-      },
-      {
-        id: "moxa-cellular-gateways-routers",
-        title: "Cellular Gateways & Routers (OnCell)",
-        image: moxa_cellular_gateways_routers,
-        redirectUrl: "https://www.lubielectronics.com/brands/moxa/cellular-gateways-routers",
-      },
-      {
-        id: "moxa-multiport-serial-boards",
-        title: "Multiport Serial Boards (PCIe / PCI)",
-        image: moxa_multiport_serial_boards,
-        redirectUrl: "https://www.lubielectronics.com/brands/moxa/multiport-serial-boards",
+        id: "siemens-sirius-low-voltage-switchgear-controls",
+        title: "SIRIUS Low Voltage Switchgear & Controls",
+        image: siemens_sirius_low_voltage_switchgear_controls,
+        redirectUrl: "https://www.siemens.com/global/en/products/automation/industrial-controls.html",
       },
     ],
   },
@@ -997,40 +924,6 @@ export const brandCatalog: BrandInfo[] = [
         title: "My-Com Switch",
         image: baumer_my_com_switch,
         redirectUrl: "https://www.lubielectronics.com/brands/baumer/my-com-switch",
-      },
-    ],
-  },
-  {
-    id: "cognex",
-    name: "Cognex",
-    fullName: "Cognex Corporation",
-    logo: cognexLogo,
-    tagline: "Machine Vision & Industrial Barcode Readers",
-    websiteUrl: "https://www.lubielectronics.com/brands/cognex/",
-    products: [
-      {
-        id: "cognex-machine-vision-system",
-        title: "Machine Vision System (In-Sight 2D & 3D)",
-        image: cognex_machine_vision_system,
-        redirectUrl: "https://www.lubielectronics.com/brands/cognex/machine-vision-system",
-      },
-      {
-        id: "cognex-barcode-reader",
-        title: "BarCode Reader & Verifier (DataMan)",
-        image: cognex_barcode_reader,
-        redirectUrl: "https://www.lubielectronics.com/brands/cognex/barcode-reader",
-      },
-      {
-        id: "cognex-deep-learning",
-        title: "Deep Learning Vision AI Solution",
-        image: cognex_deep_learning,
-        redirectUrl: "https://www.lubielectronics.com/brands/cognex/deep-learning",
-      },
-      {
-        id: "cognex-vision-software",
-        title: "Vision Software (VisionPro & Designer)",
-        image: cognex_vision_software,
-        redirectUrl: "https://www.lubielectronics.com/brands/cognex/vision-software",
       },
     ],
   },

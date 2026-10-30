@@ -21,7 +21,7 @@ import innovanceLogo from "@/assets/brands/innovance.png";
 import schneiderLogo from "@/assets/brands/schneider.png";
 import lubiLogo from "@/assets/brands/lubi.png";
 import advantechLogo from "@/assets/brands/advantech.png";
-import moxaLogo from "@/assets/brands/moxa.png";
+import siemensLogo from "@/assets/brands/siemens.png";
 import nidecLogo from "@/assets/brands/nidec.png";
 import hiwinLogo from "@/assets/brands/hiwin.png";
 import baumerLogo from "@/assets/brands/baumer.png";
@@ -57,7 +57,7 @@ const partnerBrands: PartnerBrand[] = [
   { name: "Schneider", logo: schneiderLogo },
   { name: "Lubi", logo: lubiLogo },
   { name: "Advantech", logo: advantechLogo },
-  { name: "Moxa", logo: moxaLogo },
+  { name: "Siemens", logo: siemensLogo },
   { name: "Nidec", logo: nidecLogo },
   { name: "Hiwin", logo: hiwinLogo },
   { name: "Baumer", logo: baumerLogo },

@@ -15,18 +15,21 @@ import { useSearchParams, Link } from "react-router-dom";
 const Brands = () => {
   useCanonical();
   const [searchParams, setSearchParams] = useSearchParams();
+  const normalizeBrandId = (id?: string | null): string => {
+    if (!id) return "delta";
+    const lower = id.toLowerCase();
+    if (lower === "innovance") return "inovance";
+    return brandCatalog.some((b) => b.id === lower) ? lower : "delta";
+  };
+
   const [selectedBrandId, setSelectedBrandId] = useState<string>(() => {
-    const fromUrl = searchParams.get("brand");
-    if (fromUrl && brandCatalog.some((b) => b.id === fromUrl.toLowerCase())) {
-      return fromUrl.toLowerCase();
-    }
-    return "delta";
+    return normalizeBrandId(searchParams.get("brand"));
   });
 
   useEffect(() => {
     const fromUrl = searchParams.get("brand");
-    if (fromUrl && brandCatalog.some((b) => b.id === fromUrl.toLowerCase())) {
-      setSelectedBrandId(fromUrl.toLowerCase());
+    if (fromUrl) {
+      setSelectedBrandId(normalizeBrandId(fromUrl));
     }
   }, [searchParams]);
 
@@ -51,7 +54,7 @@ const Brands = () => {
         <title>Associated Clients &amp; Partner Brands | Dynamic Control Systems</title>
         <meta
           name="description"
-          content="Explore authorized automation products and components from premier global manufacturers including Delta, Omron, Inovance, Schneider, Lubi, Advantech, Moxa, Nidec, Hiwin, Baumer, and Cognex."
+          content="Explore authorized automation products and components from premier global manufacturers including Delta, Omron, Innovance, Schneider, Lubi, Advantech, Siemens, Nidec, Hiwin, and Baumer."
         />
         <meta property="og:title" content="Associated Clients &amp; Partner Brands | Dynamic Control Systems" />
         <meta
