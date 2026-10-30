@@ -54,7 +54,7 @@ const Brands = () => {
         <title>Associated Clients &amp; Partner Brands | Dynamic Control Systems</title>
         <meta
           name="description"
-          content="Explore authorized automation products and components from premier global manufacturers including Delta, Omron, Innovance, Schneider, Lubi, Advantech, Siemens, Nidec, Hiwin, and Baumer."
+          content="Explore authorized automation products and components from premier global manufacturers including Delta, Omron, Innovance, Schneider, Lubi, Advantech, Nidec, Hiwin, and Baumer."
         />
         <meta property="og:title" content="Associated Clients &amp; Partner Brands | Dynamic Control Systems" />
         <meta
@@ -93,7 +93,7 @@ const Brands = () => {
         {/* Brand Selector & Components Section */}
         <section className="py-12 md:py-16">
           <div className="container mx-auto px-4">
-            {/* 10 Brands Selector Grid */}
+            {/* 9 Brands Selector Grid */}
             <div className="mb-10">
               <div className="flex items-center justify-between mb-4 px-1">
                 <h2 className="font-display text-lg md:text-xl font-bold text-foreground flex items-center gap-2">
@@ -101,7 +101,7 @@ const Brands = () => {
                   <span>Select an Automation Brand</span>
                 </h2>
                 <span className="text-xs text-muted-foreground font-medium">
-                  10 Global Partners Available
+                  {brandCatalog.length} Global Partners Available
                 </span>
               </div>
 

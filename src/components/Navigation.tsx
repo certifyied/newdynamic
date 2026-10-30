@@ -21,7 +21,6 @@ import innovanceLogo from "@/assets/brands/innovance.png";
 import schneiderLogo from "@/assets/brands/schneider.png";
 import lubiLogo from "@/assets/brands/lubi.png";
 import advantechLogo from "@/assets/brands/advantech.png";
-import siemensLogo from "@/assets/brands/siemens.png";
 import nidecLogo from "@/assets/brands/nidec.png";
 import hiwinLogo from "@/assets/brands/hiwin.png";
 import baumerLogo from "@/assets/brands/baumer.png";
@@ -57,7 +56,6 @@ const partnerBrands: PartnerBrand[] = [
   { name: "Schneider", logo: schneiderLogo },
   { name: "Lubi", logo: lubiLogo },
   { name: "Advantech", logo: advantechLogo },
-  { name: "Siemens", logo: siemensLogo },
   { name: "Nidec", logo: nidecLogo },
   { name: "Hiwin", logo: hiwinLogo },
   { name: "Baumer", logo: baumerLogo },
@@ -276,8 +274,8 @@ const Navigation = () => {
                                   </Link>
                                 </div>
 
-                                {/* 10 Brands Cards Grid (5 columns x 2 rows) */}
-                                <div className="grid grid-cols-5 gap-2">
+                                {/* 9 Brands Cards Grid (3 columns x 3 rows) */}
+                                <div className="grid grid-cols-3 gap-2">
                                   {partnerBrands.map((brand) => (
                                     <Link
                                       key={brand.name}

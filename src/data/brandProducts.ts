@@ -5,7 +5,6 @@ import inovanceLogo from "@/assets/brands/innovance.png";
 import schneiderLogo from "@/assets/brands/schneider.png";
 import lubiLogo from "@/assets/brands/lubi.png";
 import advantechLogo from "@/assets/brands/advantech.png";
-import siemensLogo from "@/assets/brands/siemens.png";
 import nidecLogo from "@/assets/brands/nidec.png";
 import hiwinLogo from "@/assets/brands/hiwin.png";
 import baumerLogo from "@/assets/brands/baumer.png";
@@ -81,12 +80,6 @@ import advantech_intelligent_transportation_system from "@/assets/brand-products
 import advantech_class_i_division_2_solution from "@/assets/brand-products/advantech/class_i_division_2_solution.jpg";
 import advantech_scada_software_and_srp_solution from "@/assets/brand-products/advantech/scada_software_and_srp_solution.jpg";
 import advantech_industrial_networking_solution from "@/assets/brand-products/advantech/industrial_networking_solution.jpg";
-
-// Siemens product images
-import siemens_simatic_s7_1200_s7_1500_plc from "@/assets/brand-products/siemens/simatic_s7_plc.png";
-import siemens_simatic_hmi_touch_panels from "@/assets/brand-products/siemens/simatic_hmi.png";
-import siemens_sinamics_variable_frequency_drives from "@/assets/brand-products/siemens/sinamics_vfd.png";
-import siemens_sirius_low_voltage_switchgear_controls from "@/assets/brand-products/siemens/sirius_switchgear.png";
 
 // Nidec product images
 import nidec_precision_worm_gearboxes from "@/assets/brand-products/nidec/precision_worm_gearboxes.png";
@@ -698,40 +691,6 @@ export const brandCatalog: BrandInfo[] = [
         title: "Industrial Networking Solution",
         image: advantech_industrial_networking_solution,
         redirectUrl: "https://www.lubielectronics.com/brands/advantech/industrial-networking-solution",
-      },
-    ],
-  },
-  {
-    id: "siemens",
-    name: "Siemens",
-    fullName: "Siemens Automation",
-    logo: siemensLogo,
-    tagline: "Industry Automation & Digitalization",
-    websiteUrl: "https://www.siemens.com/global/en/products/automation.html",
-    products: [
-      {
-        id: "siemens-simatic-s7-1200-s7-1500-plc",
-        title: "SIMATIC S7-1200 / S7-1500 PLC",
-        image: siemens_simatic_s7_1200_s7_1500_plc,
-        redirectUrl: "https://www.siemens.com/global/en/products/automation/systems/industrial/plc/simatic-s7.html",
-      },
-      {
-        id: "siemens-simatic-hmi-touch-panels",
-        title: "SIMATIC HMI Touch Panels",
-        image: siemens_simatic_hmi_touch_panels,
-        redirectUrl: "https://www.siemens.com/global/en/products/automation/systems/industrial/hmi.html",
-      },
-      {
-        id: "siemens-sinamics-variable-frequency-drives",
-        title: "SINAMICS Variable Frequency Drives",
-        image: siemens_sinamics_variable_frequency_drives,
-        redirectUrl: "https://www.siemens.com/global/en/products/automation/drives.html",
-      },
-      {
-        id: "siemens-sirius-low-voltage-switchgear-controls",
-        title: "SIRIUS Low Voltage Switchgear & Controls",
-        image: siemens_sirius_low_voltage_switchgear_controls,
-        redirectUrl: "https://www.siemens.com/global/en/products/automation/industrial-controls.html",
       },
     ],
   },
