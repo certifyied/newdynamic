@@ -136,13 +136,13 @@ const Navigation = () => {
       }`}
     >
       <div className="container mx-auto px-4 relative">
-        <div className="flex items-center justify-between h-24 md:h-28">
+        <div className="flex items-center justify-between h-20 sm:h-24 md:h-28">
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <img
               src={dynamicLogo}
               alt="Dynamic Control Systems"
-              className="h-24 sm:h-28 md:h-32 lg:h-40 xl:h-44 w-auto flex-shrink-0 object-contain"
+              className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto flex-shrink-0 object-contain py-1"
             />
           </Link>
 

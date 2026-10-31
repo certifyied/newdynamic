@@ -102,23 +102,23 @@ const ServicesSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-background">
+    <section className="py-12 md:py-20 bg-background">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4"
+          className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 md:mb-12 gap-4"
         >
           <div>
-            <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary text-sm font-semibold rounded-full mb-3 tracking-wide uppercase">
+            <span className="inline-block px-3.5 py-1 bg-primary/10 text-primary text-xs sm:text-sm font-semibold rounded-full mb-3 tracking-wide uppercase">
               End-to-End Capabilities
             </span>
-            <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
+            <h2 className="font-display text-3xl md:text-5xl font-bold mb-3 md:mb-4">
               Our Services & Solutions
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl leading-relaxed">
               Comprehensive industrial automation, robotics, control panel manufacturing, and engineering services powered by decades of industry expertise across Kerala and beyond.
             </p>
           </div>

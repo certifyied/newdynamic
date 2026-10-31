@@ -70,18 +70,18 @@ const ProductCarousel = () => {
   ];
 
   return (
-    <section className="py-20 bg-muted/30">
+    <section className="py-12 md:py-20 bg-muted/30">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-8 md:mb-12"
         >
-          <p className="text-xl text-black max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl font-medium text-foreground/90 max-w-2xl mx-auto">
             "Comprehensive solutions across diverse industries, powered by decades of expertise"
-            </p>
+          </p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

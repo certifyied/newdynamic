@@ -21,19 +21,19 @@ const MissionSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-secondary text-secondary-foreground">
+    <section className="py-12 md:py-20 bg-secondary text-secondary-foreground">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-10 md:mb-16"
         >
-          <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="font-display text-3xl md:text-5xl font-bold mb-3 md:mb-4">
             Changes for the Better
           </h2>
-          <p className="text-xl text-secondary-foreground/80 max-w-2xl mx-auto">
+          <p className="text-base sm:text-xl text-secondary-foreground/80 max-w-2xl mx-auto">
             Our commitment to excellence and innovation shapes a better tomorrow
           </p>
         </motion.div>
