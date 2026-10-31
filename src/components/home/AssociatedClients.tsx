@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { brandCatalog, BrandInfo } from "@/data/brandProducts";
-import { ExternalLink, Layers } from "lucide-react";
+import { Layers } from "lucide-react";
 import { useSearchParams } from "react-router-dom";
 
 const AssociatedClients = () => {
@@ -147,42 +147,6 @@ const AssociatedClients = () => {
 
         {/* Selected Brand Products Showcase */}
         <div className="bg-card border border-border/80 rounded-2xl p-5 md:p-8 shadow-sm">
-          {/* Active Brand Header */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 mb-6 border-b border-border/60">
-            <div className="flex items-center gap-3.5">
-              <div className="h-12 w-20 md:h-14 md:w-28 bg-white border border-border/70 rounded-xl p-2 flex items-center justify-center shadow-sm flex-shrink-0">
-                <img
-                  src={activeBrand.logo}
-                  alt={activeBrand.name}
-                  className="max-h-full max-w-full object-contain"
-                />
-              </div>
-              <div>
-                <div className="flex items-center gap-2">
-                  <h3 className="font-display text-xl md:text-2xl font-bold text-foreground">
-                    {activeBrand.fullName}
-                  </h3>
-                  <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-primary/10 text-primary">
-                    {activeBrand.products.length} Products
-                  </span>
-                </div>
-                <p className="text-xs md:text-sm text-muted-foreground mt-0.5">
-                  {activeBrand.tagline}
-                </p>
-              </div>
-            </div>
-
-            <a
-              href={activeBrand.websiteUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl text-xs md:text-sm font-semibold border border-primary/30 bg-primary/5 text-primary hover:bg-primary hover:text-primary-foreground transition-all shadow-sm flex-shrink-0"
-            >
-              <span>Visit Brand Hub</span>
-              <ExternalLink className="h-4 w-4" />
-            </a>
-          </div>
-
           {/* Product Cards Grid with Smooth Transition */}
           <AnimatePresence mode="wait">
             <motion.div

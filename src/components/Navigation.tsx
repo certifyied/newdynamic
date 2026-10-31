@@ -142,7 +142,7 @@ const Navigation = () => {
             <img
               src={dynamicLogo}
               alt="Dynamic Control Systems"
-              className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto flex-shrink-0 object-contain py-1"
+              className="h-11 sm:h-14 md:h-16 lg:h-20 max-w-[65vw] sm:max-w-none w-auto flex-shrink-0 object-contain"
             />
           </Link>
 

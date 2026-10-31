@@ -7,7 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { ArrowRight, ChevronLeft, ChevronRight, ExternalLink, Layers } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, Layers } from "lucide-react";
 import { useSearchParams } from "react-router-dom";
 import { brandCatalog, getBrandProductCategory, getBrandProductDescription } from "@/data/brandProducts";
 
@@ -1717,42 +1717,6 @@ const Products = () => {
                         transition={{ duration: 0.6, delay: brandIdx * 0.05 }}
                         className="space-y-6 pt-4"
                       >
-                        {/* Brand Section Header */}
-                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-border/60">
-                          <div className="flex items-center gap-3.5">
-                            <div className="h-12 w-24 bg-white border border-border/70 rounded-xl p-2 flex items-center justify-center shadow-sm flex-shrink-0">
-                              <img
-                                src={brand.logo}
-                                alt={brand.name}
-                                className="max-h-full max-w-full object-contain"
-                              />
-                            </div>
-                            <div>
-                              <div className="flex items-center gap-2">
-                                <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground">
-                                  {brand.fullName}
-                                </h2>
-                                <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-primary/10 text-primary">
-                                  {brand.products.length} Products
-                                </span>
-                              </div>
-                              <p className="text-xs md:text-sm text-muted-foreground mt-0.5">
-                                {brand.tagline}
-                              </p>
-                            </div>
-                          </div>
-
-                          <a
-                            href={brand.websiteUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold border border-primary/30 text-primary hover:bg-primary hover:text-white transition-all shadow-sm flex-shrink-0 w-fit"
-                          >
-                            <span>Visit Brand Hub</span>
-                            <ExternalLink className="h-3.5 w-3.5" />
-                          </a>
-                        </div>
-
                         {/* Product Cards Grid matching user screenshot */}
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                           {brand.products.map((product, pIdx) => {
