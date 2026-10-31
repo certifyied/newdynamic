@@ -12,18 +12,18 @@ import {
   Sparkles,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import dynamicLogo from "@/assets/new_dynamic_logo.png";
+import dynamicLogo from "@/assets/new_dynamic_logo.webp";
 
 // Brand logos for mega-menu and mobile drawer
-import deltaLogo from "@/assets/brands/delta.png";
-import omronLogo from "@/assets/brands/omron.png";
-import innovanceLogo from "@/assets/brands/innovance.png";
-import schneiderLogo from "@/assets/brands/schneider.png";
-import lubiLogo from "@/assets/brands/lubi.png";
-import advantechLogo from "@/assets/brands/advantech.png";
-import nidecLogo from "@/assets/brands/nidec.png";
-import hiwinLogo from "@/assets/brands/hiwin.png";
-import baumerLogo from "@/assets/brands/baumer.png";
+import deltaLogo from "@/assets/brands/delta.webp";
+import omronLogo from "@/assets/brands/omron.webp";
+import innovanceLogo from "@/assets/brands/innovance.webp";
+import schneiderLogo from "@/assets/brands/schneider.webp";
+import lubiLogo from "@/assets/brands/lubi.webp";
+import advantechLogo from "@/assets/brands/advantech.webp";
+import nidecLogo from "@/assets/brands/nidec.webp";
+import hiwinLogo from "@/assets/brands/hiwin.webp";
+import baumerLogo from "@/assets/brands/baumer.webp";
 
 interface ProductCategory {
   name: string;
@@ -136,13 +136,15 @@ const Navigation = () => {
       }`}
     >
       <div className="container mx-auto px-4 relative">
-        <div className="flex items-center justify-between h-20 sm:h-24 md:h-28">
+        <div className="flex items-center justify-between h-20 sm:h-24 md:h-20 lg:h-22">
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <img
               src={dynamicLogo}
               alt="Dynamic Control Systems"
-              className="h-11 sm:h-14 md:h-16 lg:h-20 max-w-[65vw] sm:max-w-none w-auto flex-shrink-0 object-contain"
+              className="h-11 sm:h-14 md:h-12 lg:h-14 max-w-[65vw] sm:max-w-none w-auto flex-shrink-0 object-contain"
+              loading="eager"
+              decoding="async"
             />
           </Link>
 

@@ -1,13 +1,13 @@
 // Brand logos
-import deltaLogo from "@/assets/brands/delta.png";
-import omronLogo from "@/assets/brands/omron.png";
-import inovanceLogo from "@/assets/brands/innovance.png";
-import schneiderLogo from "@/assets/brands/schneider.png";
-import lubiLogo from "@/assets/brands/lubi.png";
-import advantechLogo from "@/assets/brands/advantech.png";
-import nidecLogo from "@/assets/brands/nidec.png";
-import hiwinLogo from "@/assets/brands/hiwin.png";
-import baumerLogo from "@/assets/brands/baumer.png";
+import deltaLogo from "@/assets/brands/delta.webp";
+import omronLogo from "@/assets/brands/omron.webp";
+import inovanceLogo from "@/assets/brands/innovance.webp";
+import schneiderLogo from "@/assets/brands/schneider.webp";
+import lubiLogo from "@/assets/brands/lubi.webp";
+import advantechLogo from "@/assets/brands/advantech.webp";
+import nidecLogo from "@/assets/brands/nidec.webp";
+import hiwinLogo from "@/assets/brands/hiwin.webp";
+import baumerLogo from "@/assets/brands/baumer.webp";
 
 // Delta product images
 import delta_plc from "@/assets/brand-products/delta/plc.jpg";
