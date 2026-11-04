@@ -1717,22 +1717,20 @@ const Products = () => {
                                 <Card className="h-full hover-lift cursor-pointer group overflow-hidden flex flex-col bg-card border border-border/80 rounded-2xl shadow-sm hover:shadow-md transition-all">
                                   {/* Top Image Frame */}
                                   <AspectRatio ratio={16 / 9} className="bg-white border-b border-border/40 overflow-hidden">
-                                    <img
-                                      src={product.image}
-                                      alt={product.title}
-                                      loading="lazy"
-                                      className={`w-full h-full group-hover:scale-105 transition-transform duration-500 ${
-                                        product.imageFit === "contain"
-                                          ? "object-contain p-2"
-                                          : "object-cover"
-                                      }`}
-                                      onError={(e) => {
-                                        const target = e.target as HTMLImageElement;
-                                        target.src = brand.logo;
-                                        target.className =
-                                          "max-h-16 max-w-[60%] object-contain opacity-70 m-auto";
-                                      }}
-                                    />
+                                    <div className="w-full h-full bg-white flex items-center justify-center p-3 overflow-hidden">
+                                      <img
+                                        src={product.image}
+                                        alt={product.title}
+                                        loading="lazy"
+                                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                                        onError={(e) => {
+                                          const target = e.target as HTMLImageElement;
+                                          target.src = brand.logo;
+                                          target.className =
+                                            "max-h-16 max-w-[60%] object-contain opacity-70 m-auto";
+                                        }}
+                                      />
+                                    </div>
                                   </AspectRatio>
 
                                   {/* Card Content Body */}
