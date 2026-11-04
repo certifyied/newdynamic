@@ -1599,12 +1599,12 @@ const Products = () => {
                             <Card className="h-full hover-lift cursor-pointer group overflow-hidden flex flex-col bg-card border border-border/80 rounded-2xl shadow-sm hover:shadow-md transition-all">
 
                               {isPlcIqr ? (
-                                <div className="w-full h-48 sm:h-56 md:h-64 bg-white flex items-center justify-center p-4 overflow-hidden border-b border-border/40">
+                                <div className="w-full h-56 sm:h-64 md:h-72 bg-white flex items-center justify-center overflow-hidden border-b border-border/40">
                                   <img
                                     src={product.image}
                                     alt={product.title}
                                     loading="lazy"
-                                    className="max-w-full max-h-full w-auto h-auto object-contain group-hover:scale-105 transition-transform duration-500"
+                                    className="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-500"
                                     onError={(e) => {
                                       const target = e.target as HTMLImageElement;
                                       target.src = "/placeholder.svg";
@@ -1612,19 +1612,17 @@ const Products = () => {
                                   />
                                 </div>
                               ) : (
-                                <AspectRatio ratio={16 / 9} className="bg-white">
-                                  <div className="w-full h-full bg-white flex items-center justify-center p-6 border-b border-border/40 overflow-hidden">
-                                    <img
-                                      src={product.image}
-                                      alt={product.title}
-                                      loading="lazy"
-                                      className="max-w-full max-h-full w-auto h-auto object-contain group-hover:scale-105 transition-transform duration-500"
-                                      onError={(e) => {
-                                        const target = e.target as HTMLImageElement;
-                                        target.src = "/placeholder.svg";
-                                      }}
-                                    />
-                                  </div>
+                                <AspectRatio ratio={16 / 9} className="bg-white border-b border-border/40 overflow-hidden">
+                                  <img
+                                    src={product.image}
+                                    alt={product.title}
+                                    loading="lazy"
+                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                    onError={(e) => {
+                                      const target = e.target as HTMLImageElement;
+                                      target.src = "/placeholder.svg";
+                                    }}
+                                  />
                                 </AspectRatio>
                               )}
 
@@ -1707,21 +1705,19 @@ const Products = () => {
                               >
                                 <Card className="h-full hover-lift cursor-pointer group overflow-hidden flex flex-col bg-card border border-border/80 rounded-2xl shadow-sm hover:shadow-md transition-all">
                                   {/* Top Image Frame */}
-                                  <AspectRatio ratio={16 / 9} className="bg-white">
-                                    <div className="w-full h-full bg-white flex items-center justify-center p-6 border-b border-border/40 overflow-hidden">
-                                      <img
-                                        src={product.image}
-                                        alt={product.title}
-                                        loading="lazy"
-                                        className="max-w-full max-h-full w-auto h-auto object-contain group-hover:scale-105 transition-transform duration-500"
-                                        onError={(e) => {
-                                          const target = e.target as HTMLImageElement;
-                                          target.src = brand.logo;
-                                          target.className =
-                                            "max-h-16 max-w-[60%] object-contain opacity-70";
-                                        }}
-                                      />
-                                    </div>
+                                  <AspectRatio ratio={16 / 9} className="bg-white border-b border-border/40 overflow-hidden">
+                                    <img
+                                      src={product.image}
+                                      alt={product.title}
+                                      loading="lazy"
+                                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                      onError={(e) => {
+                                        const target = e.target as HTMLImageElement;
+                                        target.src = brand.logo;
+                                        target.className =
+                                          "max-h-16 max-w-[60%] object-contain opacity-70 m-auto";
+                                      }}
+                                    />
                                   </AspectRatio>
 
                                   {/* Card Content Body */}
