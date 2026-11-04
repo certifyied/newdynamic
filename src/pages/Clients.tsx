@@ -306,37 +306,20 @@ const Clients = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.05 }}
                 >
-                  <Card className="h-full hover-lift cursor-pointer group overflow-hidden">
-                    <AspectRatio ratio={16 / 9}>
-                      <div className="w-full h-full bg-white flex items-center justify-center p-4 overflow-hidden">
-                        {/* <img
-                          src={client.image}
-                          alt={client.name}
-                          loading="lazy"
-                          className={`w-auto object-contain transition-transform duration-500 
-  ${client.filename === "20-Logo.webp" ||
-                              client.filename === "client17.svg" ||
-                              client.filename === "client42.png" ||
-                              client.filename === "01-CUMI-Logo.png" ||
-                              client.filename === "05-TTK Healthcare.jpg" ||
-                              client.filename === "client41.png" ||
-                              client.filename === "client47.svg" ||
-                              client.filename === "client46.jpg" ||
-                              client.filename === "Amphenol FCI.png"
-                              ? "max-h-10"
-                              : "max-h-20"
-                            }`}
-                        /> */}
+                  <Card className="h-full hover-lift cursor-pointer group overflow-hidden border border-border/80 shadow-sm rounded-xl">
+                    <AspectRatio ratio={1}>
+                      <div className="w-full h-full bg-white flex items-center justify-center p-2.5 overflow-hidden">
                         <img
                           src={client.image}
                           alt={client.name}
                           loading="lazy"
-                          className={`w-auto object-contain transition-transform duration-500 ${smallLogos.includes(client.filename)
-                              ? "max-h-10"
+                          className={`max-w-[90%] max-h-[80%] w-auto object-contain transition-transform duration-500 group-hover:scale-105 ${
+                            smallLogos.includes(client.filename)
+                              ? "max-h-[60%]"
                               : largeLogos.includes(client.filename)
-                                ? "max-h-30"
-                                : "max-h-20"
-                            }`}
+                                ? "max-h-[90%] max-w-[95%]"
+                                : "max-h-[80%]"
+                          }`}
                         />
                       </div>
                     </AspectRatio>
