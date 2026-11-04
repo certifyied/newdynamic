@@ -684,10 +684,7 @@ const allProducts: Product[] = Object.entries(productImages).map(([path, module]
   const { title, description } = generateProductInfo(filename, category, subcategory);
 
   // Specific products that require 'contain' (e.g. portrait or vertical products) vs default 'cover'
-  const shouldContain =
-    subcategory === "PLC iQR" ||
-    filename.toLowerCase().includes("fx5uc") ||
-    filename.toLowerCase().includes("fx5uj");
+  const shouldContain = subcategory === "PLC iQR";
 
   return {
     image: module.default,
