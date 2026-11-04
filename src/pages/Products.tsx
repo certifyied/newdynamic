@@ -32,6 +32,7 @@ interface Product {
   subcategory?: string;
   title: string;
   description: string;
+  imageFit?: "cover" | "contain";
 }
 
 // Helper function to extract category and subcategory from path
@@ -681,6 +682,12 @@ const allProducts: Product[] = Object.entries(productImages).map(([path, module]
   const { category, subcategory } = getCategoryFromPath(path);
   const { title, description } = generateProductInfo(filename, category, subcategory);
 
+  // Specific products that require 'contain' (e.g. portrait or vertical products) vs default 'cover'
+  const shouldContain =
+    subcategory === "PLC iQR" ||
+    filename.toLowerCase().includes("fx5uc") ||
+    filename.toLowerCase().includes("fx5uj");
+
   return {
     image: module.default,
     filename: filename,
@@ -689,6 +696,7 @@ const allProducts: Product[] = Object.entries(productImages).map(([path, module]
     subcategory: subcategory,
     title: title,
     description: description,
+    imageFit: shouldContain ? "contain" : "cover",
   };
 });
 
@@ -1617,7 +1625,11 @@ const Products = () => {
                                     src={product.image}
                                     alt={product.title}
                                     loading="lazy"
-                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                    className={`w-full h-full group-hover:scale-105 transition-transform duration-500 ${
+                                      product.imageFit === "contain"
+                                        ? "object-contain p-2"
+                                        : "object-cover"
+                                    }`}
                                     onError={(e) => {
                                       const target = e.target as HTMLImageElement;
                                       target.src = "/placeholder.svg";
@@ -1710,7 +1722,11 @@ const Products = () => {
                                       src={product.image}
                                       alt={product.title}
                                       loading="lazy"
-                                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                      className={`w-full h-full group-hover:scale-105 transition-transform duration-500 ${
+                                        product.imageFit === "contain"
+                                          ? "object-contain p-2"
+                                          : "object-cover"
+                                      }`}
                                       onError={(e) => {
                                         const target = e.target as HTMLImageElement;
                                         target.src = brand.logo;

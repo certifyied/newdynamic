@@ -121,6 +121,7 @@ export interface BrandProduct {
   redirectUrl: string;
   category?: string;
   description?: string;
+  imageFit?: "cover" | "contain";
 }
 
 export interface BrandInfo {
