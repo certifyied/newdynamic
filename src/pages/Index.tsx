@@ -13,17 +13,7 @@ import { Link } from "react-router-dom";
 const Index = () => {
   useCanonical();
 
-  useEffect(() => {
-    // Load CDN Embed Script
-    const script = document.createElement("script");
-    script.src = "https://bloggfeature.certifyied.workers.dev/adminApiBlog/api/embed";
-    script.async = true;
-    document.body.appendChild(script);
 
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
 
   // Update SEO metadata for Home page Hello
   // useEffect(() => {
@@ -329,26 +319,7 @@ const Index = () => {
         <MissionSection />
         <ServicesSection />
 
-        {/* Blog Section */}
-        <section className="py-12 md:py-20 bg-background border-t border-border">
-          <div className="container mx-auto px-4">
-            <div className="text-center max-w-3xl mx-auto mb-10 md:mb-16">
-              <h2 className="font-display text-3xl md:text-5xl font-bold mb-3 md:mb-4">
-                Latest Insights & Case Studies
-              </h2>
-              <p className="text-base sm:text-xl text-muted-foreground">
-                Stay updated with our latest announcements, technical guides, and automation trends.
-              </p>
-            </div>
-            {/* Container where the 3x3 blog grid will load */}
-            <div
-              id="certifyied-blog-container"
-              data-project-id="4024d9ee-af39-411b-a70f-c388fe32dd47"
-              data-limit="9"
-              data-redirect-url="/blog"
-            ></div>
-          </div>
-        </section>
+
 
         <div className="text-center my-5">
           <Link to="/automation" className="btn btn-outline-dark">

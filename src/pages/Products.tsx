@@ -1202,31 +1202,6 @@ const Products = () => {
     setSelectedCategory(cat);
   }, [searchParams]);
 
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-
-  const scrollTabs = (direction: "left" | "right") => {
-    if (scrollContainerRef.current) {
-      const scrollAmount = direction === "left" ? -280 : 280;
-      scrollContainerRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
-    }
-  };
-
-  // Auto-scroll the active category button into view
-  useEffect(() => {
-    if (scrollContainerRef.current) {
-      const activeButton = scrollContainerRef.current.querySelector<HTMLElement>(
-        '[data-active="true"]'
-      );
-      if (activeButton) {
-        activeButton.scrollIntoView({
-          behavior: "smooth",
-          block: "nearest",
-          inline: "center",
-        });
-      }
-    }
-  }, [selectedCategory]);
-
   // Update SEO metadata for Products page
   useEffect(() => {
     // Update document title
@@ -1407,7 +1382,7 @@ const Products = () => {
 
       <main>
         {/* Hero Section */}
-        <section className="pt-[calc(var(--header-height-mobile)+4rem)] pb-2 md:pt-32 bg-gradient-to-b from-muted/30 to-background">
+        <section className="pt-[calc(var(--header-height-mobile)+1.5rem)] pb-1 md:pt-28 md:pb-2 bg-gradient-to-b from-muted/30 to-background">
           <div className="container mx-auto px-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -1415,120 +1390,94 @@ const Products = () => {
               transition={{ duration: 0.6 }}
               className="max-w-3xl mx-auto text-center"
             >
-              <h1 className="font-display text-5xl md:text-6xl font-bold mb-0">
+              <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-0">
                 Products & Solutions
               </h1>
             </motion.div>
           </div>
         </section>
 
-        {/* Category Filter Tabs - Horizontally Scrollable */}
-        <section className="pt-2 pb-3 border-b bg-background/95 backdrop-blur-md sticky top-24 md:top-28 z-20 shadow-sm transition-all">
+        {/* Category Filter Tabs - Organized Single View (No Sticky) */}
+        <section className="pt-2 pb-2.5 border-b bg-background shadow-sm">
           <div className="container mx-auto px-4">
-            <div className="relative flex items-center">
-              {/* Left Scroll Button (Desktop/Tablet) */}
-              <button
-                type="button"
-                onClick={() => scrollTabs("left")}
-                aria-label="Scroll categories left"
-                className="hidden sm:flex items-center justify-center h-8 w-8 rounded-full border border-border bg-background/90 text-foreground shadow-sm hover:bg-muted hover:text-primary transition-all flex-shrink-0 mr-2 z-10"
+            <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 py-0.5">
+              <Button
+                data-active={selectedCategory === null ? "true" : "false"}
+                variant={selectedCategory === null ? "default" : "outline"}
+                onClick={() => {
+                  setSelectedCategory(null);
+                  setSearchParams({});
+                }}
+                className={`rounded-full whitespace-nowrap text-xs md:text-sm px-3.5 py-1.5 h-auto hover:bg-blue-500 hover:text-white transition-all shadow-sm ${
+                  selectedCategory === null ? "bg-black text-white" : ""
+                }`}
               >
-                <ChevronLeft className="h-4 w-4" />
-              </button>
-
-              {/* Horizontal Scrollable Categories Container */}
-              <div
-                ref={scrollContainerRef}
-                className="flex items-center gap-2 overflow-x-auto no-scrollbar scroll-smooth flex-nowrap py-1 px-1 w-full"
-              >
+                All Products
+              </Button>
+              {allCategories.map((category) => (
                 <Button
-                  data-active={selectedCategory === null ? "true" : "false"}
-                  variant={selectedCategory === null ? "default" : "outline"}
+                  key={category}
+                  data-active={selectedCategory === category ? "true" : "false"}
+                  variant={selectedCategory === category ? "default" : "outline"}
                   onClick={() => {
-                    setSelectedCategory(null);
-                    setSearchParams({});
+                    setSelectedCategory(category);
+                    setSearchParams({ category });
                   }}
-                  className={`rounded-full flex-shrink-0 whitespace-nowrap text-xs md:text-sm px-4 py-2 hover:bg-blue-500 hover:text-white transition-all shadow-sm ${
-                    selectedCategory === null ? "bg-black text-white" : ""
+                  className={`rounded-full whitespace-nowrap text-xs md:text-sm px-3.5 py-1.5 h-auto hover:bg-blue-500 hover:text-white transition-all shadow-sm ${
+                    selectedCategory === category ? "bg-black text-white" : ""
                   }`}
                 >
-                  All Products
+                  {category === "SMC" ? (
+                    <img
+                      src={smcLogo}
+                      alt="SMC"
+                      className="h-5 w-auto"
+                    />
+                  ) : category === "LEUZE" ? (
+                    <img
+                      src={leuzeLogo}
+                      alt="LEUZE"
+                      className="h-5 w-auto"
+                    />
+                  ) : (
+                    category
+                  )}
                 </Button>
-                {allCategories.map((category) => (
+              ))}
+              {/* Partner Brands directly at the first level */}
+              {brandCatalog.map((brand) => {
+                const isBrandActive =
+                  selectedCategory?.toLowerCase() === brand.name.toLowerCase() ||
+                  selectedCategory?.toLowerCase() === brand.id ||
+                  (brand.id === "inovance" && (selectedCategory?.toLowerCase() === "inovance" || selectedCategory?.toLowerCase() === "innovance"));
+                return (
                   <Button
-                    key={category}
-                    data-active={selectedCategory === category ? "true" : "false"}
-                    variant={selectedCategory === category ? "default" : "outline"}
+                    key={brand.id}
+                    data-active={isBrandActive ? "true" : "false"}
+                    variant={isBrandActive ? "default" : "outline"}
                     onClick={() => {
-                      setSelectedCategory(category);
-                      setSearchParams({ category });
+                      setSelectedCategory(brand.name);
+                      setSearchParams({ category: brand.name });
                     }}
-                    className={`rounded-full flex-shrink-0 whitespace-nowrap text-xs md:text-sm px-4 py-2 hover:bg-blue-500 hover:text-white transition-all shadow-sm ${
-                      selectedCategory === category ? "bg-black text-white" : ""
+                    className={`rounded-full whitespace-nowrap text-xs md:text-sm px-3 py-1.5 h-auto hover:bg-blue-500 hover:text-white transition-all shadow-sm flex items-center gap-1.5 ${
+                      isBrandActive ? "bg-black text-white" : ""
                     }`}
                   >
-                    {category === "SMC" ? (
-                      <img
-                        src={smcLogo}
-                        alt="SMC"
-                        className="h-6 w-auto"
-                      />
-                    ) : category === "LEUZE" ? (
-                      <img
-                        src={leuzeLogo}
-                        alt="LEUZE"
-                        className="h-6 w-auto"
-                      />
-                    ) : (
-                      category
-                    )}
+                    <img
+                      src={brand.logo}
+                      alt={brand.name}
+                      className="h-3.5 w-auto max-w-[48px] object-contain bg-white rounded px-1 py-0.5"
+                    />
+                    <span>{brand.name}</span>
                   </Button>
-                ))}
-                {/* Partner Brands directly at the first level */}
-                {brandCatalog.map((brand) => {
-                  const isBrandActive =
-                    selectedCategory?.toLowerCase() === brand.name.toLowerCase() ||
-                    selectedCategory?.toLowerCase() === brand.id ||
-                    (brand.id === "inovance" && (selectedCategory?.toLowerCase() === "inovance" || selectedCategory?.toLowerCase() === "innovance"));
-                  return (
-                    <Button
-                      key={brand.id}
-                      data-active={isBrandActive ? "true" : "false"}
-                      variant={isBrandActive ? "default" : "outline"}
-                      onClick={() => {
-                        setSelectedCategory(brand.name);
-                        setSearchParams({ category: brand.name });
-                      }}
-                      className={`rounded-full flex-shrink-0 whitespace-nowrap text-xs md:text-sm px-4 py-2 hover:bg-blue-500 hover:text-white transition-all shadow-sm flex items-center gap-2 ${
-                        isBrandActive ? "bg-black text-white" : ""
-                      }`}
-                    >
-                      <img
-                        src={brand.logo}
-                        alt={brand.name}
-                        className="h-4 w-auto max-w-[55px] object-contain bg-white rounded px-1 py-0.5"
-                      />
-                      <span>{brand.name}</span>
-                    </Button>
-                  );
-                })}
-              </div>
-
-              {/* Right Scroll Button (Desktop/Tablet) */}
-              <button
-                type="button"
-                onClick={() => scrollTabs("right")}
-                aria-label="Scroll categories right"
-                className="hidden sm:flex items-center justify-center h-8 w-8 rounded-full border border-border bg-background/90 text-foreground shadow-sm hover:bg-muted hover:text-primary transition-all flex-shrink-0 ml-2 z-10"
-              >
-                <ChevronRight className="h-4 w-4" />
-              </button>
+                );
+              })}
             </div>
           </div>
         </section>
 
         {/* Products by Section */}
-        <section className="pt-4 md:pt-6 pb-20">
+        <section className="pt-3 md:pt-4 pb-20">
           <div className="container mx-auto px-4 space-y-8 md:space-y-10">
             {organizedSections.map((section, sectionIndex) => (
               <motion.div
