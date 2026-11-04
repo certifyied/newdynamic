@@ -1193,14 +1193,64 @@ const getProductUrl = (product: Product): string => {
 const Products = () => {
   useCanonical();
   const [searchParams, setSearchParams] = useSearchParams();
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(() => {
-    return searchParams.get("category");
+
+  const parseCategoriesFromUrl = (params: URLSearchParams): string[] => {
+    const raw = params.get("category");
+    if (!raw) return [];
+    return raw
+      .split(",")
+      .map(c => c.trim())
+      .filter(Boolean);
+  };
+
+  const [selectedCategories, setSelectedCategories] = useState<string[]>(() => {
+    return parseCategoriesFromUrl(searchParams);
   });
 
   useEffect(() => {
-    const cat = searchParams.get("category");
-    setSelectedCategory(cat);
+    const cats = parseCategoriesFromUrl(searchParams);
+    setSelectedCategories(cats);
   }, [searchParams]);
+
+  const updateUrlCategories = (categories: string[]) => {
+    if (categories.length === 0) {
+      setSearchParams({});
+    } else {
+      setSearchParams({ category: categories.join(",") });
+    }
+  };
+
+  const toggleCategory = (categoryName: string) => {
+    setSelectedCategories(prev => {
+      const exists = prev.some(c => c.toLowerCase() === categoryName.toLowerCase());
+      const updated = exists
+        ? prev.filter(c => c.toLowerCase() !== categoryName.toLowerCase())
+        : [...prev, categoryName];
+      updateUrlCategories(updated);
+      return updated;
+    });
+  };
+
+  const clearAllCategories = () => {
+    setSelectedCategories([]);
+    updateUrlCategories([]);
+  };
+
+  const isCategorySelected = (categoryName: string) => {
+    return selectedCategories.some(c => c.toLowerCase() === categoryName.toLowerCase());
+  };
+
+  const isBrandSelected = (brand: typeof brandCatalog[0]) => {
+    return selectedCategories.some(
+      c =>
+        c.toLowerCase() === brand.name.toLowerCase() ||
+        c.toLowerCase() === brand.id.toLowerCase() ||
+        (brand.id === "inovance" &&
+          (c.toLowerCase() === "inovance" || c.toLowerCase() === "innovance"))
+    );
+  };
+
+  const hasAnyFilter = selectedCategories.length > 0;
 
   // Update SEO metadata for Products page
   useEffect(() => {
@@ -1257,9 +1307,9 @@ const Products = () => {
     };
   }, []);
 
-  // Filter products based on selected category
-  const filteredProducts = selectedCategory
-    ? allProducts.filter(p => p.category === selectedCategory)
+  // Filter products based on selected categories
+  const filteredProducts = hasAnyFilter
+    ? allProducts.filter(p => isCategorySelected(p.category))
     : allProducts;
 
   // Group products by category and subcategory
@@ -1277,7 +1327,7 @@ const Products = () => {
     const organized: Array<{ name: string; isSubsection: boolean; products: Product[] }> = [];
 
     // PLC CATEGORY
-    if (!selectedCategory || selectedCategory === "PLC") {
+    if (!hasAnyFilter || isCategorySelected("PLC")) {
       const plcProducts = allProducts.filter(p => p.category === "PLC");
 
       if (plcProducts.length > 0) {
@@ -1302,7 +1352,7 @@ const Products = () => {
     }
 
     // ✅ LEUZE CATEGORY (separate from PLC)
-    if (!selectedCategory || selectedCategory === "LEUZE") {
+    if (!hasAnyFilter || isCategorySelected("LEUZE")) {
       const leuzeProducts = allProducts.filter(p => p.category === "LEUZE");
 
       if (leuzeProducts.length > 0) {
@@ -1327,7 +1377,7 @@ const Products = () => {
     }
 
     // ✅ SMC CATEGORY (for subcategory sections)
-    if (!selectedCategory || selectedCategory === "SMC") {
+    if (!hasAnyFilter || isCategorySelected("SMC")) {
       const smcProducts = allProducts.filter(p => p.category === "SMC");
 
       if (smcProducts.length > 0) {
@@ -1357,7 +1407,7 @@ const Products = () => {
         category !== "PLC" &&
         category !== "LEUZE" &&
         category !== "SMC" &&
-        (!selectedCategory || selectedCategory === category)
+        (!hasAnyFilter || isCategorySelected(category))
       ) {
         const categoryProducts = filteredProducts.filter(p => p.category === category);
 
@@ -1397,70 +1447,61 @@ const Products = () => {
           </div>
         </section>
 
-        {/* Category Filter Tabs - Organized Single View (No Sticky) */}
+        {/* Category Filter Tabs - Organized Single View (No Sticky, Multi-select) */}
         <section className="pt-2 pb-2.5 border-b bg-background shadow-sm">
           <div className="container mx-auto px-4">
             <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 py-0.5">
               <Button
-                data-active={selectedCategory === null ? "true" : "false"}
-                variant={selectedCategory === null ? "default" : "outline"}
-                onClick={() => {
-                  setSelectedCategory(null);
-                  setSearchParams({});
-                }}
+                data-active={!hasAnyFilter ? "true" : "false"}
+                variant={!hasAnyFilter ? "default" : "outline"}
+                onClick={clearAllCategories}
                 className={`rounded-full whitespace-nowrap text-xs md:text-sm px-3.5 py-1.5 h-auto hover:bg-blue-500 hover:text-white transition-all shadow-sm ${
-                  selectedCategory === null ? "bg-black text-white" : ""
+                  !hasAnyFilter ? "bg-black text-white" : ""
                 }`}
               >
                 All Products
               </Button>
-              {allCategories.map((category) => (
-                <Button
-                  key={category}
-                  data-active={selectedCategory === category ? "true" : "false"}
-                  variant={selectedCategory === category ? "default" : "outline"}
-                  onClick={() => {
-                    setSelectedCategory(category);
-                    setSearchParams({ category });
-                  }}
-                  className={`rounded-full whitespace-nowrap text-xs md:text-sm px-3.5 py-1.5 h-auto hover:bg-blue-500 hover:text-white transition-all shadow-sm ${
-                    selectedCategory === category ? "bg-black text-white" : ""
-                  }`}
-                >
-                  {category === "SMC" ? (
-                    <img
-                      src={smcLogo}
-                      alt="SMC"
-                      className="h-5 w-auto"
-                    />
-                  ) : category === "LEUZE" ? (
-                    <img
-                      src={leuzeLogo}
-                      alt="LEUZE"
-                      className="h-5 w-auto"
-                    />
-                  ) : (
-                    category
-                  )}
-                </Button>
-              ))}
+              {allCategories.map((category) => {
+                const active = isCategorySelected(category);
+                return (
+                  <Button
+                    key={category}
+                    data-active={active ? "true" : "false"}
+                    variant={active ? "default" : "outline"}
+                    onClick={() => toggleCategory(category)}
+                    className={`rounded-full whitespace-nowrap text-xs md:text-sm px-3.5 py-1.5 h-auto hover:bg-blue-500 hover:text-white transition-all shadow-sm ${
+                      active ? "bg-black text-white" : ""
+                    }`}
+                  >
+                    {category === "SMC" ? (
+                      <img
+                        src={smcLogo}
+                        alt="SMC"
+                        className="h-5 w-auto"
+                      />
+                    ) : category === "LEUZE" ? (
+                      <img
+                        src={leuzeLogo}
+                        alt="LEUZE"
+                        className="h-5 w-auto"
+                      />
+                    ) : (
+                      category
+                    )}
+                  </Button>
+                );
+              })}
               {/* Partner Brands directly at the first level */}
               {brandCatalog.map((brand) => {
-                const isBrandActive =
-                  selectedCategory?.toLowerCase() === brand.name.toLowerCase() ||
-                  selectedCategory?.toLowerCase() === brand.id ||
-                  (brand.id === "inovance" && (selectedCategory?.toLowerCase() === "inovance" || selectedCategory?.toLowerCase() === "innovance"));
+                const active = isBrandSelected(brand);
                 return (
                   <Button
                     key={brand.id}
-                    data-active={isBrandActive ? "true" : "false"}
-                    variant={isBrandActive ? "default" : "outline"}
-                    onClick={() => {
-                      setSelectedCategory(brand.name);
-                      setSearchParams({ category: brand.name });
-                    }}
+                    data-active={active ? "true" : "false"}
+                    variant={active ? "default" : "outline"}
+                    onClick={() => toggleCategory(brand.name)}
                     className={`rounded-full whitespace-nowrap text-xs md:text-sm px-3 py-1.5 h-auto hover:bg-blue-500 hover:text-white transition-all shadow-sm flex items-center gap-1.5 ${
-                      isBrandActive ? "bg-black text-white" : ""
+                      active ? "bg-black text-white" : ""
                     }`}
                   >
                     <img
@@ -1626,15 +1667,7 @@ const Products = () => {
             ))}
 
             {(() => {
-              const isPartnerBrandSelected = brandCatalog.some(
-                (b) =>
-                  selectedCategory &&
-                  (b.id === selectedCategory.toLowerCase() ||
-                    b.name.toLowerCase() === selectedCategory.toLowerCase() ||
-                    (b.id === "inovance" &&
-                      (selectedCategory.toLowerCase() === "inovance" ||
-                        selectedCategory.toLowerCase() === "innovance")))
-              );
+              const isPartnerBrandSelected = brandCatalog.some(brand => isBrandSelected(brand));
 
               return (
                 <>
@@ -1648,15 +1681,7 @@ const Products = () => {
 
                   {/* Partner Brand Sections at First Level */}
                   {brandCatalog
-                    .filter(
-                      (brand) =>
-                        !selectedCategory ||
-                        selectedCategory.toLowerCase() === brand.id ||
-                        selectedCategory.toLowerCase() === brand.name.toLowerCase() ||
-                        (brand.id === "inovance" &&
-                          (selectedCategory.toLowerCase() === "inovance" ||
-                            selectedCategory.toLowerCase() === "innovance"))
-                    )
+                    .filter(brand => !hasAnyFilter || isBrandSelected(brand))
                     .map((brand, brandIdx) => (
                       <motion.div
                         key={brand.id}
