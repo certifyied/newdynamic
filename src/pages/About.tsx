@@ -415,7 +415,7 @@ With extensive expertise across the electrical and automotive sectors, Mr. Phili
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-3xl mx-auto">
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -423,7 +423,7 @@ With extensive expertise across the electrical and automotive sectors, Mr. Phili
                 className="text-center"
               >
                 <div className="text-4xl font-bold text-primary mb-2">28+</div>
-                <div className="text-sm text-muted-foreground">Innovation</div>
+                <div className="text-sm text-muted-foreground">Years of Innovation</div>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -443,17 +443,7 @@ With extensive expertise across the electrical and automotive sectors, Mr. Phili
                 className="text-center"
               >
                 <div className="text-4xl font-bold text-primary mb-2">400+</div>
-                <div className="text-sm text-muted-foreground">customers</div>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 }}
-                className="text-center"
-              >
-                <div className="text-4xl font-bold text-primary mb-2">70+</div>
-                <div className="text-sm text-muted-foreground">testimonials</div>
+                <div className="text-sm text-muted-foreground">Global Customers</div>
               </motion.div>
             </div>
           </div>
