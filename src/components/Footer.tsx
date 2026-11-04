@@ -16,7 +16,7 @@ const Footer = () => {
   const contactInfo = {
     company: "Dynamic Control Systems",
     address: "52/3106, Near SBI Bank, NH Bypass, Vyttila, Kochi, Ernakulam Dist., Kerala, 682019",
-    email: "sales@dynamiccontrolsystems.in",
+    emails: ["sales@dynamiccontrolsystems.in", "admin@dynamiccontrolsystems.in"],
     phones: ["+91 94477 07855", "+91 85473 27855"],
     website: "dynamiccontrolsystems.in",
   };
@@ -94,14 +94,19 @@ const Footer = () => {
                   {contactInfo.address}
                 </span>
               </li>
-              <li className="flex items-center gap-3">
-                <Mail className="text-primary flex-shrink-0" size={18} />
-                <a
-                  href={`mailto:${contactInfo.email}`}
-                  className="text-sm text-secondary-foreground/80 hover:text-primary transition-colors"
-                >
-                  {contactInfo.email}
-                </a>
+              <li className="flex items-start gap-3">
+                <Mail className="text-primary mt-0.5 flex-shrink-0" size={18} />
+                <div className="flex flex-col gap-1">
+                  {contactInfo.emails.map((email, index) => (
+                    <a
+                      key={index}
+                      href={`mailto:${email}`}
+                      className="text-sm text-secondary-foreground/80 hover:text-primary transition-colors"
+                    >
+                      {email}
+                    </a>
+                  ))}
+                </div>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="text-primary flex-shrink-0" size={18} />
