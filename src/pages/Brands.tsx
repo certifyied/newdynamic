@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { brandCatalog, BrandInfo, getBrandProductCategory, getBrandProductDescription } from "@/data/brandProducts";
+import ProductDescription from "@/components/ProductDescription";
 import { Layers, ArrowRight, ShieldCheck, Cpu } from "lucide-react";
 import { useSearchParams, Link } from "react-router-dom";
 
@@ -227,9 +228,7 @@ const Brands = () => {
                               </h3>
 
                               {/* Description Text */}
-                              <p className="text-muted-foreground mb-4 text-sm flex-1 leading-relaxed">
-                                {description}
-                              </p>
+                              <ProductDescription description={description} />
                             </div>
 
                             {/* Solid Red Details Button */}

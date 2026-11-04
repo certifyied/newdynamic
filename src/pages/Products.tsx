@@ -10,6 +10,7 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { ArrowRight, ChevronLeft, ChevronRight, Layers } from "lucide-react";
 import { useSearchParams } from "react-router-dom";
 import { brandCatalog, getBrandProductCategory, getBrandProductDescription } from "@/data/brandProducts";
+import ProductDescription from "@/components/ProductDescription";
 
 // Import all product images from dynamic-products folder structure
 const productImages = import.meta.glob<{ default: string }>(
@@ -1648,9 +1649,7 @@ const Products = () => {
                                     {product.title}
                                   </h3>
 
-                                  <p className="text-muted-foreground mb-4 text-sm flex-1 leading-relaxed">
-                                    {product.description}
-                                  </p>
+                                  <ProductDescription description={product.description} />
                                 </div>
 
                                 <Button size="sm" className="w-full bg-red-600 hover:bg-red-700 text-white font-medium py-2.5 rounded-xl flex items-center justify-center gap-2 mt-auto text-sm shadow-sm" asChild>
@@ -1750,9 +1749,7 @@ const Products = () => {
                                       </h3>
 
                                       {/* Description Text */}
-                                      <p className="text-muted-foreground mb-4 text-sm flex-1 leading-relaxed">
-                                        {description}
-                                      </p>
+                                      <ProductDescription description={description} />
                                     </div>
 
                                     {/* Solid Red Details Button */}
