@@ -1223,127 +1223,192 @@ const Products = () => {
       .filter(Boolean);
   };
 
-  const [selectedCategories, setSelectedCategories] = useState<string[]>(() => {
-    return parseCategoriesFromUrl(searchParams);
-  });
-
-  const [isMitsubishiExpanded, setIsMitsubishiExpanded] = useState<boolean>(() => {
+  // Active drilldown brand (e.g., 'mitsubishi', 'smc', 'leuze', or any brandCatalog id)
+  const [activeBrand, setActiveBrand] = useState<string | null>(() => {
     const initialCats = parseCategoriesFromUrl(searchParams);
-    return initialCats.some(cat =>
-      MITSUBISHI_CATEGORIES.some(m => m.toLowerCase() === cat.toLowerCase()) ||
-      cat.toLowerCase() === "mitsubishi"
+    if (initialCats.length === 0) return null;
+    const first = initialCats[0].toLowerCase();
+    if (first === "mitsubishi" || MITSUBISHI_CATEGORIES.some(m => m.toLowerCase() === first)) {
+      return "mitsubishi";
+    }
+    if (first === "smc" || smcSubcategories.some(s => s.toLowerCase() === first)) {
+      return "smc";
+    }
+    if (first === "leuze" || leuzeSubcategories.some(l => l.toLowerCase() === first)) {
+      return "leuze";
+    }
+    const foundPartner = brandCatalog.find(b =>
+      b.name.toLowerCase() === first ||
+      b.id.toLowerCase() === first ||
+      (b.id === "inovance" && (first === "inovance" || first === "innovance")) ||
+      b.products.some(p => p.title.toLowerCase() === first)
     );
+    if (foundPartner) return foundPartner.id;
+    return null;
   });
 
-  const [showMitsubishiHint, setShowMitsubishiHint] = useState<boolean>(false);
+  const [selectedSubItem, setSelectedSubItem] = useState<string | null>(() => {
+    const initialCats = parseCategoriesFromUrl(searchParams);
+    if (initialCats.length === 0) return null;
+    const first = initialCats[0];
+    const firstLower = first.toLowerCase();
+    // If it's a specific subcategory/product title rather than just the brand name:
+    if (firstLower !== "mitsubishi" && firstLower !== "smc" && firstLower !== "leuze") {
+      const isBrandName = brandCatalog.some(b =>
+        b.name.toLowerCase() === firstLower ||
+        b.id.toLowerCase() === firstLower ||
+        (b.id === "inovance" && (firstLower === "inovance" || firstLower === "innovance"))
+      );
+      if (!isBrandName) {
+        return first;
+      }
+    }
+    return null;
+  });
+
+  const [showHintPrompt, setShowHintPrompt] = useState<boolean>(false);
 
   useEffect(() => {
     const cats = parseCategoriesFromUrl(searchParams);
-    setSelectedCategories(cats);
-    if (cats.some(cat =>
-      MITSUBISHI_CATEGORIES.some(m => m.toLowerCase() === cat.toLowerCase()) ||
-      cat.toLowerCase() === "mitsubishi"
-    )) {
-      setIsMitsubishiExpanded(true);
+    if (cats.length === 0) {
+      setActiveBrand(null);
+      setSelectedSubItem(null);
+      return;
+    }
+    const first = cats[0];
+    const firstLower = first.toLowerCase();
+
+    if (firstLower === "mitsubishi" || MITSUBISHI_CATEGORIES.some(m => m.toLowerCase() === firstLower)) {
+      setActiveBrand("mitsubishi");
+      setSelectedSubItem(firstLower === "mitsubishi" ? null : first);
+    } else if (firstLower === "smc" || smcSubcategories.some(s => s.toLowerCase() === firstLower)) {
+      setActiveBrand("smc");
+      setSelectedSubItem(firstLower === "smc" ? null : first);
+    } else if (firstLower === "leuze" || leuzeSubcategories.some(l => l.toLowerCase() === firstLower)) {
+      setActiveBrand("leuze");
+      setSelectedSubItem(firstLower === "leuze" ? null : first);
+    } else {
+      const foundPartner = brandCatalog.find(b =>
+        b.name.toLowerCase() === firstLower ||
+        b.id.toLowerCase() === firstLower ||
+        (b.id === "inovance" && (firstLower === "inovance" || firstLower === "innovance")) ||
+        b.products.some(p => p.title.toLowerCase() === firstLower)
+      );
+      if (foundPartner) {
+        setActiveBrand(foundPartner.id);
+        const isBrandName =
+          foundPartner.name.toLowerCase() === firstLower ||
+          foundPartner.id.toLowerCase() === firstLower ||
+          (foundPartner.id === "inovance" && (firstLower === "inovance" || firstLower === "innovance"));
+        setSelectedSubItem(isBrandName ? null : first);
+      }
     }
   }, [searchParams]);
 
-  const updateUrlCategories = (categories: string[]) => {
-    if (categories.length === 0) {
+  const updateUrlCategory = (category: string | null) => {
+    if (!category) {
       setSearchParams({});
     } else {
-      setSearchParams({ category: categories.join(",") });
+      setSearchParams({ category });
     }
   };
 
-  const toggleCategory = (categoryName: string) => {
-    setSelectedCategories(prev => {
-      const exists = prev.some(c => c.toLowerCase() === categoryName.toLowerCase());
-      const updated = exists
-        ? prev.filter(c => c.toLowerCase() !== categoryName.toLowerCase())
-        : [...prev, categoryName];
-      updateUrlCategories(updated);
-      return updated;
-    });
+  const handleSelectAllProducts = () => {
+    setActiveBrand(null);
+    setSelectedSubItem(null);
+    setShowHintPrompt(false);
+    updateUrlCategory(null);
   };
 
-  const clearAllCategories = () => {
-    setSelectedCategories([]);
-    updateUrlCategories([]);
-  };
+  const handleBrandClick = (brandId: string, defaultName: string) => {
+    if (activeBrand === brandId) {
+      // Toggle back to All Products when clicked again
+      setActiveBrand(null);
+      setSelectedSubItem(null);
+      setShowHintPrompt(false);
+      updateUrlCategory(null);
+      return;
+    }
 
-  const isCategorySelected = (categoryName: string) => {
-    return selectedCategories.some(c => {
-      const cLower = c.toLowerCase();
-      const targetLower = categoryName.toLowerCase();
-      if (cLower === targetLower) return true;
-      if (cLower === "mitsubishi" && MITSUBISHI_CATEGORIES.some(m => m.toLowerCase() === targetLower)) {
-        return true;
+    // Entering brand drilldown
+    setActiveBrand(brandId);
+    setSelectedSubItem(null);
+    updateUrlCategory(defaultName);
+
+    // Show educational prompt up to 2 times
+    try {
+      const storedCount = parseInt(localStorage.getItem("brand_filter_hint_count") || "0", 10);
+      if (storedCount < 2) {
+        setShowHintPrompt(true);
+        localStorage.setItem("brand_filter_hint_count", (storedCount + 1).toString());
+        setTimeout(() => {
+          setShowHintPrompt(false);
+        }, 4500);
       }
-      return false;
-    });
+    } catch (e) {
+      // Safe localStorage access
+    }
   };
 
-  const isMitsubishiActive = () => {
-    return selectedCategories.some(c =>
-      c.toLowerCase() === "mitsubishi" ||
-      MITSUBISHI_CATEGORIES.some(m => m.toLowerCase() === c.toLowerCase())
-    );
-  };
-
-  const handleMitsubishiClick = () => {
-    if (!isMitsubishiExpanded) {
-      // Opening drilldown
-      setIsMitsubishiExpanded(true);
-      // Select Mitsubishi if no Mitsubishi categories currently selected
-      const hasMitsubishiCat = selectedCategories.some(c =>
-        MITSUBISHI_CATEGORIES.some(m => m.toLowerCase() === c.toLowerCase()) ||
-        c.toLowerCase() === "mitsubishi"
-      );
-      if (!hasMitsubishiCat) {
-        setSelectedCategories(prev => {
-          const updated = [...prev, "Mitsubishi"];
-          updateUrlCategories(updated);
-          return updated;
-        });
-      }
-
-      // Check localStorage for hint prompt (max 2 times)
-      try {
-        const storedCount = parseInt(localStorage.getItem("mitsubishi_hint_count") || "0", 10);
-        if (storedCount < 2) {
-          setShowMitsubishiHint(true);
-          localStorage.setItem("mitsubishi_hint_count", (storedCount + 1).toString());
-          setTimeout(() => {
-            setShowMitsubishiHint(false);
-          }, 4500);
-        }
-      } catch (e) {
-        // Safe localStorage access
-      }
+  const handleSubItemClick = (item: string) => {
+    if (selectedSubItem?.toLowerCase() === item.toLowerCase()) {
+      // Clicking the already selected sub-item toggles back to the whole brand
+      setSelectedSubItem(null);
+      const brandObj = brandCatalog.find(b => b.id === activeBrand);
+      const brandName =
+        activeBrand === "mitsubishi"
+          ? "Mitsubishi"
+          : activeBrand === "smc"
+          ? "SMC"
+          : activeBrand === "leuze"
+          ? "LEUZE"
+          : brandObj?.name || "";
+      updateUrlCategory(brandName);
     } else {
-      // Clicking again collapses back to brand view
-      setIsMitsubishiExpanded(false);
-      setShowMitsubishiHint(false);
+      // Single-select this sub-item
+      setSelectedSubItem(item);
+      updateUrlCategory(item);
     }
   };
 
-  const collapseMitsubishi = () => {
-    setIsMitsubishiExpanded(false);
-    setShowMitsubishiHint(false);
+  const collapseBrand = () => {
+    setActiveBrand(null);
+    setSelectedSubItem(null);
+    setShowHintPrompt(false);
+    updateUrlCategory(null);
+  };
+
+  // Helper to check if a category/subcategory matches current filter
+  const isCategorySelected = (categoryName: string) => {
+    if (!activeBrand) return true;
+    const catLower = categoryName.toLowerCase();
+
+    if (activeBrand === "mitsubishi") {
+      if (selectedSubItem) {
+        return catLower === selectedSubItem.toLowerCase();
+      }
+      return MITSUBISHI_CATEGORIES.some(m => m.toLowerCase() === catLower);
+    }
+
+    if (activeBrand === "smc") {
+      return catLower === "smc";
+    }
+
+    if (activeBrand === "leuze") {
+      return catLower === "leuze";
+    }
+
+    return false;
   };
 
   const isBrandSelected = (brand: typeof brandCatalog[0]) => {
-    return selectedCategories.some(
-      c =>
-        c.toLowerCase() === brand.name.toLowerCase() ||
-        c.toLowerCase() === brand.id.toLowerCase() ||
-        (brand.id === "inovance" &&
-          (c.toLowerCase() === "inovance" || c.toLowerCase() === "innovance"))
-    );
+    if (!activeBrand) return true;
+    return activeBrand.toLowerCase() === brand.id.toLowerCase() ||
+      activeBrand.toLowerCase() === brand.name.toLowerCase() ||
+      (activeBrand === "inovance" && brand.id === "inovance");
   };
 
-  const hasAnyFilter = selectedCategories.length > 0;
+  const hasAnyFilter = activeBrand !== null;
 
   // Update SEO metadata for Products page
   useEffect(() => {
@@ -1431,6 +1496,9 @@ const Products = () => {
         });
 
         plcSubcategories.forEach(subcat => {
+          if (selectedSubItem && subcat.toLowerCase() !== selectedSubItem.toLowerCase()) {
+            return;
+          }
           const subcatProducts = plcProducts.filter(p => p.subcategory === subcat);
 
           if (subcatProducts.length > 0) {
@@ -1456,6 +1524,9 @@ const Products = () => {
         });
 
         leuzeSubcategories.forEach(subcat => {
+          if (selectedSubItem && subcat.toLowerCase() !== selectedSubItem.toLowerCase()) {
+            return;
+          }
           const subcatProducts = leuzeProducts.filter(p => p.subcategory === subcat);
 
           if (subcatProducts.length > 0) {
@@ -1481,6 +1552,9 @@ const Products = () => {
         });
 
         smcSubcategories.forEach(subcat => {
+          if (selectedSubItem && subcat.toLowerCase() !== selectedSubItem.toLowerCase()) {
+            return;
+          }
           const subcatProducts = smcProducts.filter(p => p.subcategory === subcat);
 
           if (subcatProducts.length > 0) {
@@ -1540,12 +1614,12 @@ const Products = () => {
           </div>
         </section>
 
-        {/* Category Filter Tabs - Organized Animated View (Apple-like drilldown) */}
+        {/* Category Filter Tabs - Organized Animated View (Apple-like drilldown for all brands) */}
         <section className="pt-2 pb-2.5 border-b bg-background shadow-sm relative overflow-hidden">
           <div className="container mx-auto px-4">
             <div className="flex flex-col items-center justify-center">
               <AnimatePresence mode="wait" initial={false}>
-                {!isMitsubishiExpanded ? (
+                {!activeBrand ? (
                   /* ================= MODE 1: ALL BRANDS OVERVIEW ================= */
                   <motion.div
                     key="brands-overview"
@@ -1558,10 +1632,12 @@ const Products = () => {
                     {/* All Products Tab */}
                     <Button
                       data-active={!hasAnyFilter ? "true" : "false"}
-                      variant={!hasAnyFilter ? "default" : "outline"}
-                      onClick={clearAllCategories}
-                      className={`rounded-full whitespace-nowrap text-xs md:text-sm px-3.5 py-1.5 h-auto hover:bg-blue-500 hover:text-white transition-all shadow-sm ${
-                        !hasAnyFilter ? "bg-black text-white" : ""
+                      variant="outline"
+                      onClick={handleSelectAllProducts}
+                      className={`rounded-full whitespace-nowrap text-xs md:text-sm px-3.5 py-1.5 h-auto hover:bg-gray-100 dark:hover:bg-gray-800 transition-all shadow-sm ${
+                        !hasAnyFilter
+                          ? "border-2 border-black dark:border-white font-semibold text-foreground bg-transparent shadow-xs"
+                          : "border-border text-foreground/80 hover:text-foreground"
                       }`}
                     >
                       All Products
@@ -1569,11 +1645,13 @@ const Products = () => {
 
                     {/* Mitsubishi Electric Tab */}
                     <Button
-                      data-active={isMitsubishiActive() ? "true" : "false"}
-                      variant={isMitsubishiActive() ? "default" : "outline"}
-                      onClick={handleMitsubishiClick}
-                      className={`rounded-full whitespace-nowrap text-xs md:text-sm px-3.5 py-1.5 h-auto hover:bg-blue-500 hover:text-white transition-all shadow-sm flex items-center gap-1.5 ${
-                        isMitsubishiActive() ? "bg-black text-white ring-2 ring-red-500/30" : ""
+                      data-active={activeBrand === "mitsubishi" ? "true" : "false"}
+                      variant="outline"
+                      onClick={() => handleBrandClick("mitsubishi", "Mitsubishi")}
+                      className={`rounded-full whitespace-nowrap text-xs md:text-sm px-3.5 py-1.5 h-auto hover:bg-gray-100 dark:hover:bg-gray-800 transition-all shadow-sm flex items-center gap-1.5 ${
+                        activeBrand === "mitsubishi"
+                          ? "border-2 border-black dark:border-white font-semibold text-foreground bg-transparent shadow-xs"
+                          : "border-border text-foreground/80 hover:text-foreground"
                       }`}
                     >
                       <img
@@ -1581,16 +1659,18 @@ const Products = () => {
                         alt="Mitsubishi Electric"
                         className="h-4 w-auto max-w-[80px] object-contain"
                       />
-                      <span className="font-medium">Mitsubishi</span>
+                      <span>Mitsubishi</span>
                     </Button>
 
                     {/* SMC Tab */}
                     <Button
-                      data-active={isCategorySelected("SMC") ? "true" : "false"}
-                      variant={isCategorySelected("SMC") ? "default" : "outline"}
-                      onClick={() => toggleCategory("SMC")}
-                      className={`rounded-full whitespace-nowrap text-xs md:text-sm px-3.5 py-1.5 h-auto hover:bg-blue-500 hover:text-white transition-all shadow-sm ${
-                        isCategorySelected("SMC") ? "bg-black text-white" : ""
+                      data-active={activeBrand === "smc" ? "true" : "false"}
+                      variant="outline"
+                      onClick={() => handleBrandClick("smc", "SMC")}
+                      className={`rounded-full whitespace-nowrap text-xs md:text-sm px-3.5 py-1.5 h-auto hover:bg-gray-100 dark:hover:bg-gray-800 transition-all shadow-sm ${
+                        activeBrand === "smc"
+                          ? "border-2 border-black dark:border-white font-semibold text-foreground bg-transparent shadow-xs"
+                          : "border-border text-foreground/80 hover:text-foreground"
                       }`}
                     >
                       <img
@@ -1602,11 +1682,13 @@ const Products = () => {
 
                     {/* LEUZE Tab */}
                     <Button
-                      data-active={isCategorySelected("LEUZE") ? "true" : "false"}
-                      variant={isCategorySelected("LEUZE") ? "default" : "outline"}
-                      onClick={() => toggleCategory("LEUZE")}
-                      className={`rounded-full whitespace-nowrap text-xs md:text-sm px-3.5 py-1.5 h-auto hover:bg-blue-500 hover:text-white transition-all shadow-sm ${
-                        isCategorySelected("LEUZE") ? "bg-black text-white" : ""
+                      data-active={activeBrand === "leuze" ? "true" : "false"}
+                      variant="outline"
+                      onClick={() => handleBrandClick("leuze", "LEUZE")}
+                      className={`rounded-full whitespace-nowrap text-xs md:text-sm px-3.5 py-1.5 h-auto hover:bg-gray-100 dark:hover:bg-gray-800 transition-all shadow-sm ${
+                        activeBrand === "leuze"
+                          ? "border-2 border-black dark:border-white font-semibold text-foreground bg-transparent shadow-xs"
+                          : "border-border text-foreground/80 hover:text-foreground"
                       }`}
                     >
                       <img
@@ -1618,15 +1700,17 @@ const Products = () => {
 
                     {/* Partner Brands */}
                     {brandCatalog.map((brand) => {
-                      const active = isBrandSelected(brand);
+                      const active = activeBrand?.toLowerCase() === brand.id.toLowerCase() || activeBrand?.toLowerCase() === brand.name.toLowerCase();
                       return (
                         <Button
                           key={brand.id}
                           data-active={active ? "true" : "false"}
-                          variant={active ? "default" : "outline"}
-                          onClick={() => toggleCategory(brand.name)}
-                          className={`rounded-full whitespace-nowrap text-xs md:text-sm px-3 py-1.5 h-auto hover:bg-blue-500 hover:text-white transition-all shadow-sm flex items-center gap-1.5 ${
-                            active ? "bg-black text-white" : ""
+                          variant="outline"
+                          onClick={() => handleBrandClick(brand.id, brand.name)}
+                          className={`rounded-full whitespace-nowrap text-xs md:text-sm px-3 py-1.5 h-auto hover:bg-gray-100 dark:hover:bg-gray-800 transition-all shadow-sm flex items-center gap-1.5 ${
+                            active
+                              ? "border-2 border-black dark:border-white font-semibold text-foreground bg-transparent shadow-xs"
+                              : "border-border text-foreground/80 hover:text-foreground"
                           }`}
                         >
                           <img
@@ -1640,9 +1724,9 @@ const Products = () => {
                     })}
                   </motion.div>
                 ) : (
-                  /* ================= MODE 2: MITSUBISHI SUB-CATEGORIES DRILLDOWN ================= */
+                  /* ================= MODE 2: BRAND PRODUCT TYPES DRILLDOWN ================= */
                   <motion.div
-                    key="mitsubishi-drilldown"
+                    key={`drilldown-${activeBrand}`}
                     initial={{ opacity: 0, y: 8, filter: "blur(4px)" }}
                     animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                     exit={{ opacity: 0, y: -8, filter: "blur(4px)" }}
@@ -1652,64 +1736,114 @@ const Products = () => {
                     <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2">
                       {/* All Products Tab */}
                       <Button
-                        data-active={!hasAnyFilter ? "true" : "false"}
-                        variant={!hasAnyFilter ? "default" : "outline"}
-                        onClick={clearAllCategories}
-                        className={`rounded-full whitespace-nowrap text-xs md:text-sm px-3.5 py-1.5 h-auto hover:bg-blue-500 hover:text-white transition-all shadow-sm ${
-                          !hasAnyFilter ? "bg-black text-white" : ""
-                        }`}
+                        variant="outline"
+                        onClick={handleSelectAllProducts}
+                        className="rounded-full whitespace-nowrap text-xs md:text-sm px-3.5 py-1.5 h-auto hover:bg-gray-100 dark:hover:bg-gray-800 transition-all shadow-sm border-border text-foreground/80 hover:text-foreground"
                       >
                         All Products
                       </Button>
 
-                      {/* Active Mitsubishi toggle / back button */}
-                      <Button
-                        variant="default"
-                        onClick={collapseMitsubishi}
-                        className="rounded-full whitespace-nowrap text-xs md:text-sm px-3.5 py-1.5 h-auto bg-black text-white hover:bg-black/85 transition-all shadow-sm flex items-center gap-1.5 ring-2 ring-red-500/30 group"
-                        title="Click to go back to all brands"
-                      >
-                        <img
-                          src={mitsubishiLogo}
-                          alt="Mitsubishi Electric"
-                          className="h-4 w-auto max-w-[80px] object-contain"
-                        />
-                        <span className="font-semibold">Mitsubishi</span>
-                        <Undo2 className="h-3.5 w-3.5 ml-1 opacity-70 group-hover:-translate-x-0.5 group-hover:opacity-100 transition-all text-red-400" />
-                      </Button>
+                      {/* Active Brand Toggle Button with Undo indicator */}
+                      {(() => {
+                        const partnerBrand = brandCatalog.find(b => b.id.toLowerCase() === activeBrand.toLowerCase() || b.name.toLowerCase() === activeBrand.toLowerCase());
 
-                      {/* Animated Mitsubishi Subcategory Pills (Allowing Multi-select) */}
-                      {MITSUBISHI_CATEGORIES.map((cat, idx) => {
-                        const active = isCategorySelected(cat);
                         return (
-                          <motion.div
-                            key={cat}
-                            initial={{ opacity: 0, scale: 0.9, y: 4 }}
-                            animate={{ opacity: 1, scale: 1, y: 0 }}
-                            transition={{
-                              duration: 0.25,
-                              delay: idx * 0.035,
-                              ease: [0.16, 1, 0.3, 1],
-                            }}
+                          <Button
+                            variant="outline"
+                            onClick={collapseBrand}
+                            className="rounded-full whitespace-nowrap text-xs md:text-sm px-3.5 py-1.5 h-auto border-2 border-black dark:border-white font-semibold text-foreground bg-transparent shadow-xs flex items-center gap-1.5 group"
+                            title="Click to go back to all brands"
                           >
-                            <Button
-                              data-active={active ? "true" : "false"}
-                              variant={active ? "default" : "outline"}
-                              onClick={() => toggleCategory(cat)}
-                              className={`rounded-full whitespace-nowrap text-xs md:text-sm px-3.5 py-1.5 h-auto hover:bg-blue-500 hover:text-white transition-all shadow-sm ${
-                                active ? "bg-black text-white font-medium shadow" : ""
-                              }`}
-                            >
-                              {cat}
-                            </Button>
-                          </motion.div>
+                            {activeBrand === "mitsubishi" ? (
+                              <img
+                                src={mitsubishiLogo}
+                                alt="Mitsubishi Electric"
+                                className="h-4 w-auto max-w-[80px] object-contain"
+                              />
+                            ) : activeBrand === "smc" ? (
+                              <img
+                                src={smcLogo}
+                                alt="SMC"
+                                className="h-4.5 w-auto object-contain"
+                              />
+                            ) : activeBrand === "leuze" ? (
+                              <img
+                                src={leuzeLogo}
+                                alt="LEUZE"
+                                className="h-4.5 w-auto object-contain"
+                              />
+                            ) : partnerBrand ? (
+                              <img
+                                src={partnerBrand.logo}
+                                alt={partnerBrand.name}
+                                className="h-3.5 w-auto max-w-[48px] object-contain bg-white rounded px-1 py-0.5"
+                              />
+                            ) : null}
+
+                            <span>
+                              {activeBrand === "mitsubishi"
+                                ? "Mitsubishi"
+                                : activeBrand === "smc"
+                                ? "SMC"
+                                : activeBrand === "leuze"
+                                ? "LEUZE"
+                                : partnerBrand?.name || activeBrand}
+                            </span>
+                            <Undo2 className="h-3.5 w-3.5 ml-1 text-muted-foreground group-hover:-translate-x-0.5 group-hover:text-foreground transition-all" />
+                          </Button>
                         );
-                      })}
+                      })()}
+
+                      {/* Sub-item Product Types Pills (Single select) */}
+                      {(() => {
+                        let subItems: string[] = [];
+                        if (activeBrand === "mitsubishi") {
+                          subItems = MITSUBISHI_CATEGORIES;
+                        } else if (activeBrand === "smc") {
+                          subItems = smcSubcategories;
+                        } else if (activeBrand === "leuze") {
+                          subItems = leuzeSubcategories;
+                        } else {
+                          const partner = brandCatalog.find(b => b.id.toLowerCase() === activeBrand.toLowerCase() || b.name.toLowerCase() === activeBrand.toLowerCase());
+                          if (partner) {
+                            subItems = partner.products.map(p => p.title);
+                          }
+                        }
+
+                        return subItems.map((item, idx) => {
+                          const isItemActive = selectedSubItem?.toLowerCase() === item.toLowerCase();
+                          return (
+                            <motion.div
+                              key={item}
+                              initial={{ opacity: 0, scale: 0.9, y: 4 }}
+                              animate={{ opacity: 1, scale: 1, y: 0 }}
+                              transition={{
+                                duration: 0.25,
+                                delay: idx * 0.03,
+                                ease: [0.16, 1, 0.3, 1],
+                              }}
+                            >
+                              <Button
+                                data-active={isItemActive ? "true" : "false"}
+                                variant="outline"
+                                onClick={() => handleSubItemClick(item)}
+                                className={`rounded-full whitespace-nowrap text-xs md:text-sm px-3.5 py-1.5 h-auto hover:bg-gray-100 dark:hover:bg-gray-800 transition-all shadow-sm ${
+                                  isItemActive
+                                    ? "border-2 border-black dark:border-white font-semibold text-foreground bg-transparent shadow-xs"
+                                    : "border-border text-foreground/80 hover:text-foreground"
+                                }`}
+                              >
+                                {item}
+                              </Button>
+                            </motion.div>
+                          );
+                        });
+                      })()}
                     </div>
 
                     {/* Subtle Apple-style prompt shown only 2 times total */}
                     <AnimatePresence>
-                      {showMitsubishiHint && (
+                      {showHintPrompt && (
                         <motion.div
                           initial={{ opacity: 0, y: -4, scale: 0.96 }}
                           animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -1717,8 +1851,8 @@ const Products = () => {
                           transition={{ duration: 0.25, ease: "easeOut" }}
                           className="flex items-center gap-1.5 text-xs text-muted-foreground bg-muted/60 dark:bg-muted/30 border border-border/50 px-3 py-1 rounded-full shadow-xs mt-1"
                         >
-                          <Undo2 className="h-3 w-3 text-red-500 animate-pulse" />
-                          <span>Tip: Click <strong>Mitsubishi</strong> again to go back to all brands</span>
+                          <Undo2 className="h-3 w-3 text-foreground animate-pulse" />
+                          <span>Tip: Click brand logo again to return to all brands</span>
                         </motion.div>
                       )}
                     </AnimatePresence>
@@ -1905,7 +2039,12 @@ const Products = () => {
                       >
                         {/* Product Cards Grid matching user screenshot */}
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                          {brand.products.map((product, pIdx) => {
+                          {brand.products
+                            .filter(product => {
+                              if (!selectedSubItem) return true;
+                              return product.title.toLowerCase() === selectedSubItem.toLowerCase();
+                            })
+                            .map((product, pIdx) => {
                             const categoryBadge = getBrandProductCategory(product, brand.name);
                             const description = getBrandProductDescription(product, brand.name);
 
