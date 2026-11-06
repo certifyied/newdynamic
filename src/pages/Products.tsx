@@ -7,7 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { ArrowRight, ChevronLeft, ChevronRight, Layers } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, Layers, Undo2 } from "lucide-react";
 import { useSearchParams } from "react-router-dom";
 import { brandCatalog, getBrandProductCategory, getBrandProductDescription } from "@/data/brandProducts";
 import ProductDescription from "@/components/ProductDescription";
@@ -23,6 +23,9 @@ import smcLogo from "/src/assets/logos/smc-logo.png";
 
 // Import LEUZE logo
 import leuzeLogo from "/src/assets/logos/Leuze_logo_red_cmyk_PNG.png";
+
+// Import Mitsubishi logo
+import mitsubishiLogo from "/src/assets/logos/mitsubishi-electric-logo.png";
 
 // Category mapping based on folder structure
 interface Product {
@@ -720,6 +723,17 @@ const allCategories = Array.from(new Set(allProducts.map(p => p.category))).sort
   return a.localeCompare(b);
 });
 
+// Mitsubishi core categories
+const MITSUBISHI_CATEGORIES = [
+  "PLC",
+  "HMI",
+  "AC Servo",
+  "Invertors",
+  "Low Voltage Switch gears",
+  "Robot",
+  "Software",
+];
+
 // PLC subcategories
 const plcSubcategories = [
   "PLC iQF",
@@ -1213,9 +1227,25 @@ const Products = () => {
     return parseCategoriesFromUrl(searchParams);
   });
 
+  const [isMitsubishiExpanded, setIsMitsubishiExpanded] = useState<boolean>(() => {
+    const initialCats = parseCategoriesFromUrl(searchParams);
+    return initialCats.some(cat =>
+      MITSUBISHI_CATEGORIES.some(m => m.toLowerCase() === cat.toLowerCase()) ||
+      cat.toLowerCase() === "mitsubishi"
+    );
+  });
+
+  const [showMitsubishiHint, setShowMitsubishiHint] = useState<boolean>(false);
+
   useEffect(() => {
     const cats = parseCategoriesFromUrl(searchParams);
     setSelectedCategories(cats);
+    if (cats.some(cat =>
+      MITSUBISHI_CATEGORIES.some(m => m.toLowerCase() === cat.toLowerCase()) ||
+      cat.toLowerCase() === "mitsubishi"
+    )) {
+      setIsMitsubishiExpanded(true);
+    }
   }, [searchParams]);
 
   const updateUrlCategories = (categories: string[]) => {
@@ -1243,7 +1273,64 @@ const Products = () => {
   };
 
   const isCategorySelected = (categoryName: string) => {
-    return selectedCategories.some(c => c.toLowerCase() === categoryName.toLowerCase());
+    return selectedCategories.some(c => {
+      const cLower = c.toLowerCase();
+      const targetLower = categoryName.toLowerCase();
+      if (cLower === targetLower) return true;
+      if (cLower === "mitsubishi" && MITSUBISHI_CATEGORIES.some(m => m.toLowerCase() === targetLower)) {
+        return true;
+      }
+      return false;
+    });
+  };
+
+  const isMitsubishiActive = () => {
+    return selectedCategories.some(c =>
+      c.toLowerCase() === "mitsubishi" ||
+      MITSUBISHI_CATEGORIES.some(m => m.toLowerCase() === c.toLowerCase())
+    );
+  };
+
+  const handleMitsubishiClick = () => {
+    if (!isMitsubishiExpanded) {
+      // Opening drilldown
+      setIsMitsubishiExpanded(true);
+      // Select Mitsubishi if no Mitsubishi categories currently selected
+      const hasMitsubishiCat = selectedCategories.some(c =>
+        MITSUBISHI_CATEGORIES.some(m => m.toLowerCase() === c.toLowerCase()) ||
+        c.toLowerCase() === "mitsubishi"
+      );
+      if (!hasMitsubishiCat) {
+        setSelectedCategories(prev => {
+          const updated = [...prev, "Mitsubishi"];
+          updateUrlCategories(updated);
+          return updated;
+        });
+      }
+
+      // Check localStorage for hint prompt (max 2 times)
+      try {
+        const storedCount = parseInt(localStorage.getItem("mitsubishi_hint_count") || "0", 10);
+        if (storedCount < 2) {
+          setShowMitsubishiHint(true);
+          localStorage.setItem("mitsubishi_hint_count", (storedCount + 1).toString());
+          setTimeout(() => {
+            setShowMitsubishiHint(false);
+          }, 4500);
+        }
+      } catch (e) {
+        // Safe localStorage access
+      }
+    } else {
+      // Clicking again collapses back to brand view
+      setIsMitsubishiExpanded(false);
+      setShowMitsubishiHint(false);
+    }
+  };
+
+  const collapseMitsubishi = () => {
+    setIsMitsubishiExpanded(false);
+    setShowMitsubishiHint(false);
   };
 
   const isBrandSelected = (brand: typeof brandCatalog[0]) => {
@@ -1453,72 +1540,191 @@ const Products = () => {
           </div>
         </section>
 
-        {/* Category Filter Tabs - Organized Single View (No Sticky, Multi-select) */}
-        <section className="pt-2 pb-2.5 border-b bg-background shadow-sm">
+        {/* Category Filter Tabs - Organized Animated View (Apple-like drilldown) */}
+        <section className="pt-2 pb-2.5 border-b bg-background shadow-sm relative overflow-hidden">
           <div className="container mx-auto px-4">
-            <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 py-0.5">
-              <Button
-                data-active={!hasAnyFilter ? "true" : "false"}
-                variant={!hasAnyFilter ? "default" : "outline"}
-                onClick={clearAllCategories}
-                className={`rounded-full whitespace-nowrap text-xs md:text-sm px-3.5 py-1.5 h-auto hover:bg-blue-500 hover:text-white transition-all shadow-sm ${
-                  !hasAnyFilter ? "bg-black text-white" : ""
-                }`}
-              >
-                All Products
-              </Button>
-              {allCategories.map((category) => {
-                const active = isCategorySelected(category);
-                return (
-                  <Button
-                    key={category}
-                    data-active={active ? "true" : "false"}
-                    variant={active ? "default" : "outline"}
-                    onClick={() => toggleCategory(category)}
-                    className={`rounded-full whitespace-nowrap text-xs md:text-sm px-3.5 py-1.5 h-auto hover:bg-blue-500 hover:text-white transition-all shadow-sm ${
-                      active ? "bg-black text-white" : ""
-                    }`}
+            <div className="flex flex-col items-center justify-center">
+              <AnimatePresence mode="wait" initial={false}>
+                {!isMitsubishiExpanded ? (
+                  /* ================= MODE 1: ALL BRANDS OVERVIEW ================= */
+                  <motion.div
+                    key="brands-overview"
+                    initial={{ opacity: 0, y: 8, filter: "blur(4px)" }}
+                    animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    exit={{ opacity: 0, y: -8, filter: "blur(4px)" }}
+                    transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                    className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 py-0.5"
                   >
-                    {category === "SMC" ? (
+                    {/* All Products Tab */}
+                    <Button
+                      data-active={!hasAnyFilter ? "true" : "false"}
+                      variant={!hasAnyFilter ? "default" : "outline"}
+                      onClick={clearAllCategories}
+                      className={`rounded-full whitespace-nowrap text-xs md:text-sm px-3.5 py-1.5 h-auto hover:bg-blue-500 hover:text-white transition-all shadow-sm ${
+                        !hasAnyFilter ? "bg-black text-white" : ""
+                      }`}
+                    >
+                      All Products
+                    </Button>
+
+                    {/* Mitsubishi Electric Tab */}
+                    <Button
+                      data-active={isMitsubishiActive() ? "true" : "false"}
+                      variant={isMitsubishiActive() ? "default" : "outline"}
+                      onClick={handleMitsubishiClick}
+                      className={`rounded-full whitespace-nowrap text-xs md:text-sm px-3.5 py-1.5 h-auto hover:bg-blue-500 hover:text-white transition-all shadow-sm flex items-center gap-1.5 ${
+                        isMitsubishiActive() ? "bg-black text-white ring-2 ring-red-500/30" : ""
+                      }`}
+                    >
+                      <img
+                        src={mitsubishiLogo}
+                        alt="Mitsubishi Electric"
+                        className="h-4 w-auto max-w-[80px] object-contain"
+                      />
+                      <span className="font-medium">Mitsubishi</span>
+                    </Button>
+
+                    {/* SMC Tab */}
+                    <Button
+                      data-active={isCategorySelected("SMC") ? "true" : "false"}
+                      variant={isCategorySelected("SMC") ? "default" : "outline"}
+                      onClick={() => toggleCategory("SMC")}
+                      className={`rounded-full whitespace-nowrap text-xs md:text-sm px-3.5 py-1.5 h-auto hover:bg-blue-500 hover:text-white transition-all shadow-sm ${
+                        isCategorySelected("SMC") ? "bg-black text-white" : ""
+                      }`}
+                    >
                       <img
                         src={smcLogo}
                         alt="SMC"
                         className="h-5 w-auto"
                       />
-                    ) : category === "LEUZE" ? (
+                    </Button>
+
+                    {/* LEUZE Tab */}
+                    <Button
+                      data-active={isCategorySelected("LEUZE") ? "true" : "false"}
+                      variant={isCategorySelected("LEUZE") ? "default" : "outline"}
+                      onClick={() => toggleCategory("LEUZE")}
+                      className={`rounded-full whitespace-nowrap text-xs md:text-sm px-3.5 py-1.5 h-auto hover:bg-blue-500 hover:text-white transition-all shadow-sm ${
+                        isCategorySelected("LEUZE") ? "bg-black text-white" : ""
+                      }`}
+                    >
                       <img
                         src={leuzeLogo}
                         alt="LEUZE"
                         className="h-5 w-auto"
                       />
-                    ) : (
-                      category
-                    )}
-                  </Button>
-                );
-              })}
-              {/* Partner Brands directly at the first level */}
-              {brandCatalog.map((brand) => {
-                const active = isBrandSelected(brand);
-                return (
-                  <Button
-                    key={brand.id}
-                    data-active={active ? "true" : "false"}
-                    variant={active ? "default" : "outline"}
-                    onClick={() => toggleCategory(brand.name)}
-                    className={`rounded-full whitespace-nowrap text-xs md:text-sm px-3 py-1.5 h-auto hover:bg-blue-500 hover:text-white transition-all shadow-sm flex items-center gap-1.5 ${
-                      active ? "bg-black text-white" : ""
-                    }`}
+                    </Button>
+
+                    {/* Partner Brands */}
+                    {brandCatalog.map((brand) => {
+                      const active = isBrandSelected(brand);
+                      return (
+                        <Button
+                          key={brand.id}
+                          data-active={active ? "true" : "false"}
+                          variant={active ? "default" : "outline"}
+                          onClick={() => toggleCategory(brand.name)}
+                          className={`rounded-full whitespace-nowrap text-xs md:text-sm px-3 py-1.5 h-auto hover:bg-blue-500 hover:text-white transition-all shadow-sm flex items-center gap-1.5 ${
+                            active ? "bg-black text-white" : ""
+                          }`}
+                        >
+                          <img
+                            src={brand.logo}
+                            alt={brand.name}
+                            className="h-3.5 w-auto max-w-[48px] object-contain bg-white rounded px-1 py-0.5"
+                          />
+                          <span>{brand.name}</span>
+                        </Button>
+                      );
+                    })}
+                  </motion.div>
+                ) : (
+                  /* ================= MODE 2: MITSUBISHI SUB-CATEGORIES DRILLDOWN ================= */
+                  <motion.div
+                    key="mitsubishi-drilldown"
+                    initial={{ opacity: 0, y: 8, filter: "blur(4px)" }}
+                    animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    exit={{ opacity: 0, y: -8, filter: "blur(4px)" }}
+                    transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                    className="flex flex-col items-center gap-2 py-0.5 w-full"
                   >
-                    <img
-                      src={brand.logo}
-                      alt={brand.name}
-                      className="h-3.5 w-auto max-w-[48px] object-contain bg-white rounded px-1 py-0.5"
-                    />
-                    <span>{brand.name}</span>
-                  </Button>
-                );
-              })}
+                    <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2">
+                      {/* All Products Tab */}
+                      <Button
+                        data-active={!hasAnyFilter ? "true" : "false"}
+                        variant={!hasAnyFilter ? "default" : "outline"}
+                        onClick={clearAllCategories}
+                        className={`rounded-full whitespace-nowrap text-xs md:text-sm px-3.5 py-1.5 h-auto hover:bg-blue-500 hover:text-white transition-all shadow-sm ${
+                          !hasAnyFilter ? "bg-black text-white" : ""
+                        }`}
+                      >
+                        All Products
+                      </Button>
+
+                      {/* Active Mitsubishi toggle / back button */}
+                      <Button
+                        variant="default"
+                        onClick={collapseMitsubishi}
+                        className="rounded-full whitespace-nowrap text-xs md:text-sm px-3.5 py-1.5 h-auto bg-black text-white hover:bg-black/85 transition-all shadow-sm flex items-center gap-1.5 ring-2 ring-red-500/30 group"
+                        title="Click to go back to all brands"
+                      >
+                        <img
+                          src={mitsubishiLogo}
+                          alt="Mitsubishi Electric"
+                          className="h-4 w-auto max-w-[80px] object-contain"
+                        />
+                        <span className="font-semibold">Mitsubishi</span>
+                        <Undo2 className="h-3.5 w-3.5 ml-1 opacity-70 group-hover:-translate-x-0.5 group-hover:opacity-100 transition-all text-red-400" />
+                      </Button>
+
+                      {/* Animated Mitsubishi Subcategory Pills (Allowing Multi-select) */}
+                      {MITSUBISHI_CATEGORIES.map((cat, idx) => {
+                        const active = isCategorySelected(cat);
+                        return (
+                          <motion.div
+                            key={cat}
+                            initial={{ opacity: 0, scale: 0.9, y: 4 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            transition={{
+                              duration: 0.25,
+                              delay: idx * 0.035,
+                              ease: [0.16, 1, 0.3, 1],
+                            }}
+                          >
+                            <Button
+                              data-active={active ? "true" : "false"}
+                              variant={active ? "default" : "outline"}
+                              onClick={() => toggleCategory(cat)}
+                              className={`rounded-full whitespace-nowrap text-xs md:text-sm px-3.5 py-1.5 h-auto hover:bg-blue-500 hover:text-white transition-all shadow-sm ${
+                                active ? "bg-black text-white font-medium shadow" : ""
+                              }`}
+                            >
+                              {cat}
+                            </Button>
+                          </motion.div>
+                        );
+                      })}
+                    </div>
+
+                    {/* Subtle Apple-style prompt shown only 2 times total */}
+                    <AnimatePresence>
+                      {showMitsubishiHint && (
+                        <motion.div
+                          initial={{ opacity: 0, y: -4, scale: 0.96 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: -4, scale: 0.96 }}
+                          transition={{ duration: 0.25, ease: "easeOut" }}
+                          className="flex items-center gap-1.5 text-xs text-muted-foreground bg-muted/60 dark:bg-muted/30 border border-border/50 px-3 py-1 rounded-full shadow-xs mt-1"
+                        >
+                          <Undo2 className="h-3 w-3 text-red-500 animate-pulse" />
+                          <span>Tip: Click <strong>Mitsubishi</strong> again to go back to all brands</span>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </div>
         </section>
