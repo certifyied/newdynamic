@@ -25,6 +25,7 @@ import nidecLogo from "@/assets/brands/nidec.webp";
 import hiwinLogo from "@/assets/brands/hiwin.webp";
 import baumerLogo from "@/assets/brands/baumer.webp";
 import lauritzKnudsenLogo from "@/assets/brands/lauritz-knudsen.webp";
+import mitsubishiLogo from "@/assets/logos/mitsubishi-electric-logo.png";
 
 interface ProductCategory {
   name: string;
@@ -226,11 +227,25 @@ const Navigation = () => {
                             {/* Left Panel: Product Categories (5 cols) */}
                             <div className="col-span-5 bg-muted/20 p-5 border-r border-border/60 flex flex-col justify-between min-w-0">
                               <div>
-                                <div className="flex items-center gap-2 pb-2.5 mb-2 border-b border-border/50">
-                                  <Layers className="h-4 w-4 text-primary" />
-                                  <h4 className="font-display font-bold text-xs uppercase tracking-wider text-muted-foreground">
-                                    Product Categories
-                                  </h4>
+                                <div className="flex items-center justify-between pb-2.5 mb-2 border-b border-border/50">
+                                  <div className="flex items-center gap-2">
+                                    <Layers className="h-4 w-4 text-primary" />
+                                    <h4 className="font-display font-bold text-xs uppercase tracking-wider text-muted-foreground">
+                                      Product Categories
+                                    </h4>
+                                  </div>
+                                  <Link
+                                    to="/products?category=mitsubishi"
+                                    onClick={() => setIsProductsDropdownOpen(false)}
+                                    className="hover:opacity-85 transition-opacity"
+                                    title="Mitsubishi Electric Products"
+                                  >
+                                    <img
+                                      src={mitsubishiLogo}
+                                      alt="Mitsubishi Electric"
+                                      className="h-4 w-auto object-contain"
+                                    />
+                                  </Link>
                                 </div>
                                 <ul className="space-y-0.5">
                                   {productCategories.map((subcat) => (
@@ -250,8 +265,13 @@ const Navigation = () => {
                                 </ul>
                               </div>
 
-                              <div className="pt-3 border-t border-border/40 text-[11px] text-muted-foreground">
-                                Authorized partner for Mitsubishi Electric in Kerala
+                              <div className="pt-3 border-t border-border/40 flex items-center justify-between gap-2 text-[11px] text-muted-foreground">
+                                <span>Authorized partner for Mitsubishi Electric in Kerala</span>
+                                <img
+                                  src={mitsubishiLogo}
+                                  alt="Mitsubishi Electric"
+                                  className="h-3.5 w-auto object-contain flex-shrink-0"
+                                />
                               </div>
                             </div>
 
@@ -488,9 +508,16 @@ const Navigation = () => {
 
                     {/* Product Categories List */}
                     <div>
-                      <p className="text-xs uppercase font-bold text-muted-foreground px-1 mb-2 tracking-wider">
-                        Categories
-                      </p>
+                      <div className="flex items-center justify-between px-1 mb-2">
+                        <p className="text-xs uppercase font-bold text-muted-foreground tracking-wider">
+                          Categories
+                        </p>
+                        <img
+                          src={mitsubishiLogo}
+                          alt="Mitsubishi Electric"
+                          className="h-3.5 w-auto object-contain opacity-80"
+                        />
+                      </div>
                       <div className="bg-muted/30 border border-border/60 rounded-xl overflow-hidden divide-y divide-border/50">
                         {productCategories.map((subcat) => (
                           <Link
