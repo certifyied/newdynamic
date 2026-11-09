@@ -24,6 +24,7 @@ import advantechLogo from "@/assets/brands/advantech.webp";
 import nidecLogo from "@/assets/brands/nidec.webp";
 import hiwinLogo from "@/assets/brands/hiwin.webp";
 import baumerLogo from "@/assets/brands/baumer.webp";
+import lauritzKnudsenLogo from "@/assets/brands/lauritz-knudsen.webp";
 
 interface ProductCategory {
   name: string;
@@ -50,15 +51,16 @@ const productCategories: ProductCategory[] = [
 ];
 
 const partnerBrands: PartnerBrand[] = [
-  { name: "Delta", logo: deltaLogo },
-  { name: "Omron", logo: omronLogo },
-  { name: "Innovance", logo: innovanceLogo },
+  { name: "Lauritz Knudsen", logo: lauritzKnudsenLogo },
   { name: "Schneider", logo: schneiderLogo },
   { name: "Lubi", logo: lubiLogo },
   { name: "Advantech", logo: advantechLogo },
   { name: "Nidec", logo: nidecLogo },
   { name: "Hiwin", logo: hiwinLogo },
   { name: "Baumer", logo: baumerLogo },
+  { name: "Omron", logo: omronLogo },
+  { name: "Delta", logo: deltaLogo },
+  { name: "Innovance", logo: innovanceLogo },
 ];
 
 const Navigation = () => {
