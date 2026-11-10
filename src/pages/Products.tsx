@@ -1730,25 +1730,6 @@ const Products = () => {
                       />
                     </Button>
 
-                    {/* SMC Tab */}
-                    <Button
-                      data-active={activeBrand === "smc" ? "true" : "false"}
-                      variant="outline"
-                      onClick={() => handleBrandClick("smc", "SMC")}
-                      title="SMC"
-                      className={`rounded-full whitespace-nowrap text-xs md:text-sm px-3.5 py-1.5 h-auto hover:bg-gray-100 dark:hover:bg-gray-800 transition-all shadow-sm flex items-center justify-center ${
-                        activeBrand === "smc"
-                          ? "border-2 border-black dark:border-white font-semibold text-foreground bg-transparent shadow-xs"
-                          : "border-border text-foreground/80 hover:text-foreground"
-                      }`}
-                    >
-                      <img
-                        src={smcLogo}
-                        alt="SMC"
-                        className="h-4 max-h-4 w-auto max-w-[50px] object-contain"
-                      />
-                    </Button>
-
                     {/* Partner Brands (#3 to #12: Lauritz Knudsen, Schneider, Lubi, Advantech, Nidec, Hiwin, Baumer, Omron, Delta, Innovance) */}
                     {brandCatalog.map((brand) => {
                       const active = activeBrand?.toLowerCase() === brand.id.toLowerCase() || activeBrand?.toLowerCase() === brand.name.toLowerCase();
@@ -1773,6 +1754,25 @@ const Products = () => {
                         </Button>
                       );
                     })}
+
+                    {/* SMC Tab (Moved to last) */}
+                    <Button
+                      data-active={activeBrand === "smc" ? "true" : "false"}
+                      variant="outline"
+                      onClick={() => handleBrandClick("smc", "SMC")}
+                      title="SMC"
+                      className={`rounded-full whitespace-nowrap text-xs md:text-sm px-3.5 py-1.5 h-auto hover:bg-gray-100 dark:hover:bg-gray-800 transition-all shadow-sm flex items-center justify-center ${
+                        activeBrand === "smc"
+                          ? "border-2 border-black dark:border-white font-semibold text-foreground bg-transparent shadow-xs"
+                          : "border-border text-foreground/80 hover:text-foreground"
+                      }`}
+                    >
+                      <img
+                        src={smcLogo}
+                        alt="SMC"
+                        className="h-4 max-h-4 w-auto max-w-[50px] object-contain"
+                      />
+                    </Button>
                   </motion.div>
                 ) : (
                   /* ================= MODE 2: BRAND PRODUCT TYPES DRILLDOWN ================= */
@@ -1908,13 +1908,9 @@ const Products = () => {
         {/* Products by Section */}
         <section className="pt-3 md:pt-4 pb-20">
           <div className="container mx-auto px-4 space-y-8 md:space-y-10">
-            {organizedSections.map((section, sectionIndex) => (
-              <motion.div
+            {organizedSections.map((section) => (
+              <div
                 key={section.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: sectionIndex * 0.1 }}
               >
                 <div className={`mb-4 md:mb-5 ${section.isSubsection ? "ml-8" : ""}`}>
                   <h2 className={`font-display font-bold mb-1.5 ${section.isSubsection ? "text-2xl md:text-3xl" : "text-3xl md:text-4xl"}`}>
@@ -1977,12 +1973,8 @@ const Products = () => {
                         const isPlcIqr = product.subcategory === "PLC iQR";
 
                         return (
-                          <motion.div
+                          <div
                             key={`${product.filename}-${index}`}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: index * 0.05 }}
                           >
                             <Card className="h-full hover-lift cursor-pointer group overflow-hidden flex flex-col bg-card border border-border/80 rounded-2xl shadow-sm hover:shadow-md transition-all">
 
@@ -2044,14 +2036,14 @@ const Products = () => {
                               </CardContent>
 
                             </Card>
-                          </motion.div>
+                          </div>
                         );
                       })}
                     </div>
 
                   );
                 })()}
-              </motion.div>
+              </div>
             ))}
 
             {(() => {
@@ -2070,13 +2062,9 @@ const Products = () => {
                   {/* Partner Brand Sections at First Level */}
                   {brandCatalog
                     .filter(brand => !hasAnyFilter || isBrandSelected(brand))
-                    .map((brand, brandIdx) => (
-                      <motion.div
+                    .map((brand) => (
+                      <div
                         key={brand.id}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: brandIdx * 0.05 }}
                         className="space-y-6 pt-4"
                       >
                         {/* Product Cards Grid matching user screenshot */}
@@ -2091,12 +2079,8 @@ const Products = () => {
                             const description = getBrandProductDescription(product, brand.name);
 
                             return (
-                              <motion.div
+                              <div
                                 key={`${brand.id}-${product.id}-${pIdx}`}
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: pIdx * 0.04 }}
                               >
                                 <Card className="h-full hover-lift cursor-pointer group overflow-hidden flex flex-col bg-card border border-border/80 rounded-2xl shadow-sm hover:shadow-md transition-all">
                                   {/* Top Image Frame */}
@@ -2165,11 +2149,11 @@ const Products = () => {
                                     )}
                                   </CardContent>
                                 </Card>
-                              </motion.div>
+                              </div>
                             );
                           })}
                         </div>
-                      </motion.div>
+                      </div>
                     ))}
                 </>
               );
